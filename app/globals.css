@@ -120,3 +120,57 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* Landing page specific styles */
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply border border-transparent bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-border;
+  }
+
+  /* Code syntax highlighting for demos */
+  .code-keyword {
+    @apply text-purple-400;
+  }
+
+  .code-string {
+    @apply text-green-400;
+  }
+
+  .code-function {
+    @apply text-yellow-400;
+  }
+
+  .code-variable {
+    @apply text-blue-400;
+  }
+
+  .code-comment {
+    @apply text-slate-400;
+  }
+
+  /* Animated background for hero section */
+  .hero-bg {
+    background: linear-gradient(135deg,
+      hsl(var(--background)) 0%,
+      hsl(var(--muted)) 50%,
+      hsl(var(--background)) 100%);
+  }
+
+  /* Glassmorphism effect for cards */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-sm border border-white/20;
+  }
+
+  /* Hover animations */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-shadow duration-300 hover:shadow-lg hover:shadow-blue-500/25;
+  }
+}

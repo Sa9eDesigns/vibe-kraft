@@ -1,0 +1,80 @@
+{
+  "name": "@vibe-kraft/browserless",
+  "version": "1.0.0",
+  "description": "TypeScript library for Browserless.io API integration",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "test:ui": "vitest --ui",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "keywords": [
+    "browserless",
+    "headless-browser",
+    "puppeteer",
+    "playwright",
+    "pdf-generation",
+    "screenshot",
+    "web-scraping",
+    "automation",
+    "typescript"
+  ],
+  "author": "VibeKraft Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/vibe-kraft.git",
+    "directory": "lib/browserless"
+  },
+  "bugs": {
+    "url": "https://github.com/your-org/vibe-kraft/issues"
+  },
+  "homepage": "https://github.com/your-org/vibe-kraft/tree/main/lib/browserless#readme",
+  "peerDependencies": {
+    "puppeteer-core": ">=19.0.0",
+    "playwright-core": ">=1.30.0"
+  },
+  "peerDependenciesMeta": {
+    "puppeteer-core": {
+      "optional": true
+    },
+    "playwright-core": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "@vitest/ui": "^1.0.0",
+    "eslint": "^8.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
