@@ -143,8 +143,16 @@ export class DevSandbox extends EventEmitter {
       this.cx = await window.CheerpX.Linux.create(createOptions);
 
       this.isInitialized = true;
+
+      // Test basic functionality (non-blocking)
+      try {
+        await this.testBasicFunctionality();
+      } catch (testError) {
+        console.warn('⚠️ Basic functionality test failed, but continuing initialization:', testError);
+      }
+
       this.emit('ready', { sandbox: this });
-      
+
     } catch (error) {
       this.emit('error', { error, sandbox: this });
       throw error;
@@ -222,6 +230,83 @@ export class DevSandbox extends EventEmitter {
     }
   }
 
+  private async testBasicFunctionality(): Promise<void> {
+    console.log('🧪 Testing basic CheerpX functionality...');
+
+    // First, check if CheerpX instance is properly set up
+    console.log('🔍 CheerpX instance check:', {
+      hasCx: !!this.cx,
+      cxType: typeof this.cx,
+      hasRun: this.cx && typeof this.cx.run === 'function',
+      cxMethods: this.cx ? Object.keys(this.cx).filter(k => typeof this.cx[k] === 'function') : []
+    });
+
+    if (!this.cx) {
+      console.warn('⚠️ CheerpX instance not available, skipping basic functionality test');
+      return;
+    }
+
+    if (typeof this.cx.run !== 'function') {
+      console.warn('⚠️ CheerpX run method not available, skipping basic functionality test');
+      return;
+    }
+
+    try {
+      console.log('🚀 Attempting basic echo command...');
+
+      // Test simple echo command with minimal options
+      const result = await this.cx.run('/bin/echo', ['Hello WebVM'], {
+        env: ['PATH=/bin:/usr/bin'],
+        cwd: '/home/user'
+      });
+
+      console.log('📤 Basic echo test raw result:', result);
+      console.log('📊 Basic echo test analysis:', {
+        hasResult: !!result,
+        resultType: typeof result,
+        exitCode: result?.exitCode,
+        stdout: result?.stdout,
+        stderr: result?.stderr,
+        stdoutType: typeof result?.stdout,
+        stderrType: typeof result?.stderr
+      });
+
+      // More lenient checking - just verify we got some kind of result
+      if (!result) {
+        console.warn('⚠️ No result from echo command, but continuing...');
+        return;
+      }
+
+      if (result.exitCode && result.exitCode !== 0) {
+        console.warn(`⚠️ Echo command returned non-zero exit code: ${result.exitCode}, but continuing...`);
+        if (result.stderr) {
+          console.warn('⚠️ Echo command stderr:', result.stderr);
+        }
+        return;
+      }
+
+      if (result.stdout && result.stdout.includes('Hello WebVM')) {
+        console.log('✅ Basic functionality test passed - echo command working correctly');
+      } else {
+        console.warn('⚠️ Echo command succeeded but output is unexpected:', result.stdout);
+        console.warn('⚠️ Continuing anyway as CheerpX seems to be responding...');
+      }
+
+    } catch (error) {
+      console.error('❌ Basic functionality test failed:', error);
+      console.error('❌ Error details:', {
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+        errorType: error?.constructor?.name
+      });
+
+      // Don't throw here - just warn and continue
+      // The WebVM might still work for file operations even if echo fails
+      console.warn('⚠️ Continuing initialization despite basic test failure...');
+      console.warn('⚠️ File operations may still work, will attempt graceful degradation');
+    }
+  }
+
   async readFile(path: string): Promise<string> {
     this.ensureInitialized();
     
@@ -277,26 +362,106 @@ export class DevSandbox extends EventEmitter {
 
   async listFiles(path: string): Promise<FileInfo[]> {
     this.ensureInitialized();
-    
+
+    console.log(`🔍 Listing files in path: ${path}`);
+    console.log('🔧 CheerpX readiness check:', {
+      isReady: this.isReady(),
+      isCheerpXReady: this.isCheerpXReady(),
+      hasCx: !!this.cx,
+      cxType: typeof this.cx
+    });
+
+    // If CheerpX is not ready, return empty array with warning
+    if (!this.isCheerpXReady()) {
+      console.warn('⚠️ CheerpX is not ready for command execution, returning empty file list');
+      return [];
+    }
+
     try {
-      const result = await this.cx.run('/bin/ls', ['-la', path], {
+      // Use executeCommand instead of direct cx.run for better error handling
+      const result = await this.executeCommand('/bin/ls', ['-la', path], {
         env: ['PATH=/bin:/usr/bin'],
         cwd: '/',
         uid: 1000,
         gid: 1000
       });
-      
+
+      console.log('📁 ls command result:', {
+        exitCode: result.exitCode,
+        stdout: result.stdout ? `${result.stdout.length} chars` : 'undefined',
+        stderr: result.stderr ? `${result.stderr.length} chars` : 'undefined'
+      });
+
+      // Check if stdout is available and not empty
+      if (!result.stdout) {
+        console.warn('⚠️ ls command returned no stdout, checking stderr:', result.stderr);
+
+        // If stderr indicates permission issues or path doesn't exist, try alternatives
+        if (result.stderr && result.stderr.includes('Permission denied')) {
+          console.log('🔄 Permission denied, trying with different permissions...');
+          // Try without specific uid/gid
+          const fallbackResult = await this.executeCommand('/bin/ls', ['-la', path]);
+          if (fallbackResult.stdout) {
+            return this.parseLsOutput(fallbackResult.stdout);
+          }
+        }
+
+        if (result.stderr && result.stderr.includes('No such file or directory')) {
+          console.log('📂 Directory not found, trying parent directory or home...');
+          // Try home directory as fallback
+          if (path !== '/home/user') {
+            return await this.listFiles('/home/user');
+          }
+        }
+
+        // Return empty array if no stdout and no recoverable error
+        console.warn('📭 No file listing available, returning empty array');
+        return [];
+      }
+
       return this.parseLsOutput(result.stdout);
+
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      throw new Error(`Failed to list files in ${path}: ${message}`);
+      console.error(`❌ Failed to list files in ${path}:`, message);
+
+      // Try fallback approaches
+      try {
+        console.log('🔄 Trying fallback file listing approaches...');
+
+        // Try with simpler ls command
+        const simpleResult = await this.executeCommand('ls', [path]);
+        if (simpleResult.stdout) {
+          console.log('✅ Simple ls command succeeded');
+          return this.parseSimpleLsOutput(simpleResult.stdout, path);
+        }
+
+        // Try with find command as last resort
+        const findResult = await this.executeCommand('find', [path, '-maxdepth', '1', '-type', 'f']);
+        if (findResult.stdout) {
+          console.log('✅ Find command succeeded');
+          return this.parseFindOutput(findResult.stdout);
+        }
+
+      } catch (fallbackError) {
+        console.error('❌ All fallback methods failed:', fallbackError);
+      }
+
+      // Return empty array instead of throwing to prevent UI crashes
+      console.warn('📭 Returning empty file list due to errors');
+      return [];
     }
   }
 
   private parseLsOutput(output: string): FileInfo[] {
+    if (!output || typeof output !== 'string') {
+      console.warn('⚠️ parseLsOutput received invalid output:', output);
+      return [];
+    }
+
     const lines = output.split('\n').filter(line => line.trim() && !line.startsWith('total'));
     const files: FileInfo[] = [];
-    
+
     for (const line of lines) {
       const parts = line.trim().split(/\s+/);
       if (parts.length >= 9) {
@@ -328,47 +493,139 @@ export class DevSandbox extends EventEmitter {
     return files;
   }
 
+  private parseSimpleLsOutput(output: string, basePath: string): FileInfo[] {
+    if (!output || typeof output !== 'string') {
+      console.warn('⚠️ parseSimpleLsOutput received invalid output:', output);
+      return [];
+    }
+
+    const lines = output.split('\n').filter(line => line.trim());
+    const files: FileInfo[] = [];
+
+    for (const line of lines) {
+      const name = line.trim();
+      if (name && name !== '.' && name !== '..') {
+        files.push({
+          name,
+          path: `${basePath}/${name}`,
+          type: 'file', // Default to file since we can't determine from simple ls
+          size: 0,
+          permissions: '-rw-r--r--',
+          lastModified: new Date(),
+          owner: 'user',
+          group: 'user'
+        });
+      }
+    }
+
+    return files;
+  }
+
+  private parseFindOutput(output: string): FileInfo[] {
+    if (!output || typeof output !== 'string') {
+      console.warn('⚠️ parseFindOutput received invalid output:', output);
+      return [];
+    }
+
+    const lines = output.split('\n').filter(line => line.trim());
+    const files: FileInfo[] = [];
+
+    for (const line of lines) {
+      const fullPath = line.trim();
+      if (fullPath) {
+        const name = fullPath.split('/').pop() || fullPath;
+        files.push({
+          name,
+          path: fullPath,
+          type: 'file',
+          size: 0,
+          permissions: '-rw-r--r--',
+          lastModified: new Date(),
+          owner: 'user',
+          group: 'user'
+        });
+      }
+    }
+
+    return files;
+  }
+
   async executeCommand(command: string, args: string[] = [], options: any = {}): Promise<CommandResult> {
     this.ensureInitialized();
-    
+
+    const fullCommand = `${command} ${args.join(' ')}`;
+    console.log(`🚀 Executing command: ${fullCommand}`);
+
     const startTime = Date.now();
-    
+
     try {
-      const result = await this.cx.run(command, args, {
+      // Check if CheerpX run method is available
+      if (!this.cx || typeof this.cx.run !== 'function') {
+        throw new Error('CheerpX run method is not available');
+      }
+
+      const runOptions = {
         env: options.env || ['PATH=/bin:/usr/bin', 'HOME=/home/user'],
         cwd: options.cwd || '/home/user',
         uid: options.uid || 1000,
         gid: options.gid || 1000,
         ...options
+      };
+
+      console.log('⚙️ Command options:', runOptions);
+      console.log('🔧 CheerpX instance check:', {
+        hasCx: !!this.cx,
+        hasRun: this.cx && typeof this.cx.run === 'function'
       });
-      
+
+      const result = await this.cx.run(command, args, runOptions);
+
+      console.log('📤 Raw CheerpX result:', {
+        exitCode: result?.exitCode,
+        stdout: result?.stdout ? `${result.stdout.length} chars` : 'undefined',
+        stderr: result?.stderr ? `${result.stderr.length} chars` : 'undefined',
+        hasResult: !!result
+      });
+
       const duration = Date.now() - startTime;
       const commandResult: CommandResult = {
-        command: `${command} ${args.join(' ')}`,
-        exitCode: result.exitCode || 0,
-        stdout: result.stdout || '',
-        stderr: result.stderr || '',
+        command: fullCommand,
+        exitCode: result?.exitCode || 0,
+        stdout: result?.stdout || '',
+        stderr: result?.stderr || '',
         duration,
         timestamp: new Date()
       };
-      
+
+      console.log(`✅ Command completed in ${duration}ms:`, {
+        exitCode: commandResult.exitCode,
+        stdoutLength: commandResult.stdout.length,
+        stderrLength: commandResult.stderr.length
+      });
+
       this.emit('command', commandResult);
       return commandResult;
       
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`Command execution failed: ${message}`);
-      
       const duration = Date.now() - startTime;
+
+      console.error(`❌ Command execution failed after ${duration}ms:`, {
+        command: fullCommand,
+        error: message,
+        errorType: error?.constructor?.name,
+        stack: error instanceof Error ? error.stack : undefined
+      });
+
       const commandResult: CommandResult = {
-        command: `${command} ${args.join(' ')}`,
+        command: fullCommand,
         exitCode: 1,
         stdout: '',
         stderr: message,
         duration,
         timestamp: new Date()
       };
-      
+
       this.emit('command', commandResult);
       throw error;
     }
@@ -523,13 +780,28 @@ export class DevSandbox extends EventEmitter {
     return this.isInitialized && !this.isDestroyed;
   }
 
+  isCheerpXReady(): boolean {
+    return this.isReady() && !!this.cx && typeof this.cx.run === 'function';
+  }
+
   private ensureInitialized(): void {
     if (!this.isInitialized) {
       throw new Error('Sandbox is not initialized. Call initialize() first.');
     }
-    
+
     if (this.isDestroyed) {
       throw new Error('Sandbox has been destroyed.');
+    }
+
+    // Additional check for CheerpX availability
+    if (!this.cx) {
+      throw new Error('CheerpX instance is not available.');
+    }
+
+    // Warn if CheerpX methods are not available, but don't fail completely
+    if (typeof this.cx.run !== 'function') {
+      console.warn('⚠️ CheerpX run method is not available yet');
+      console.warn('⚠️ Available CheerpX methods:', Object.keys(this.cx).filter(k => typeof this.cx[k] === 'function'));
     }
   }
 

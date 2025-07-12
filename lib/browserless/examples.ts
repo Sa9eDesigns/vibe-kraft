@@ -332,11 +332,183 @@ async function retryOperation<T>(
 }
 
 /**
- * Example 9: Batch Operations
+ * Example 9: Web Scraping
+ */
+export async function webScrapingExample() {
+  const client = createCloudClient('your-api-token', 'us');
+
+  try {
+    // Scrape specific elements from a page
+    const scrapeResult = await client.scrapeData({
+      url: 'https://example.com',
+      elements: [
+        {
+          selector: 'h1',
+          attribute: 'textContent',
+        },
+        {
+          selector: 'a',
+          attribute: 'href',
+        },
+        {
+          selector: '.price',
+          attribute: 'textContent',
+        },
+      ],
+      waitFor: {
+        timeout: 10000,
+        selector: '.content-loaded',
+      },
+      blockAds: true,
+    });
+
+    console.log('Scraped data:', scrapeResult.data);
+    return scrapeResult;
+  } catch (error) {
+    console.error('Web scraping failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Example 10: Performance Analysis
+ */
+export async function performanceAnalysisExample() {
+  const client = createCloudClient('your-api-token', 'us');
+
+  try {
+    // Run Lighthouse performance analysis
+    const performanceResult = await client.analyzePerformance({
+      url: 'https://example.com',
+      budget: {
+        performance: 0.9,
+        accessibility: 0.8,
+        'best-practices': 0.9,
+        seo: 0.8,
+      },
+      viewport: {
+        width: 1920,
+        height: 1080,
+        isMobile: false,
+      },
+    });
+
+    console.log('Performance scores:', performanceResult.lhr.categories);
+    return performanceResult;
+  } catch (error) {
+    console.error('Performance analysis failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Example 11: Unblock Protected Content
+ */
+export async function unblockContentExample() {
+  const client = createCloudClient('your-api-token', 'us');
+
+  try {
+    // Access content that might be blocked by anti-bot measures
+    const unblockResult = await client.unblockContent({
+      url: 'https://protected-site.com',
+      stealth: true,
+      proxy: {
+        server: 'http://proxy.example.com:8080',
+        username: 'proxy-user',
+        password: 'proxy-pass',
+      },
+      waitFor: {
+        timeout: 15000,
+        selector: '.protected-content',
+      },
+    });
+
+    console.log('Unblocked content:', unblockResult.data);
+    return unblockResult;
+  } catch (error) {
+    console.error('Content unblocking failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Example 12: Session Management
+ */
+export async function sessionManagementExample() {
+  const client = createCloudClient('your-api-token', 'us');
+
+  try {
+    // Create a persistent browser session
+    const session = await client.createSession({
+      browser: 'chrome',
+      timeout: 300000, // 5 minutes
+      launch: {
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      },
+    });
+
+    console.log('Session created:', session.id);
+
+    // Use the session for multiple operations
+    // ... perform operations using the session ...
+
+    // Get session info
+    const sessionInfo = await client.getSession(session.id);
+    console.log('Session status:', sessionInfo.status);
+
+    // Close the session when done
+    await client.closeSession(session.id);
+    console.log('Session closed');
+
+    return session;
+  } catch (error) {
+    console.error('Session management failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Example 13: Monitoring and Metrics
+ */
+export async function monitoringExample() {
+  const client = createCloudClient('your-api-token', 'us');
+
+  try {
+    // Get current metrics
+    const metrics = await client.getMetrics();
+    console.log('Current metrics:', {
+      sessions: metrics.sessions,
+      memory: `${metrics.memory.percentage}% used`,
+      cpu: `${metrics.cpu.usage}% usage`,
+      requestRate: `${metrics.requests.rate} req/min`,
+    });
+
+    // Get server configuration
+    const config = await client.getServerConfig();
+    console.log('Server config:', {
+      version: config.version,
+      browsers: config.browsers,
+      limits: config.limits,
+    });
+
+    // Get health status
+    const health = await client.getHealth();
+    console.log('Health status:', health.status);
+
+    return { metrics, config, health };
+  } catch (error) {
+    console.error('Monitoring failed:', error);
+    throw error;
+  }
+}
+
+/**
+ * Example 14: Batch Operations
  */
 export async function batchOperationsExample() {
   const client = createCloudClient('your-api-token', 'us');
-  
+
   const urls = [
     'https://example.com',
     'https://google.com',
@@ -352,7 +524,7 @@ export async function batchOperationsExample() {
           type: 'png',
           viewport: { width: 1200, height: 800 },
         });
-        
+
         return { url, screenshot };
       })
     );
@@ -361,13 +533,13 @@ export async function batchOperationsExample() {
     const successful = results
       .filter((result): result is PromiseFulfilledResult<any> => result.status === 'fulfilled')
       .map(result => result.value);
-    
+
     const failed = results
       .filter((result): result is PromiseRejectedResult => result.status === 'rejected')
       .map(result => result.reason);
 
     console.log(`Batch completed: ${successful.length} successful, ${failed.length} failed`);
-    
+
     return { successful, failed };
   } catch (error) {
     console.error('Batch operations failed:', error);

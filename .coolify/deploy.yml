@@ -1,0 +1,256 @@
+# Coolify Deployment Configuration for VibeKraft
+# Production deployment configuration for Coolify PaaS
+
+version: '1.0'
+
+services:
+  vibekraft-web:
+    image: vibekraft/web:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    
+    environment:
+      # Application
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: "0.0.0.0"
+      
+      # Database
+      DATABASE_URL: $DATABASE_URL
+      
+      # Redis
+      REDIS_URL: $REDIS_URL
+      
+      # MinIO Storage
+      MINIO_ENDPOINT: $MINIO_ENDPOINT
+      MINIO_ACCESS_KEY: $MINIO_ACCESS_KEY
+      MINIO_SECRET_KEY: $MINIO_SECRET_KEY
+      MINIO_BUCKET_NAME: $MINIO_BUCKET_NAME
+      MINIO_REGION: $MINIO_REGION
+      
+      # API Endpoints
+      API_URL: $API_URL
+      WEBSOCKET_URL: $WEBSOCKET_URL
+      
+      # Firecracker & WebVM
+      FIRECRACKER_API_URL: $FIRECRACKER_API_URL
+      WEBVM_INSTANCES_URL: $WEBVM_INSTANCES_URL
+      WEBVM_DEFAULT_IMAGE: $WEBVM_DEFAULT_IMAGE
+      WEBVM_MAX_INSTANCES_PER_USER: $WEBVM_MAX_INSTANCES_PER_USER
+      WEBVM_DEFAULT_MEMORY: $WEBVM_DEFAULT_MEMORY
+      WEBVM_DEFAULT_CPU_COUNT: $WEBVM_DEFAULT_CPU_COUNT
+      
+      # Docker Management
+      DOCKER_API_URL: $DOCKER_API_URL
+      DOCKER_SOCKET_PATH: $DOCKER_SOCKET_PATH
+      DOCKER_NETWORK_NAME: $DOCKER_NETWORK_NAME
+      
+      # Monitoring
+      PROMETHEUS_URL: $PROMETHEUS_URL
+      GRAFANA_URL: $GRAFANA_URL
+      GRAFANA_API_KEY: $GRAFANA_API_KEY
+      METRICS_RETENTION_DAYS: $METRICS_RETENTION_DAYS
+      
+      # NextAuth
+      NEXTAUTH_URL: $NEXTAUTH_URL
+      NEXTAUTH_SECRET: $NEXTAUTH_SECRET
+      
+      # OAuth Providers
+      GOOGLE_CLIENT_ID: $GOOGLE_CLIENT_ID
+      GOOGLE_CLIENT_SECRET: $GOOGLE_CLIENT_SECRET
+      GITHUB_CLIENT_ID: $GITHUB_CLIENT_ID
+      GITHUB_CLIENT_SECRET: $GITHUB_CLIENT_SECRET
+      
+      # AI SDK
+      OPENAI_API_KEY: $OPENAI_API_KEY
+      ANTHROPIC_API_KEY: $ANTHROPIC_API_KEY
+      GOOGLE_GENERATIVE_AI_API_KEY: $GOOGLE_GENERATIVE_AI_API_KEY
+      
+      # Infrastructure Security
+      INFRASTRUCTURE_JWT_SECRET: $INFRASTRUCTURE_JWT_SECRET
+      ADMIN_API_KEY: $ADMIN_API_KEY
+      WEBHOOK_SECRET: $WEBHOOK_SECRET
+      
+      # Logging & Observability
+      LOG_LEVEL: $LOG_LEVEL
+      SENTRY_DSN: $SENTRY_DSN
+      DATADOG_API_KEY: $DATADOG_API_KEY
+      
+      # Feature Flags
+      ENABLE_FIRECRACKER: $ENABLE_FIRECRACKER
+      ENABLE_WEBVM: $ENABLE_WEBVM
+      ENABLE_AI_FEATURES: $ENABLE_AI_FEATURES
+      ENABLE_METRICS_DASHBOARD: $ENABLE_METRICS_DASHBOARD
+      ENABLE_STORAGE_BROWSER: $ENABLE_STORAGE_BROWSER
+      
+      # Rate Limiting
+      RATE_LIMIT_REQUESTS_PER_MINUTE: $RATE_LIMIT_REQUESTS_PER_MINUTE
+      RATE_LIMIT_WEBVM_CREATES_PER_HOUR: $RATE_LIMIT_WEBVM_CREATES_PER_HOUR
+      RATE_LIMIT_STORAGE_UPLOADS_PER_HOUR: $RATE_LIMIT_STORAGE_UPLOADS_PER_HOUR
+      
+      # Backup & Recovery
+      BACKUP_S3_BUCKET: $BACKUP_S3_BUCKET
+      BACKUP_SCHEDULE: $BACKUP_SCHEDULE
+      BACKUP_RETENTION_DAYS: $BACKUP_RETENTION_DAYS
+
+    ports:
+      - "3000:3000"
+    
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    
+    networks:
+      - vibekraft-net
+    
+    healthcheck:
+      test: ["CMD", "node", "scripts/healthcheck.js"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    restart: unless-stopped
+    
+    labels:
+      - "coolify.managed=true"
+      - "coolify.type=application"
+      - "coolify.name=vibekraft-web"
+      - "traefik.enable=true"
+      - "traefik.http.routers.vibekraft.rule=Host(`$DOMAIN`)"
+      - "traefik.http.routers.vibekraft.tls=true"
+      - "traefik.http.routers.vibekraft.tls.certresolver=letsencrypt"
+      - "traefik.http.services.vibekraft.loadbalancer.server.port=3000"
+
+networks:
+  vibekraft-net:
+    external: true
+
+# Deployment hooks
+hooks:
+  pre_deploy:
+    - name: "Database Migration"
+      command: "npx prisma migrate deploy"
+      timeout: 300
+    
+    - name: "Generate Prisma Client"
+      command: "npx prisma generate"
+      timeout: 120
+    
+    - name: "Seed Database (if needed)"
+      command: "npm run seed"
+      timeout: 180
+      continue_on_error: true
+
+  post_deploy:
+    - name: "Health Check"
+      command: "node scripts/healthcheck.js"
+      timeout: 60
+    
+    - name: "Warm Up Application"
+      command: "curl -f http://localhost:3000/api/health || exit 0"
+      timeout: 30
+      continue_on_error: true
+
+# Resource limits
+resources:
+  limits:
+    memory: "2G"
+    cpus: "1.0"
+  reservations:
+    memory: "512M"
+    cpus: "0.25"
+
+# Scaling configuration
+scaling:
+  min_replicas: 1
+  max_replicas: 3
+  target_cpu_utilization: 70
+  target_memory_utilization: 80
+
+# Monitoring configuration
+monitoring:
+  enabled: true
+  metrics_path: "/api/metrics"
+  health_path: "/api/health"
+  
+  alerts:
+    - name: "High CPU Usage"
+      condition: "cpu > 80"
+      duration: "5m"
+      severity: "warning"
+    
+    - name: "High Memory Usage"
+      condition: "memory > 85"
+      duration: "5m"
+      severity: "warning"
+    
+    - name: "Application Down"
+      condition: "up == 0"
+      duration: "1m"
+      severity: "critical"
+    
+    - name: "High Response Time"
+      condition: "response_time > 2000"
+      duration: "5m"
+      severity: "warning"
+
+# Backup configuration
+backup:
+  enabled: true
+  schedule: "0 2 * * *"  # Daily at 2 AM
+  retention: "30d"
+  
+  databases:
+    - name: "postgres"
+      type: "postgresql"
+      connection: "$DATABASE_URL"
+    
+  volumes:
+    - name: "uploads"
+      path: "/app/uploads"
+    
+    - name: "logs"
+      path: "/app/logs"
+
+# Security configuration
+security:
+  scan_images: true
+  vulnerability_threshold: "high"
+  
+  secrets:
+    - NEXTAUTH_SECRET
+    - INFRASTRUCTURE_JWT_SECRET
+    - ADMIN_API_KEY
+    - WEBHOOK_SECRET
+    - POSTGRES_PASSWORD
+    - REDIS_PASSWORD
+    - MINIO_SECRET_KEY
+    - GOOGLE_CLIENT_SECRET
+    - GITHUB_CLIENT_SECRET
+    - OPENAI_API_KEY
+    - ANTHROPIC_API_KEY
+    - SENTRY_DSN
+
+# Environment-specific overrides
+environments:
+  staging:
+    scaling:
+      min_replicas: 1
+      max_replicas: 1
+    
+    resources:
+      limits:
+        memory: "1G"
+        cpus: "0.5"
+  
+  production:
+    scaling:
+      min_replicas: 2
+      max_replicas: 5
+    
+    resources:
+      limits:
+        memory: "4G"
+        cpus: "2.0"

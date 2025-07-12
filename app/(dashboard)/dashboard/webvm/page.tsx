@@ -14,14 +14,6 @@ export default async function WebVMPage() {
   const user = session?.user;
 
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="WebVM Development Environment"
-        text="Experience a full Linux environment in your browser with AI assistance."
-      />
-      <div className="h-[calc(100vh-200px)]">
-        <WebVMDemo />
-      </div>
-    </DashboardShell>
+    <WebVMDemo />
   );
 }

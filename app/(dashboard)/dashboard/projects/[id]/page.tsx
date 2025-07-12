@@ -10,13 +10,14 @@ import { getProjectById } from "@/lib/data/project";
 import { getUserOrganizationRole } from "@/lib/data/organization";
 
 interface ProjectPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
-  const project = await getProjectById(params.id);
+  const { id } = await params;
+  const project = await getProjectById(id);
   
   return {
     title: project?.name || "Project",
@@ -26,12 +27,13 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const session = await auth();
-  
+
   if (!session?.user?.id) {
     redirect("/auth/login");
   }
 
-  const project = await getProjectById(params.id);
+  const { id } = await params;
+  const project = await getProjectById(id);
   
   if (!project) {
     notFound();

@@ -1,8 +1,11 @@
 import { openai } from '@ai-sdk/openai';
 import { anthropic } from '@ai-sdk/anthropic';
+import { google } from '@ai-sdk/google';
 import { streamText, convertToCoreMessages } from 'ai';
 import { auth } from '@/auth';
 import { NextRequest } from 'next/server';
+import { webvmTools } from '@/lib/ai-sdk/webvm-tools';
+import { createAgent } from '@/lib/ai-sdk/webvm-agents';
 
 export async function POST(req: NextRequest) {
   try {
@@ -22,167 +25,30 @@ export async function POST(req: NextRequest) {
     const coreMessages = convertToCoreMessages(messages);
 
     // Determine which provider to use based on model
-    let aiProvider;
-    let modelName = model;
+    let aiModel;
 
     if (model.startsWith('claude')) {
       if (!process.env.ANTHROPIC_API_KEY) {
         return new Response('Anthropic API key not configured', { status: 500 });
       }
-      aiProvider = anthropic(process.env.ANTHROPIC_API_KEY);
-      modelName = model.includes('3.5') ? 'claude-3-5-sonnet-20241022' : 'claude-3-7-sonnet-20250219';
+      const modelName = model.includes('3.5') ? 'claude-3-5-sonnet-20241022' : 'claude-3-7-sonnet-20250219';
+      aiModel = anthropic(modelName);
+    } else if (model.startsWith('gemini')) {
+      if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY) {
+        return new Response('Google API key not configured', { status: 500 });
+      }
+      const modelName = model.includes('pro') ? 'gemini-1.5-pro' : 'gemini-1.5-flash';
+      aiModel = google(modelName);
     } else {
       if (!process.env.OPENAI_API_KEY) {
         return new Response('OpenAI API key not configured', { status: 500 });
       }
-      aiProvider = openai(process.env.OPENAI_API_KEY);
-      modelName = model.includes('gpt-4') ? 'gpt-4-turbo-preview' : 'gpt-3.5-turbo';
+      const modelName = model.includes('gpt-4') ? 'gpt-4o' : 'gpt-3.5-turbo';
+      aiModel = openai(modelName);
     }
 
-    // Define tools for WebVM integration
-    const tools = {
-      // Bash command execution
-      bash: {
-        description: 'Execute bash commands in the WebVM environment',
-        parameters: {
-          type: 'object',
-          properties: {
-            command: {
-              type: 'string',
-              description: 'The bash command to execute'
-            }
-          },
-          required: ['command']
-        },
-        execute: async ({ command }: { command: string }) => {
-          // This would be handled by the client-side sandbox
-          return {
-            type: 'bash',
-            command,
-            note: 'Command will be executed in the client-side WebVM'
-          };
-        }
-      },
-
-      // File operations
-      readFile: {
-        description: 'Read the contents of a file in the WebVM filesystem',
-        parameters: {
-          type: 'object',
-          properties: {
-            path: {
-              type: 'string',
-              description: 'The path to the file to read'
-            }
-          },
-          required: ['path']
-        },
-        execute: async ({ path }: { path: string }) => {
-          return {
-            type: 'readFile',
-            path,
-            note: 'File will be read from the client-side WebVM'
-          };
-        }
-      },
-
-      writeFile: {
-        description: 'Write content to a file in the WebVM filesystem',
-        parameters: {
-          type: 'object',
-          properties: {
-            path: {
-              type: 'string',
-              description: 'The path to the file to write'
-            },
-            content: {
-              type: 'string',
-              description: 'The content to write to the file'
-            }
-          },
-          required: ['path', 'content']
-        },
-        execute: async ({ path, content }: { path: string; content: string }) => {
-          return {
-            type: 'writeFile',
-            path,
-            content,
-            note: 'File will be written to the client-side WebVM'
-          };
-        }
-      },
-
-      listFiles: {
-        description: 'List files and directories in a path within the WebVM filesystem',
-        parameters: {
-          type: 'object',
-          properties: {
-            path: {
-              type: 'string',
-              description: 'The directory path to list'
-            }
-          },
-          required: ['path']
-        },
-        execute: async ({ path }: { path: string }) => {
-          return {
-            type: 'listFiles',
-            path,
-            note: 'Files will be listed from the client-side WebVM'
-          };
-        }
-      },
-
-      // Computer use tool for Claude
-      computer: {
-        description: 'Take a screenshot of the WebVM desktop environment',
-        parameters: {
-          type: 'object',
-          properties: {
-            action: {
-              type: 'string',
-              enum: ['screenshot'],
-              description: 'The action to perform'
-            }
-          },
-          required: ['action']
-        },
-        execute: async ({ action }: { action: string }) => {
-          return {
-            type: 'computer',
-            action,
-            note: 'Screenshot will be taken from the client-side WebVM'
-          };
-        }
-      },
-
-      // Code generation
-      generateCode: {
-        description: 'Generate code based on a prompt and programming language',
-        parameters: {
-          type: 'object',
-          properties: {
-            prompt: {
-              type: 'string',
-              description: 'The code generation prompt'
-            },
-            language: {
-              type: 'string',
-              description: 'The programming language for the generated code'
-            }
-          },
-          required: ['prompt', 'language']
-        },
-        execute: async ({ prompt, language }: { prompt: string; language: string }) => {
-          return {
-            type: 'generateCode',
-            prompt,
-            language,
-            note: 'Code generation request processed'
-          };
-        }
-      }
-    };
+    // Use enhanced WebVM tools
+    const tools = webvmTools;
 
     // Add context to system message if provided
     let systemMessage = `You are an AI assistant for a WebVM development environment. You can help with:
@@ -204,27 +70,21 @@ export async function POST(req: NextRequest) {
       : [{ role: 'system' as const, content: systemMessage }, ...coreMessages];
 
     const result = streamText({
-      model: aiProvider(modelName),
+      model: aiModel,
       messages: messagesWithSystem,
       tools: model.startsWith('claude') ? tools : undefined, // Only use tools with Claude for now
       maxSteps: 5,
       temperature,
       maxTokens,
-      async onStepFinish({ stepType, stepResult, response }) {
+      onFinish: async ({ toolCalls }) => {
         // Log tool executions for debugging
-        if (stepType === 'tool-call') {
-          console.log('Tool call executed:', stepResult);
+        if (toolCalls && toolCalls.length > 0) {
+          console.log('Tool calls executed:', toolCalls);
         }
       },
     });
 
-    return result.toDataStreamResponse({
-      data: {
-        context,
-        model: modelName,
-        timestamp: new Date().toISOString()
-      }
-    });
+    return result.toDataStreamResponse();
 
   } catch (error) {
     console.error('AI Chat API Error:', error);

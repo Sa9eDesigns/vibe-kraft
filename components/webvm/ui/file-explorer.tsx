@@ -138,7 +138,7 @@ export function FileExplorer({
 
   // Load directory contents
   const loadDirectory = useCallback(async (path: string): Promise<FileInfo[]> => {
-    if (!sandbox.isReady()) return [];
+    if (!sandbox || !sandbox.isReady()) return [];
     
     try {
       const files = await sandbox.listFiles(path);
@@ -357,6 +357,8 @@ export function FileExplorer({
 
   // Initialize
   useEffect(() => {
+    if (!sandbox) return;
+
     if (sandbox.isReady()) {
       navigateToPath(rootPath);
     } else {

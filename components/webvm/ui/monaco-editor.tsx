@@ -87,7 +87,7 @@ export function CodeEditor({
 
   // Load file content
   const loadFile = useCallback(async (filePath: string) => {
-    if (!sandbox.isReady()) return;
+    if (!sandbox || !sandbox.isReady()) return;
     
     try {
       setIsLoading(true);
@@ -109,7 +109,7 @@ export function CodeEditor({
 
   // Save file
   const saveFile = useCallback(async () => {
-    if (!sandbox.isReady() || !editorRef.current) return;
+    if (!sandbox || !sandbox.isReady() || !editorRef.current) return;
     
     try {
       setIsSaving(true);
@@ -133,7 +133,7 @@ export function CodeEditor({
 
   // Run code
   const runCode = useCallback(async () => {
-    if (!sandbox.isReady() || !editorRef.current) return;
+    if (!sandbox || !sandbox.isReady() || !editorRef.current) return;
     
     try {
       setIsRunning(true);
@@ -217,7 +217,7 @@ export function CodeEditor({
 
   // AI assistance
   const requestAIAssistance = useCallback(async () => {
-    if (!aiAssistance || !sandbox.isReady() || !editorRef.current) return;
+    if (!aiAssistance || !sandbox || !sandbox.isReady() || !editorRef.current) return;
     
     try {
       const code = editorRef.current.getValue();
@@ -241,6 +241,8 @@ export function CodeEditor({
 
   // Initialize sandbox connection
   useEffect(() => {
+    if (!sandbox) return;
+
     if (sandbox.isReady()) {
       loadFile(currentFile);
     } else {
@@ -272,7 +274,7 @@ export function CodeEditor({
                 variant="outline"
                 size="sm"
                 onClick={requestAIAssistance}
-                disabled={!sandbox.isReady()}
+                disabled={!sandbox || !sandbox.isReady()}
               >
                 <Bot className="h-4 w-4" />
                 AI Help
@@ -283,17 +285,17 @@ export function CodeEditor({
               variant="outline"
               size="sm"
               onClick={saveFile}
-              disabled={!sandbox.isReady() || isSaving}
+              disabled={!sandbox || !sandbox.isReady() || isSaving}
             >
               <Save className="h-4 w-4" />
               {isSaving ? 'Saving...' : 'Save'}
             </Button>
-            
+
             <Button
               variant="outline"
               size="sm"
               onClick={runCode}
-              disabled={!sandbox.isReady() || isRunning}
+              disabled={!sandbox || !sandbox.isReady() || isRunning}
             >
               <Play className="h-4 w-4" />
               {isRunning ? 'Running...' : 'Run'}

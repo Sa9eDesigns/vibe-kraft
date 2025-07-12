@@ -1,0 +1,27 @@
+/* Kento Font Family */
+@font-face {
+  font-family: 'Kento';
+  src: url('kento-regular.otf') format('opentype'),
+       url('kento-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kento';
+  src: url('kento-bold.otf') format('opentype'),
+       url('kento-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kento';
+  src: url('kento-light.otf') format('opentype'),
+       url('kento-light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

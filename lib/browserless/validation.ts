@@ -168,6 +168,62 @@ export const ExportOptionsSchema = z.object({
   userAgent: z.string().optional(),
 });
 
+// Scrape API schema
+export const ScrapeOptionsSchema = z.object({
+  url: z.string().url('Valid URL is required'),
+  elements: z.array(z.object({
+    selector: z.string().min(1),
+    attribute: z.string().optional(),
+  })).optional(),
+  waitFor: WaitForSchema.optional(),
+  viewport: ViewportSchema.optional(),
+  authenticate: AuthenticateSchema.optional(),
+  setExtraHTTPHeaders: z.record(z.string()).optional(),
+  setCookie: z.array(CookieSchema).optional(),
+  userAgent: z.string().optional(),
+  blockAds: z.boolean().optional(),
+  blockImages: z.boolean().optional(),
+  blockFonts: z.boolean().optional(),
+});
+
+// Performance API schema
+export const PerformanceOptionsSchema = z.object({
+  url: z.string().url('Valid URL is required'),
+  budget: z.object({
+    performance: z.number().min(0).max(1).optional(),
+    accessibility: z.number().min(0).max(1).optional(),
+    'best-practices': z.number().min(0).max(1).optional(),
+    seo: z.number().min(0).max(1).optional(),
+    pwa: z.number().min(0).max(1).optional(),
+  }).optional(),
+  waitFor: WaitForSchema.optional(),
+  viewport: ViewportSchema.optional(),
+  setExtraHTTPHeaders: z.record(z.string()).optional(),
+  userAgent: z.string().optional(),
+});
+
+// Unblock API schema
+export const UnblockOptionsSchema = z.object({
+  url: z.string().url('Valid URL is required'),
+  waitFor: WaitForSchema.optional(),
+  viewport: ViewportSchema.optional(),
+  setExtraHTTPHeaders: z.record(z.string()).optional(),
+  userAgent: z.string().optional(),
+  stealth: z.boolean().optional(),
+  proxy: z.object({
+    server: z.string().min(1),
+    username: z.string().optional(),
+    password: z.string().optional(),
+  }).optional(),
+});
+
+// Sessions API schema
+export const SessionOptionsSchema = z.object({
+  browser: z.enum(['chrome', 'firefox', 'webkit', 'edge']).optional(),
+  launch: z.record(z.any()).optional(),
+  timeout: z.number().min(1000).max(300000).optional(),
+});
+
 // Type exports for use in the client
 export type BrowserlessConfigInput = z.input<typeof BrowserlessConfigSchema>;
 export type PDFOptionsInput = z.input<typeof PDFOptionsSchema>;
@@ -177,3 +233,7 @@ export type FunctionOptionsInput = z.input<typeof FunctionOptionsSchema>;
 export type WebSocketOptionsInput = z.input<typeof WebSocketOptionsSchema>;
 export type DownloadOptionsInput = z.input<typeof DownloadOptionsSchema>;
 export type ExportOptionsInput = z.input<typeof ExportOptionsSchema>;
+export type ScrapeOptionsInput = z.input<typeof ScrapeOptionsSchema>;
+export type PerformanceOptionsInput = z.input<typeof PerformanceOptionsSchema>;
+export type UnblockOptionsInput = z.input<typeof UnblockOptionsSchema>;
+export type SessionOptionsInput = z.input<typeof SessionOptionsSchema>;

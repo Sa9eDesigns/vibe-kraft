@@ -42,3 +42,12 @@ next-env.d.ts
 
 /lib/generated/prisma
 .history
+
+#lib node_modules
+/lib/*/node_modules
+/lib/*/dist
+
+
+#Keys
+resources/keys/*.key
+resources/keys/*.pub

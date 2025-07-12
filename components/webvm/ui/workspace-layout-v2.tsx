@@ -149,6 +149,21 @@ export function WorkspaceLayoutV2({
   const getSidebarTabContent = (tabId: string): React.ReactNode => {
     switch (tabId) {
       case 'file-explorer':
+        if (!sandbox) {
+          return (
+            <div className="flex items-center justify-center h-full p-4">
+              <div className="text-center space-y-3">
+                <Folder className="h-8 w-8 mx-auto text-muted-foreground opacity-50" />
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-muted-foreground">File Explorer</p>
+                  <p className="text-xs text-muted-foreground">
+                    Sandbox not initialized. Start a WebVM instance to browse files.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
         return (
           <FileExplorer
             sandbox={sandbox}
@@ -250,6 +265,7 @@ export function WorkspaceLayoutV2({
       if (file) {
         return (
           <CodeEditor
+            sandbox={sandbox}
             value={file.content}
             language={file.language}
             onChange={(value) => handleFileContentChange(filePath, value || '')}
@@ -274,6 +290,21 @@ export function WorkspaceLayoutV2({
   const getBottomTabContent = (tabId: string): React.ReactNode => {
     switch (tabId) {
       case 'terminal-1':
+        if (!sandbox) {
+          return (
+            <div className="flex items-center justify-center h-full p-4">
+              <div className="text-center space-y-3">
+                <TerminalIcon className="h-8 w-8 mx-auto text-muted-foreground opacity-50" />
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-muted-foreground">Terminal</p>
+                  <p className="text-xs text-muted-foreground">
+                    Sandbox not initialized. Start a WebVM instance to use the terminal.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
         return (
           <Terminal
             sandbox={sandbox}
@@ -285,6 +316,21 @@ export function WorkspaceLayoutV2({
         );
 
       case 'ai-assistant':
+        if (!sandbox) {
+          return (
+            <div className="flex items-center justify-center h-full p-4">
+              <div className="text-center space-y-3">
+                <Bot className="h-8 w-8 mx-auto text-muted-foreground opacity-50" />
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-muted-foreground">AI Assistant</p>
+                  <p className="text-xs text-muted-foreground">
+                    Sandbox not initialized. Start a WebVM instance to enable AI assistance.
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        }
         return (
           <AIAssistant
             sandbox={sandbox}
@@ -416,6 +462,7 @@ export function WorkspaceLayoutV2({
       icon: <FileText className="h-3 w-3" />,
       content: (
         <CodeEditor
+          sandbox={sandbox}
           value=""
           language="plaintext"
           onChange={(value) => console.log('New file content:', value)}

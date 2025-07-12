@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Calendar, MoreHorizontal, Package, Users } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Calendar, MoreHorizontal, Package, Users, Play, Code, Settings } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -15,6 +16,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useWorkspaces, useWorkspaceActions } from "@/hooks/use-workspace";
+import { toast } from "sonner";
 
 interface Project {
   id: string;
@@ -38,9 +41,14 @@ interface ProjectsListProps {
 }
 
 export function ProjectsList({ organizationId }: ProjectsListProps) {
+  const router = useRouter();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Workspace management
+  const { workspaces } = useWorkspaces(organizationId);
+  const { launchWorkspace } = useWorkspaceActions();
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -66,8 +74,39 @@ export function ProjectsList({ organizationId }: ProjectsListProps) {
     const completed = tasks.filter(task => task.status === "DONE").length;
     const inProgress = tasks.filter(task => task.status === "IN_PROGRESS").length;
     const todo = tasks.filter(task => task.status === "TODO").length;
-    
+
     return { total, completed, inProgress, todo };
+  };
+
+  const getProjectWorkspaces = (projectId: string) => {
+    return Array.isArray(workspaces) ? workspaces.filter((workspace: any) => workspace.projectId === projectId) : [];
+  };
+
+  const handleLaunchWorkspace = async (projectId: string) => {
+    const projectWorkspaces = getProjectWorkspaces(projectId);
+
+    if (projectWorkspaces.length > 0) {
+      // Use existing workspace
+      const workspace = projectWorkspaces[0];
+      const url = await launchWorkspace(workspace.id);
+      if (url) {
+        router.push(url);
+      }
+    } else {
+      // Create new workspace for project
+      router.push(`/workspace?projectId=${projectId}`);
+    }
+  };
+
+  const handleOpenWorkspaceSettings = (projectId: string) => {
+    const projectWorkspaces = getProjectWorkspaces(projectId);
+
+    if (projectWorkspaces.length > 0) {
+      router.push(`/dashboard/workspaces/${projectWorkspaces[0].id}`);
+    } else {
+      // Navigate to workspace creation
+      router.push(`/dashboard/workspaces/new?projectId=${projectId}`);
+    }
   };
 
   if (loading) {
@@ -153,8 +192,18 @@ export function ProjectsList({ organizationId }: ProjectsListProps) {
                       View Details
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>Edit Project</DropdownMenuItem>
                   <DropdownMenuSeparator />
+                  <DropdownMenuLabel>Workspace</DropdownMenuLabel>
+                  <DropdownMenuItem onClick={() => handleLaunchWorkspace(project.id)}>
+                    <Code className="h-4 w-4 mr-2" />
+                    {getProjectWorkspaces(project.id).length > 0 ? 'Open Workspace' : 'Launch Workspace'}
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleOpenWorkspaceSettings(project.id)}>
+                    <Settings className="h-4 w-4 mr-2" />
+                    Workspace Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Edit Project</DropdownMenuItem>
                   <DropdownMenuItem className="text-red-600">
                     Delete Project
                   </DropdownMenuItem>
@@ -202,6 +251,25 @@ export function ProjectsList({ organizationId }: ProjectsListProps) {
                       {stats.completed} Done
                     </Badge>
                   )}
+                </div>
+
+                {/* WebVM Workspace Actions */}
+                <div className="flex gap-2 pt-2 border-t">
+                  <Button
+                    size="sm"
+                    onClick={() => handleLaunchWorkspace(project.id)}
+                    className="flex-1"
+                  >
+                    <Play className="h-3 w-3 mr-1" />
+                    {getProjectWorkspaces(project.id).length > 0 ? 'Open Workspace' : 'Launch Workspace'}
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onClick={() => handleOpenWorkspaceSettings(project.id)}
+                  >
+                    <Settings className="h-3 w-3" />
+                  </Button>
                 </div>
               </div>
             </CardContent>

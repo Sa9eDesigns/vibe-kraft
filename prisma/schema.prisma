@@ -6,6 +6,13 @@ generator client {
   output   = "../lib/generated/prisma"
 }
 
+// This tells Prisma to run the seed script after a database reset
+generator seeder {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma-seed"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -27,7 +34,8 @@ model User {
   sessions      Session[]
   organizations OrganizationMember[]
   assignedTasks Task[]
-  
+  auditLogs     AuditLog[]
+
   // User preferences
   preferences   UserPreference?
 }
@@ -129,6 +137,7 @@ model Project {
 
   organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
   tasks          Task[]
+  workspaces     Workspace[]
 }
 
 model Task {
@@ -170,4 +179,606 @@ enum TaskPriority {
   LOW
   MEDIUM
   HIGH
+}
+
+// Workspace models for development environments
+model Workspace {
+  id          String          @id @default(cuid())
+  name        String
+  description String?
+  projectId   String
+  type        WorkspaceType   @default(WEBVM) // New field to distinguish workspace types
+  status      WorkspaceStatus @default(INACTIVE)
+  config      Json?           // Workspace configuration (IDE settings, environment variables, etc.)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  project           Project                @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  instances         WebVMInstance[]
+  firecrackerVMs    FirecrackerVM[]        // New relation for Firecracker VMs
+  persistence       WorkspacePersistence?
+  files             WorkspaceFile[]
+  states            WorkspaceState[]
+  syncs             WorkspaceSync[]
+}
+
+// WebVM Instance models for CheerpX containers
+model WebVMInstance {
+  id            String            @id @default(cuid())
+  name          String
+  workspaceId   String
+  status        WebVMStatus       @default(STOPPED)
+  imageUrl      String?           // CheerpX image URL
+  config        Json?             // CheerpX configuration
+  resources     Json?             // Resource allocation (CPU, memory, etc.)
+  networkConfig Json?             // Network configuration
+  connectionUrl String?           // WebVM connection URL
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  startedAt     DateTime?
+  stoppedAt     DateTime?
+
+  workspace     Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  metrics       WebVMMetric[]
+  snapshots     WebVMSnapshot[]
+  template      WebVMTemplate?    @relation(fields: [templateId], references: [id])
+  templateId    String?
+}
+
+// Firecracker VM models for microVM containers
+model FirecrackerVM {
+  id            String              @id @default(cuid())
+  name          String
+  workspaceId   String
+  status        FirecrackerStatus   @default(STOPPED)
+  vmId          String              @unique // Firecracker VM ID
+  config        Json?               // Firecracker VM configuration
+  resources     Json?               // Resource allocation (CPU, memory, disk)
+  networkConfig Json?               // Network configuration and interfaces
+  kernelImage   String?             // Kernel image path
+  rootfsImage   String?             // Root filesystem image path
+  socketPath    String?             // Firecracker API socket path
+  logPath       String?             // VM log file path
+  metricsPath   String?             // Metrics file path
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  startedAt     DateTime?
+  stoppedAt     DateTime?
+
+  workspace     Workspace           @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  containers    FirecrackerContainer[]
+  metrics       FirecrackerMetric[]
+  snapshots     FirecrackerSnapshot[]
+  template      FirecrackerTemplate? @relation(fields: [templateId], references: [id])
+  templateId    String?
+}
+
+// Container management within Firecracker VMs
+model FirecrackerContainer {
+  id            String              @id @default(cuid())
+  vmId          String
+  name          String
+  image         String              // Docker image
+  status        ContainerStatus     @default(CREATING)
+  config        Json?               // Container configuration
+  ports         Json?               // Port mappings
+  volumes       Json?               // Volume mounts
+  environment   Json?               // Environment variables
+  command       String?             // Container command
+  workingDir    String?             // Working directory
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  startedAt     DateTime?
+  stoppedAt     DateTime?
+
+  vm            FirecrackerVM       @relation(fields: [vmId], references: [id], onDelete: Cascade)
+  logs          FirecrackerContainerLog[]
+}
+
+// Firecracker VM Metrics for monitoring
+model FirecrackerMetric {
+  id            String              @id @default(cuid())
+  vmId          String
+  metricType    MetricType
+  value         Float
+  unit          String
+  timestamp     DateTime            @default(now())
+
+  vm            FirecrackerVM       @relation(fields: [vmId], references: [id], onDelete: Cascade)
+
+  @@index([vmId, timestamp])
+}
+
+// Firecracker VM Snapshots
+model FirecrackerSnapshot {
+  id            String              @id @default(cuid())
+  vmId          String
+  name          String
+  description   String?
+  snapshotPath  String              // Path to snapshot file
+  memoryPath    String?             // Path to memory snapshot
+  size          BigInt              // Snapshot size in bytes
+  createdAt     DateTime            @default(now())
+
+  vm            FirecrackerVM       @relation(fields: [vmId], references: [id], onDelete: Cascade)
+}
+
+// Firecracker VM Templates
+model FirecrackerTemplate {
+  id            String              @id @default(cuid())
+  name          String
+  description   String?
+  category      String              @default("general")
+  kernelImage   String              // Kernel image path
+  rootfsImage   String              // Root filesystem image path
+  config        Json                // Default VM configuration
+  resources     Json                // Default resource allocation
+  isPublic      Boolean             @default(false)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+
+  vms           FirecrackerVM[]
+}
+
+// Firecracker Container Logs
+model FirecrackerContainerLog {
+  id            String              @id @default(cuid())
+  containerId   String
+  timestamp     DateTime            @default(now())
+  level         LogLevel            @default(INFO)
+  message       String
+  source        String?             // stdout, stderr, etc.
+
+  container     FirecrackerContainer @relation(fields: [containerId], references: [id], onDelete: Cascade)
+
+  @@index([containerId, timestamp])
+}
+
+
+
+// WebVM Metrics for monitoring
+model WebVMMetric {
+  id            String        @id @default(cuid())
+  instanceId    String
+  metricType    MetricType
+  value         Float
+  unit          String
+  timestamp     DateTime      @default(now())
+
+  instance      WebVMInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId, timestamp])
+}
+
+// Additional enums
+enum WorkspaceType {
+  WEBVM       // Browser-based WebVM workspaces
+  FIRECRACKER // Firecracker microVM workspaces
+}
+
+enum WorkspaceStatus {
+  ACTIVE
+  INACTIVE
+  ARCHIVED
+  ERROR
+}
+
+enum WebVMStatus {
+  STARTING
+  RUNNING
+  STOPPING
+  STOPPED
+  ERROR
+  SUSPENDED
+}
+
+enum FirecrackerStatus {
+  STARTING
+  RUNNING
+  STOPPING
+  STOPPED
+  ERROR
+  SUSPENDED
+  PAUSED
+}
+
+
+
+enum MetricType {
+  CPU_USAGE
+  MEMORY_USAGE
+  DISK_USAGE
+  NETWORK_IN
+  NETWORK_OUT
+  RESPONSE_TIME
+}
+
+// Infrastructure Management Models
+
+// Storage Bucket model for MinIO management
+model StorageBucket {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  region      String   @default("us-east-1")
+  versioning Boolean  @default(false)
+  encryption  Boolean  @default(false)
+  size        BigInt   @default(0)
+  objectCount Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  objects     StorageObject[]
+  usage       StorageUsage[]
+}
+
+// Storage Object model for file tracking
+model StorageObject {
+  id          String        @id @default(cuid())
+  key         String
+  bucketId    String
+  size        BigInt
+  contentType String
+  etag        String
+  metadata    Json?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  bucket      StorageBucket @relation(fields: [bucketId], references: [id], onDelete: Cascade)
+
+  @@unique([bucketId, key])
+  @@index([bucketId, key])
+}
+
+// Storage Usage tracking
+model StorageUsage {
+  id          String        @id @default(cuid())
+  bucketId    String
+  totalSize   BigInt
+  objectCount Int
+  quota       BigInt        @default(10737418240) // 10GB default
+  timestamp   DateTime      @default(now())
+
+  bucket      StorageBucket @relation(fields: [bucketId], references: [id], onDelete: Cascade)
+
+  @@index([bucketId, timestamp])
+}
+
+// Container model for Docker management
+model Container {
+  id            String          @id @default(cuid())
+  name          String          @unique
+  image         String
+  status        ContainerStatus @default(STOPPED)
+  command       Json?           // Array of command arguments
+  environment   Json?           // Environment variables
+  ports         Json?           // Port mappings
+  volumes       Json?           // Volume mounts
+  labels        Json?           // Container labels
+  restartPolicy String          @default("unless-stopped")
+  networkMode   String          @default("vibekraft-net")
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  startedAt     DateTime?
+  stoppedAt     DateTime?
+
+  stats         ContainerStats[]
+  logs          ContainerLog[]
+}
+
+// Container Statistics
+model ContainerStats {
+  id          String    @id @default(cuid())
+  containerId String
+  cpuPercent  Float
+  memoryUsage BigInt
+  memoryLimit BigInt
+  networkRx   BigInt
+  networkTx   BigInt
+  blockRead   BigInt
+  blockWrite  BigInt
+  timestamp   DateTime  @default(now())
+
+  container   Container @relation(fields: [containerId], references: [id], onDelete: Cascade)
+
+  @@index([containerId, timestamp])
+}
+
+// Container Logs
+model ContainerLog {
+  id          String    @id @default(cuid())
+  containerId String
+  message     String
+  level       LogLevel  @default(INFO)
+  timestamp   DateTime  @default(now())
+
+  container   Container @relation(fields: [containerId], references: [id], onDelete: Cascade)
+
+  @@index([containerId, timestamp])
+}
+
+// Infrastructure Health Monitoring
+model ServiceHealth {
+  id           String        @id @default(cuid())
+  serviceName  String
+  status       HealthStatus  @default(UNKNOWN)
+  responseTime Int           // in milliseconds
+  error        String?
+  details      Json?
+  lastCheck    DateTime      @default(now())
+  createdAt    DateTime      @default(now())
+
+  @@index([serviceName, lastCheck])
+}
+
+// Infrastructure Metrics
+model InfrastructureMetric {
+  id         String     @id @default(cuid())
+  service    String
+  metricName String
+  value      Float
+  unit       String
+  labels     Json?      // Prometheus-style labels
+  timestamp  DateTime   @default(now())
+
+  @@index([service, metricName, timestamp])
+}
+
+// Audit Logging
+model AuditLog {
+  id         String    @id @default(cuid())
+  userId     String
+  action     String
+  resource   String
+  resourceId String
+  details    Json?
+  ipAddress  String
+  userAgent  String
+  timestamp  DateTime  @default(now())
+
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, timestamp])
+  @@index([resource, resourceId])
+  @@index([action, timestamp])
+}
+
+// WebVM Templates
+model WebVMTemplate {
+  id                  String   @id @default(cuid())
+  name                String   @unique
+  description         String?
+  image               String
+  memory              String   @default("512M")
+  cpuCount            Int      @default(1)
+  diskSize            String   @default("10GB")
+  preInstalledSoftware Json?   // Array of software packages
+  category            String   @default("development")
+  isPublic            Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  instances           WebVMInstance[]
+}
+
+// WebVM Snapshots
+model WebVMSnapshot {
+  id          String        @id @default(cuid())
+  instanceId  String
+  name        String
+  description String?
+  size        BigInt
+  createdAt   DateTime      @default(now())
+
+  instance    WebVMInstance @relation(fields: [instanceId], references: [id], onDelete: Cascade)
+
+  @@index([instanceId, createdAt])
+}
+
+// Workspace Persistence
+model WorkspacePersistence {
+  id          String    @id @default(cuid())
+  workspaceId String    @unique
+  storageSize BigInt    @default(0)
+  backupCount Int       @default(0)
+  lastBackup  DateTime?
+  config      Json?     // Persistence configuration
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+}
+
+// Infrastructure Alerts
+model InfrastructureAlert {
+  id          String      @id @default(cuid())
+  name        String
+  query       String      // Prometheus query
+  condition   String      // Alert condition
+  threshold   Float
+  duration    String      // Alert duration
+  severity    AlertSeverity @default(WARNING)
+  state       AlertState  @default(INACTIVE)
+  labels      Json?
+  annotations Json?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  firedAt     DateTime?
+  resolvedAt  DateTime?
+
+  notifications AlertNotification[]
+}
+
+// Alert Notifications
+model AlertNotification {
+  id        String               @id @default(cuid())
+  alertId   String
+  type      NotificationType     @default(EMAIL)
+  recipient String
+  message   String
+  sentAt    DateTime             @default(now())
+
+  alert     InfrastructureAlert  @relation(fields: [alertId], references: [id], onDelete: Cascade)
+
+  @@index([alertId, sentAt])
+}
+
+// Additional Infrastructure Enums
+enum ContainerStatus {
+  CREATING
+  RUNNING
+  STOPPED
+  ERROR
+  DELETING
+  UNKNOWN
+}
+
+enum LogLevel {
+  DEBUG
+  INFO
+  WARN
+  ERROR
+  FATAL
+}
+
+enum HealthStatus {
+  HEALTHY
+  UNHEALTHY
+  DEGRADED
+  UNKNOWN
+}
+
+enum AlertSeverity {
+  CRITICAL
+  WARNING
+  INFO
+}
+
+enum AlertState {
+  INACTIVE
+  PENDING
+  FIRING
+  RESOLVED
+}
+
+enum NotificationType {
+  EMAIL
+  SLACK
+  WEBHOOK
+  SMS
+}
+
+// Workspace File Management Models
+model WorkspaceFile {
+  id              String          @id @default(cuid())
+  workspaceId     String
+  path            String
+  name            String
+  type            String          // FileType enum as string
+  size            BigInt
+  mimeType        String
+  encoding        String
+  content         String?         // For text files
+  hash            String          // SHA-256 hash
+  parentId        String?
+  isDirectory     Boolean         @default(false)
+  permissions     Json            // FilePermissions object
+  metadata        Json            // FileMetadata object
+  version         Int             @default(1)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  lastAccessedAt  DateTime        @default(now())
+
+  workspace       Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  parent          WorkspaceFile?  @relation("FileHierarchy", fields: [parentId], references: [id])
+  children        WorkspaceFile[] @relation("FileHierarchy")
+  indexes         FileIndex[]
+
+  @@unique([workspaceId, path])
+  @@index([workspaceId, parentId])
+  @@index([workspaceId, isDirectory])
+  @@index([hash])
+}
+
+// File Indexing for Search
+model FileIndex {
+  id           String   @id @default(cuid())
+  workspaceId  String
+  path         String
+  content      String   @db.Text
+  tokens       Json     // Array of search tokens
+  language     String
+  symbols      Json     // Array of CodeSymbol objects
+  imports      Json     // Array of ImportStatement objects
+  exports      Json     // Array of ExportStatement objects
+  dependencies Json     // Array of dependency strings
+  complexity   Json     // CodeComplexity object
+  lastIndexed  DateTime @default(now())
+  indexVersion String   @default("1.0")
+
+  workspaceFile WorkspaceFile @relation(fields: [workspaceId, path], references: [workspaceId, path], onDelete: Cascade)
+
+  @@unique([workspaceId, path])
+  @@index([workspaceId, language])
+  @@index([tokens], type: Gin)
+}
+
+// Workspace State Management
+model WorkspaceState {
+  id               String   @id @default(cuid())
+  workspaceId      String
+  sessionId        String
+  environment      Json     // EnvironmentState object
+  processes        Json     // Array of ProcessState objects
+  openFiles        Json     // Array of OpenFileState objects
+  terminalSessions Json     // Array of TerminalState objects
+  editorState      Json     // EditorState object
+  gitState         Json     // GitState object
+  installedPackages Json    // Array of PackageState objects
+  customSettings   Json     // Custom settings object
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  workspace        Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@unique([workspaceId, sessionId])
+  @@index([workspaceId, updatedAt])
+}
+
+// Workspace Sync Configuration
+model WorkspaceSync {
+  id          String     @id @default(cuid())
+  workspaceId String
+  type        SyncType   @default(MANUAL)
+  status      SyncStatus @default(IDLE)
+  direction   String     // SyncDirection as string
+  source      Json       // SyncEndpoint object
+  target      Json       // SyncEndpoint object
+  progress    Json       // SyncProgress object
+  conflicts   Json       // Array of SyncConflict objects
+  lastSync    DateTime?
+  nextSync    DateTime?
+  settings    Json       // SyncSettings object
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  workspace   Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@index([workspaceId, status])
+  @@index([nextSync])
+}
+
+// Additional Sync Enums
+enum SyncType {
+  REALTIME
+  PERIODIC
+  MANUAL
+  ONDEMAND
+}
+
+enum SyncStatus {
+  IDLE
+  SYNCING
+  CONFLICT
+  ERROR
+  PAUSED
 }

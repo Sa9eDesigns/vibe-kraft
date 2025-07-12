@@ -11,15 +11,16 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  ...compat.rules({
-    // disable unused-vars rule
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    // disable no-console rule
-    "no-console": "off",
-    "@typescript-eslint/no-console": "off",
-    // enable import/order rule with custom settings
-  })
+  {
+    rules: {
+      // disable unused-vars rule
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "off",
+      // disable no-console rule
+      "no-console": "off",
+      "@typescript-eslint/no-console": "off",
+    }
+  }
 ];
 
 export default eslintConfig;

@@ -1,0 +1,59 @@
+{
+  "name": "@vibe-kraft/ssh",
+  "version": "1.0.0",
+  "description": "TypeScript SSH client library for remote Ubuntu server connections with xterm.js integration",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "ssh",
+    "ssh2",
+    "terminal",
+    "xterm",
+    "typescript",
+    "ubuntu",
+    "remote",
+    "connection"
+  ],
+  "author": "VibeKraft Team",
+  "license": "MIT",
+  "dependencies": {
+    "ssh2": "^1.15.0",
+    "@types/ssh2": "^1.15.0",
+    "@xterm/xterm": "^5.5.0",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/addon-web-links": "^0.11.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "vitest": "^2.0.0",
+    "@types/node": "^20.0.0",
+    "eslint": "^9.0.0"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nyathi-devops/vibe-kraft.git",
+    "directory": "lib/ssh"
+  },
+  "bugs": {
+    "url": "https://github.com/nyathi-devops/vibe-kraft/issues"
+  },
+  "homepage": "https://github.com/nyathi-devops/vibe-kraft/tree/main/lib/ssh"
+}

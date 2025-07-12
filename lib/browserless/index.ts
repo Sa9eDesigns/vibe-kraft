@@ -27,6 +27,15 @@ export type {
   ExportResponse,
   HealthResponse,
   StatsResponse,
+  ScrapeOptions,
+  ScrapeResponse,
+  PerformanceOptions,
+  PerformanceResponse,
+  UnblockOptions,
+  SessionOptions,
+  SessionResponse,
+  MetricsResponse,
+  ConfigResponse,
   BrowserlessError as BrowserlessErrorType,
 } from './types';
 
@@ -57,6 +66,10 @@ export {
   WebSocketOptionsSchema,
   DownloadOptionsSchema,
   ExportOptionsSchema,
+  ScrapeOptionsSchema,
+  PerformanceOptionsSchema,
+  UnblockOptionsSchema,
+  SessionOptionsSchema,
 } from './validation';
 
 export type {
@@ -68,6 +81,10 @@ export type {
   WebSocketOptionsInput,
   DownloadOptionsInput,
   ExportOptionsInput,
+  ScrapeOptionsInput,
+  PerformanceOptionsInput,
+  UnblockOptionsInput,
+  SessionOptionsInput,
 } from './validation';
 
 // Utility exports

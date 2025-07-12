@@ -166,7 +166,8 @@ export function AIAssistant({
           return updated;
         });
         
-      } catch (error) {
+      } catch (error: any) {
+        console.error('Tool execution error:', error);
         setToolInvocations(prev => {
           const updated = new Map(prev);
           updated.set(invocation.toolCallId, {

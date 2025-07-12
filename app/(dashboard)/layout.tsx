@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
-import { DashboardNav } from "@/components/dashboard/dashboard-nav";
+import { DashboardLayout as Layout } from "@/components/dashboard/layout/dashboard-layout";
 
 export default async function DashboardLayout({
   children,
@@ -14,11 +14,8 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex min-h-screen">
-      <DashboardNav user={session.user} />
-      <main className="flex-1 overflow-hidden">
-        {children}
-      </main>
-    </div>
+    <Layout user={session.user}>
+      {children}
+    </Layout>
   );
 }

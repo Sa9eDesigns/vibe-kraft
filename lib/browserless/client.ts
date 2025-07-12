@@ -18,6 +18,15 @@ import {
   ExportResponse,
   HealthResponse,
   StatsResponse,
+  ScrapeOptions,
+  ScrapeResponse,
+  PerformanceOptions,
+  PerformanceResponse,
+  UnblockOptions,
+  SessionOptions,
+  SessionResponse,
+  MetricsResponse,
+  ConfigResponse,
 } from './types';
 import {
   BrowserlessConfigSchema,
@@ -28,6 +37,10 @@ import {
   WebSocketOptionsSchema,
   DownloadOptionsSchema,
   ExportOptionsSchema,
+  ScrapeOptionsSchema,
+  PerformanceOptionsSchema,
+  UnblockOptionsSchema,
+  SessionOptionsSchema,
 } from './validation';
 import {
   BrowserlessError,
@@ -274,6 +287,110 @@ export class BrowserlessClient {
    */
   async getStats(): Promise<StatsResponse> {
     return this.makeRequest<StatsResponse>('/stats', {
+      method: 'GET',
+    });
+  }
+
+  /**
+   * Scrape data from URL
+   */
+  async scrapeData(options: ScrapeOptions, browser?: BrowserType): Promise<ScrapeResponse> {
+    const validationResult = ScrapeOptionsSchema.safeParse(options);
+    if (!validationResult.success) {
+      throw new BrowserlessValidationError(
+        `Invalid scrape options: ${validationResult.error.message}`
+      );
+    }
+
+    return this.makeRequest<ScrapeResponse>('/scrape', {
+      method: 'POST',
+      body: JSON.stringify(validationResult.data),
+    }, browser);
+  }
+
+  /**
+   * Run performance analysis (Lighthouse)
+   */
+  async analyzePerformance(options: PerformanceOptions, browser?: BrowserType): Promise<PerformanceResponse> {
+    const validationResult = PerformanceOptionsSchema.safeParse(options);
+    if (!validationResult.success) {
+      throw new BrowserlessValidationError(
+        `Invalid performance options: ${validationResult.error.message}`
+      );
+    }
+
+    return this.makeRequest<PerformanceResponse>('/performance', {
+      method: 'POST',
+      body: JSON.stringify(validationResult.data),
+    }, browser);
+  }
+
+  /**
+   * Unblock and access protected content
+   */
+  async unblockContent(options: UnblockOptions, browser?: BrowserType): Promise<ContentResponse> {
+    const validationResult = UnblockOptionsSchema.safeParse(options);
+    if (!validationResult.success) {
+      throw new BrowserlessValidationError(
+        `Invalid unblock options: ${validationResult.error.message}`
+      );
+    }
+
+    return this.makeRequest<ContentResponse>('/unblock', {
+      method: 'POST',
+      body: JSON.stringify(validationResult.data),
+    }, browser);
+  }
+
+  /**
+   * Create a new browser session
+   */
+  async createSession(options: SessionOptions = {}): Promise<SessionResponse> {
+    const validationResult = SessionOptionsSchema.safeParse(options);
+    if (!validationResult.success) {
+      throw new BrowserlessValidationError(
+        `Invalid session options: ${validationResult.error.message}`
+      );
+    }
+
+    return this.makeRequest<SessionResponse>('/sessions', {
+      method: 'POST',
+      body: JSON.stringify(validationResult.data),
+    });
+  }
+
+  /**
+   * Get session information
+   */
+  async getSession(sessionId: string): Promise<SessionResponse> {
+    return this.makeRequest<SessionResponse>(`/sessions/${sessionId}`, {
+      method: 'GET',
+    });
+  }
+
+  /**
+   * Close a browser session
+   */
+  async closeSession(sessionId: string): Promise<void> {
+    await this.makeRequest<void>(`/sessions/${sessionId}`, {
+      method: 'DELETE',
+    });
+  }
+
+  /**
+   * Get metrics and usage information
+   */
+  async getMetrics(): Promise<MetricsResponse> {
+    return this.makeRequest<MetricsResponse>('/metrics', {
+      method: 'GET',
+    });
+  }
+
+  /**
+   * Get server configuration information
+   */
+  async getServerConfig(): Promise<ConfigResponse> {
+    return this.makeRequest<ConfigResponse>('/config', {
       method: 'GET',
     });
   }

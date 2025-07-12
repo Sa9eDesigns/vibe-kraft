@@ -14,29 +14,25 @@ export const metadata: Metadata = {
 
 export default async function ProjectsPage() {
   const session = await auth();
-  
+
   if (!session?.user?.id) {
     redirect("/auth/login");
   }
 
   const organizations = await getUserOrganizations(session.user.id);
-  
+
   if (organizations.length === 0) {
     return (
-      <DashboardShell>
-        <DashboardHeader
-          heading="Projects"
-          text="You need to be part of an organization to create projects."
-        />
-        <div className="flex items-center justify-center h-64">
-          <div className="text-center">
-            <h3 className="text-lg font-medium text-muted-foreground">No organizations found</h3>
-            <p className="text-sm text-muted-foreground mt-2">
-              Join an organization or create one to start managing projects.
-            </p>
-          </div>
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <h3 className="text-lg font-medium text-muted-foreground">
+            No organizations found
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            Join an organization or create one to start managing projects.
+          </p>
         </div>
-      </DashboardShell>
+      </div>
     );
   }
 
@@ -44,14 +40,9 @@ export default async function ProjectsPage() {
   const currentOrganization = organizations[0];
 
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading="Projects"
-        text={`Manage projects for ${currentOrganization.name}`}
-      >
-        <CreateProjectDialog organizationId={currentOrganization.id} />
-      </DashboardHeader>
+    <div className="space-y-6">
+      <CreateProjectDialog organizationId={currentOrganization.id} />
       <ProjectsList organizationId={currentOrganization.id} />
-    </DashboardShell>
+    </div>
   );
 }

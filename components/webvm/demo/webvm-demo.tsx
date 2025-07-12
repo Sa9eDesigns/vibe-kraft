@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -24,6 +24,7 @@ import { SandboxContainer } from '../ui/sandbox-container';
 import { NetworkingConfig } from '../ui/networking-config';
 import { WorkspaceManager } from '../ui/workspace-manager';
 import { WorkspaceLayoutV2 } from '../ui/workspace-layout-v2';
+import { HeadersTest } from '../test/headers-test';
 import { ensureCheerpXLoaded, checkCheerpXCompatibility } from '../utils/cheerpx-loader';
 import type { DevSandboxConfig, NetworkingConfig as NetworkingConfigType } from '../types';
 
@@ -50,6 +51,25 @@ export function WebVMDemo() {
   });
   const [connectionStatus, setConnectionStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected');
   const [sandbox, setSandbox] = useState<any>(null);
+
+  // Cleanup function
+  const cleanupSandbox = async () => {
+    if (sandbox) {
+      try {
+        await sandbox.destroy();
+        setSandbox(null);
+      } catch (error) {
+        console.error('Error cleaning up sandbox:', error);
+      }
+    }
+  };
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      cleanupSandbox();
+    };
+  }, []);
 
   // Demo configuration
   const demoConfig: DevSandboxConfig = {
@@ -148,23 +168,118 @@ export function WebVMDemo() {
     }
   ];
 
-  const startDemo = () => {
+  const startDemo = async () => {
     // Check for required browser features
     if (!window.SharedArrayBuffer) {
-      setError('Your browser does not support SharedArrayBuffer. Please enable cross-origin isolation or use a compatible browser.');
+      const isSecure = window.isSecureContext;
+      const crossOriginIsolated = window.crossOriginIsolated;
+
+      let errorMessage = 'SharedArrayBuffer is not available. ';
+
+      if (!isSecure) {
+        errorMessage += 'This application requires HTTPS. ';
+      }
+
+      if (!crossOriginIsolated) {
+        errorMessage += 'Cross-origin isolation is not enabled. ';
+      }
+
+      errorMessage += 'Please refresh the page or contact support if the issue persists.';
+
+      console.error('WebVM Requirements Check:', {
+        SharedArrayBuffer: !!window.SharedArrayBuffer,
+        WebAssembly: !!window.WebAssembly,
+        isSecureContext: isSecure,
+        crossOriginIsolated: crossOriginIsolated,
+        userAgent: navigator.userAgent
+      });
+
+      setError(errorMessage);
       return;
     }
 
     if (!window.WebAssembly) {
-      setError('Your browser does not support WebAssembly. Please use a modern browser.');
+      setError('Your browser does not support WebAssembly. Please use a modern browser (Chrome 57+, Firefox 52+, Safari 11+, Edge 16+).');
       return;
     }
 
     setError(null);
+
+    // Ensure CheerpX is loaded before starting the demo
+    try {
+      await ensureCheerpXLoaded({
+        enableCrossOriginIsolation: true,
+        enableSharedArrayBuffer: true
+      });
+    } catch (error) {
+      console.error('Failed to load CheerpX:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load CheerpX');
+      return;
+    }
+
     setShowDemo(true);
   };
 
-  const startWorkspaceDemo = () => {
+  const startWorkspaceDemo = async () => {
+    // Check for required browser features before starting workspace demo
+    if (!window.SharedArrayBuffer) {
+      const isSecure = window.isSecureContext;
+      const crossOriginIsolated = window.crossOriginIsolated;
+
+      let errorMessage = 'SharedArrayBuffer is not available. ';
+
+      if (!isSecure) {
+        errorMessage += 'This application requires HTTPS. ';
+      }
+
+      if (!crossOriginIsolated) {
+        errorMessage += 'Cross-origin isolation is not enabled. ';
+      }
+
+      errorMessage += 'Please refresh the page or contact support if the issue persists.';
+
+      console.error('WebVM Requirements Check:', {
+        SharedArrayBuffer: !!window.SharedArrayBuffer,
+        WebAssembly: !!window.WebAssembly,
+        isSecureContext: isSecure,
+        crossOriginIsolated: crossOriginIsolated,
+        userAgent: navigator.userAgent
+      });
+
+      setError(errorMessage);
+      return;
+    }
+
+    if (!window.WebAssembly) {
+      setError('Your browser does not support WebAssembly. Please use a modern browser (Chrome 57+, Firefox 52+, Safari 11+, Edge 16+).');
+      return;
+    }
+
+    setError(null);
+
+    // Create a new sandbox for the workspace demo if one doesn't exist
+    if (!sandbox) {
+      try {
+        // First, ensure CheerpX is loaded
+        await ensureCheerpXLoaded({
+          enableCrossOriginIsolation: true,
+          enableSharedArrayBuffer: true
+        });
+
+        const { DevSandbox } = await import('../core/dev-sandbox');
+        const newSandbox = new DevSandbox(demoConfig);
+        setSandbox(newSandbox);
+
+        // Initialize the sandbox
+        await newSandbox.initialize();
+        console.log('Workspace sandbox initialized:', newSandbox);
+      } catch (error) {
+        console.error('Failed to initialize workspace sandbox:', error);
+        setError(error instanceof Error ? error.message : 'Failed to initialize sandbox');
+        return;
+      }
+    }
+
     setShowWorkspace(true);
   };
 
@@ -176,7 +291,10 @@ export function WebVMDemo() {
             <h2 className="text-lg font-semibold">WebVM Workspace Interface</h2>
             <Badge variant="secondary">Demo Mode</Badge>
           </div>
-          <Button variant="outline" onClick={() => setShowWorkspace(false)}>
+          <Button variant="outline" onClick={() => {
+            setShowWorkspace(false);
+            // Note: We keep the sandbox running for potential reuse
+          }}>
             Back to Overview
           </Button>
         </div>
@@ -243,11 +361,12 @@ export function WebVMDemo() {
       </div>
 
       <Tabs defaultValue="features" className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="features">Features</TabsTrigger>
           <TabsTrigger value="networking">Networking</TabsTrigger>
           <TabsTrigger value="workspace">Workspace</TabsTrigger>
           <TabsTrigger value="requirements">Requirements</TabsTrigger>
+          <TabsTrigger value="troubleshooting">Help</TabsTrigger>
           <TabsTrigger value="demo">Try Demo</TabsTrigger>
         </TabsList>
         
@@ -419,7 +538,77 @@ export function WebVMDemo() {
             </CardContent>
           </Card>
         </TabsContent>
-        
+
+        <TabsContent value="troubleshooting" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <AlertCircle className="h-5 w-5" />
+                Troubleshooting
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-medium mb-2">SharedArrayBuffer Not Available</h4>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    If you see "SharedArrayBuffer is not available", this means cross-origin isolation is not enabled.
+                  </p>
+                  <div className="bg-muted p-3 rounded-lg text-sm">
+                    <p className="font-medium mb-1">Solutions:</p>
+                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                      <li>Refresh the page - the server should automatically enable the required headers</li>
+                      <li>Ensure you're accessing the site via HTTPS (required for security)</li>
+                      <li>Try a different browser (Chrome 88+ recommended)</li>
+                      <li>Clear your browser cache and cookies</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-medium mb-2">Performance Issues</h4>
+                  <div className="bg-muted p-3 rounded-lg text-sm">
+                    <ul className="list-disc list-inside space-y-1 text-muted-foreground">
+                      <li>Close unnecessary browser tabs to free up memory</li>
+                      <li>Ensure you have at least 2GB of available RAM</li>
+                      <li>Use a desktop browser for the best experience</li>
+                      <li>Disable browser extensions that might interfere</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-medium mb-2">Browser Compatibility</h4>
+                  <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div>
+                      <p className="font-medium text-green-600 mb-1">✓ Supported</p>
+                      <ul className="space-y-1 text-muted-foreground">
+                        <li>Chrome 88+</li>
+                        <li>Firefox 89+</li>
+                        <li>Safari 15.2+</li>
+                        <li>Edge 88+</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <p className="font-medium text-red-600 mb-1">✗ Not Supported</p>
+                      <ul className="space-y-1 text-muted-foreground">
+                        <li>Internet Explorer</li>
+                        <li>Mobile browsers (limited)</li>
+                        <li>Older browser versions</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="font-medium mb-3">Compatibility Test</h4>
+                <HeadersTest />
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
         <TabsContent value="demo" className="space-y-4">
           <Card>
             <CardHeader>

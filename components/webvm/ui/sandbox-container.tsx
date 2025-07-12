@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { DevSandbox } from '../core/dev-sandbox';
+import { ensureCheerpXLoaded } from '../utils/cheerpx-loader';
 import { CodeEditor } from './monaco-editor';
 import { Terminal } from './terminal';
 import { FileExplorer } from './file-explorer';
@@ -171,54 +172,69 @@ export function SandboxContainer({
     }
   }, [config, onReady, onError, onStatusChange, status]);
 
-  // Initialize sandbox
-  const initializeSandbox = useCallback(async () => {
-    if (!sandbox) return;
-    
-    setIsLoading(true);
-    setLoadingProgress(0);
-    setLoadingMessage('Initializing sandbox...');
-    setStatus('loading');
-    
-    try {
-      // Simulate loading progress
-      const progressSteps = [
-        { progress: 20, message: 'Loading CheerpX...' },
-        { progress: 40, message: 'Setting up devices...' },
-        { progress: 60, message: 'Mounting filesystem...' },
-        { progress: 80, message: 'Starting Linux kernel...' },
-        { progress: 90, message: 'Finalizing setup...' }
-      ];
-      
-      for (const step of progressSteps) {
-        setLoadingProgress(step.progress);
-        setLoadingMessage(step.message);
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
-      
-      await sandbox.initialize();
-      
-    } catch (err) {
-      const error = err as Error;
-      setError(error);
-      setStatus('error');
-      setIsLoading(false);
-      onError?.(error);
-      onStatusChange?.(status);
-    }
-  }, [sandbox, onError, onStatusChange, status]);
+
 
   // Start sandbox
   const startSandbox = useCallback(async () => {
-    if (sandbox) {
-      await sandbox.destroy();
+    try {
+      // Clean up existing sandbox first
+      if (sandbox) {
+        await sandbox.destroy();
+        setSandbox(null);
+      }
+
+      // First, ensure CheerpX is loaded
+      setIsLoading(true);
+      setLoadingProgress(0);
+      setLoadingMessage('Loading CheerpX...');
+      setStatus('loading');
+
+      await ensureCheerpXLoaded({
+        enableCrossOriginIsolation: true,
+        enableSharedArrayBuffer: true
+      });
+
+      // Create new sandbox
+      const newSandbox = createSandbox();
+      if (!newSandbox) {
+        throw new Error('Failed to create sandbox instance');
+      }
+
+      // Initialize the new sandbox directly
+      setLoadingMessage('Initializing sandbox...');
+
+      try {
+        // Simulate loading progress
+        const progressSteps = [
+          { progress: 20, message: 'Loading CheerpX...' },
+          { progress: 40, message: 'Setting up devices...' },
+          { progress: 60, message: 'Mounting filesystem...' },
+          { progress: 80, message: 'Starting Linux kernel...' },
+          { progress: 90, message: 'Finalizing setup...' }
+        ];
+
+        for (const step of progressSteps) {
+          setLoadingProgress(step.progress);
+          setLoadingMessage(step.message);
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
+
+        await newSandbox.initialize();
+
+      } catch (err) {
+        const error = err as Error;
+        setError(error);
+        setStatus('error');
+        setIsLoading(false);
+        onError?.(error);
+        onStatusChange?.(status);
+        throw error;
+      }
+    } catch (error) {
+      console.error('Failed to start sandbox:', error);
+      throw error;
     }
-    
-    const newSandbox = createSandbox();
-    if (newSandbox) {
-      await initializeSandbox();
-    }
-  }, [sandbox, createSandbox, initializeSandbox]);
+  }, [sandbox, createSandbox, onError, onStatusChange, status]);
 
   // Stop sandbox
   const stopSandbox = useCallback(async () => {
@@ -300,12 +316,11 @@ export function SandboxContainer({
   // Auto-start sandbox
   useEffect(() => {
     if (autoStart && !sandbox && !isDestroyed) {
-      const newSandbox = createSandbox();
-      if (newSandbox) {
-        initializeSandbox();
-      }
+      startSandbox().catch(error => {
+        console.error('Auto-start failed:', error);
+      });
     }
-  }, [autoStart, sandbox, isDestroyed, createSandbox, initializeSandbox]);
+  }, [autoStart, sandbox, isDestroyed, startSandbox]);
 
   // Start system stats monitoring
   useEffect(() => {

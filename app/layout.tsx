@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { SessionProvider } from "@/components/providers/session-provider";
+import NextTopLoader from 'nextjs-toploader';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,15 +33,22 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* CheerpX WebVM Script */}
-        <script 
-          src="https://cxrtnc.leaningtech.com/2.0/cx.js"
-          async
-        />
+        {/* CheerpX WebVM Script - Loaded dynamically by components when needed */}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NextTopLoader 
+          color="hsl(var(--primary))"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={true}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px hsl(var(--primary)),0 0 5px hsl(var(--primary))"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

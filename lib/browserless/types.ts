@@ -301,3 +301,205 @@ export interface StatsResponse {
   memory: number;
   cpu: number;
 }
+
+// Scrape API Types
+export interface ScrapeOptions {
+  /** URL to scrape */
+  url: string;
+  /** Elements to scrape */
+  elements?: Array<{
+    selector: string;
+    attribute?: string;
+  }>;
+  /** Wait conditions */
+  waitFor?: {
+    timeout?: number;
+    selector?: string;
+    function?: string;
+  };
+  /** Viewport settings */
+  viewport?: {
+    width: number;
+    height: number;
+    deviceScaleFactor?: number;
+    isMobile?: boolean;
+    hasTouch?: boolean;
+    isLandscape?: boolean;
+  };
+  /** Authentication */
+  authenticate?: {
+    username: string;
+    password: string;
+  };
+  /** Custom headers */
+  setExtraHTTPHeaders?: Record<string, string>;
+  /** Cookies to set */
+  setCookie?: Array<{
+    name: string;
+    value: string;
+    domain?: string;
+    path?: string;
+    expires?: number;
+    httpOnly?: boolean;
+    secure?: boolean;
+    sameSite?: 'Strict' | 'Lax' | 'None';
+  }>;
+  /** User agent */
+  userAgent?: string;
+  /** Block resources */
+  blockAds?: boolean;
+  blockImages?: boolean;
+  blockFonts?: boolean;
+}
+
+export interface ScrapeResponse {
+  data: Array<{
+    selector: string;
+    results: Array<{
+      text?: string;
+      html?: string;
+      attributes?: Record<string, string>;
+    }>;
+  }>;
+}
+
+// Performance API Types
+export interface PerformanceOptions {
+  /** URL to analyze */
+  url: string;
+  /** Performance budget */
+  budget?: {
+    performance?: number;
+    accessibility?: number;
+    'best-practices'?: number;
+    seo?: number;
+    pwa?: number;
+  };
+  /** Wait conditions */
+  waitFor?: {
+    timeout?: number;
+    selector?: string;
+    function?: string;
+  };
+  /** Viewport settings */
+  viewport?: {
+    width: number;
+    height: number;
+    deviceScaleFactor?: number;
+    isMobile?: boolean;
+    hasTouch?: boolean;
+    isLandscape?: boolean;
+  };
+  /** Custom headers */
+  setExtraHTTPHeaders?: Record<string, string>;
+  /** User agent */
+  userAgent?: string;
+}
+
+export interface PerformanceResponse {
+  lhr: {
+    lighthouseVersion: string;
+    userAgent: string;
+    fetchTime: string;
+    requestedUrl: string;
+    finalUrl: string;
+    categories: {
+      performance: { score: number; title: string };
+      accessibility: { score: number; title: string };
+      'best-practices': { score: number; title: string };
+      seo: { score: number; title: string };
+      pwa?: { score: number; title: string };
+    };
+    audits: Record<string, any>;
+  };
+}
+
+// Unblock API Types
+export interface UnblockOptions {
+  /** URL to unblock and access */
+  url: string;
+  /** Wait conditions */
+  waitFor?: {
+    timeout?: number;
+    selector?: string;
+    function?: string;
+  };
+  /** Viewport settings */
+  viewport?: {
+    width: number;
+    height: number;
+    deviceScaleFactor?: number;
+    isMobile?: boolean;
+    hasTouch?: boolean;
+    isLandscape?: boolean;
+  };
+  /** Custom headers */
+  setExtraHTTPHeaders?: Record<string, string>;
+  /** User agent */
+  userAgent?: string;
+  /** Stealth options */
+  stealth?: boolean;
+  /** Proxy settings */
+  proxy?: {
+    server: string;
+    username?: string;
+    password?: string;
+  };
+}
+
+// Sessions API Types
+export interface SessionOptions {
+  /** Browser type */
+  browser?: BrowserType;
+  /** Launch options */
+  launch?: Record<string, any>;
+  /** Timeout for session */
+  timeout?: number;
+}
+
+export interface SessionResponse {
+  id: string;
+  browser: BrowserType;
+  status: 'running' | 'idle' | 'closed';
+  startTime: string;
+  lastActivity: string;
+  wsEndpoint: string;
+}
+
+// Metrics API Types
+export interface MetricsResponse {
+  sessions: {
+    total: number;
+    running: number;
+    queued: number;
+    successful: number;
+    failed: number;
+  };
+  memory: {
+    used: number;
+    total: number;
+    percentage: number;
+  };
+  cpu: {
+    usage: number;
+    cores: number;
+  };
+  requests: {
+    total: number;
+    successful: number;
+    failed: number;
+    rate: number;
+  };
+}
+
+// Config API Types
+export interface ConfigResponse {
+  version: string;
+  browsers: BrowserType[];
+  limits: {
+    concurrent: number;
+    queued: number;
+    timeout: number;
+  };
+  features: string[];
+}

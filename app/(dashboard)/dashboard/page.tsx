@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function DashboardPage() {
   const session = await auth();
-  
+
   if (!session?.user?.id) {
     redirect("/auth/login");
   }
@@ -24,21 +24,18 @@ export default async function DashboardPage() {
   const currentOrganization = organizations[0]; // Use first organization for now
 
   return (
-    <DashboardShell>
-      <DashboardHeader
-        heading={`Welcome back${session.user.name ? `, ${session.user.name}` : ''}!`}
-        text="Ready to code? Launch your WebVM workspace or manage your projects."
-      />
-      <div className="grid gap-6">
-        <DashboardCards organizationId={currentOrganization?.id} />
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <DashboardCharts className="lg:col-span-2" organizationId={currentOrganization?.id} />
-          <DashboardTasks 
-            userId={session.user.id} 
-            organizationId={currentOrganization?.id} 
-          />
-        </div>
+    <div className="grid gap-6">
+      <DashboardCards organizationId={currentOrganization?.id} />
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <DashboardCharts
+          className="lg:col-span-2"
+          organizationId={currentOrganization?.id}
+        />
+        <DashboardTasks
+          userId={session.user.id}
+          organizationId={currentOrganization?.id}
+        />
       </div>
-    </DashboardShell>
+    </div>
   );
 }

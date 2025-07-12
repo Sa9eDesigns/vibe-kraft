@@ -4,12 +4,15 @@ A comprehensive TypeScript library for interacting with [Browserless.io](https:/
 
 ## Features
 
-- 🚀 **Full REST API Support** - PDF generation, screenshots, content extraction, and more
+- 🚀 **Full REST API Support** - PDF generation, screenshots, content extraction, web scraping, performance analysis, and more
 - 🔌 **WebSocket Integration** - Seamless Puppeteer and Playwright connections
 - 🛡️ **Type Safety** - Complete TypeScript types and validation with Zod
 - 🔄 **Error Handling** - Comprehensive error classes and retry mechanisms
 - 🌍 **Multi-region Support** - Built-in support for Browserless cloud regions
 - 🏠 **Self-hosted Support** - Works with self-hosted Browserless instances
+- 🕷️ **Advanced Scraping** - Built-in support for stealth mode and bot detection bypass
+- 📊 **Performance Monitoring** - Lighthouse integration and real-time metrics
+- 🎯 **Session Management** - Persistent browser sessions for complex workflows
 - 📦 **Zero Dependencies** - Minimal footprint with optional peer dependencies
 
 ## Installation
@@ -164,6 +167,92 @@ const result = await client.executeFunction({
   },
   timeout: 30000,
 });
+```
+
+#### Web Scraping
+
+```typescript
+const scrapeResult = await client.scrapeData({
+  url: 'https://example.com',
+  elements: [
+    {
+      selector: 'h1',
+      attribute: 'textContent',
+    },
+    {
+      selector: 'a',
+      attribute: 'href',
+    },
+  ],
+  waitFor: {
+    timeout: 10000,
+    selector: '.content-loaded',
+  },
+  blockAds: true,
+});
+
+console.log(scrapeResult.data); // Scraped elements
+```
+
+#### Performance Analysis
+
+```typescript
+const performanceResult = await client.analyzePerformance({
+  url: 'https://example.com',
+  budget: {
+    performance: 0.9,
+    accessibility: 0.8,
+    'best-practices': 0.9,
+    seo: 0.8,
+  },
+});
+
+console.log(performanceResult.lhr.categories); // Lighthouse scores
+```
+
+#### Unblock Protected Content
+
+```typescript
+const unblockResult = await client.unblockContent({
+  url: 'https://protected-site.com',
+  stealth: true,
+  proxy: {
+    server: 'http://proxy.example.com:8080',
+    username: 'user',
+    password: 'pass',
+  },
+});
+
+console.log(unblockResult.data); // Unblocked content
+```
+
+#### Session Management
+
+```typescript
+// Create persistent session
+const session = await client.createSession({
+  browser: 'chrome',
+  timeout: 300000, // 5 minutes
+});
+
+// Use session for multiple operations
+// ... perform operations ...
+
+// Close session
+await client.closeSession(session.id);
+```
+
+#### Monitoring and Metrics
+
+```typescript
+// Get current metrics
+const metrics = await client.getMetrics();
+console.log('Sessions:', metrics.sessions.running);
+console.log('Memory usage:', metrics.memory.percentage + '%');
+
+// Get server configuration
+const config = await client.getServerConfig();
+console.log('Available browsers:', config.browsers);
 ```
 
 ### WebSocket Integration
