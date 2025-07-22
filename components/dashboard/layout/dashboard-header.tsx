@@ -60,6 +60,9 @@ interface DashboardHeaderProps {
     image?: string | null;
     role?: string;
   };
+  organizations?: Organization[];
+  currentOrganization?: Organization;
+  onOrganizationChange?: (organization: Organization) => void;
 }
 
 interface Organization {
@@ -69,21 +72,26 @@ interface Organization {
   role: "OWNER" | "ADMIN" | "MEMBER";
 }
 
-// Mock organizations - in real app, this would come from props or API
-const organizations: Organization[] = [
+// Fallback organizations for when no real data is provided
+const fallbackOrganizations: Organization[] = [
   { id: "1", name: "Acme Corp", slug: "acme", role: "OWNER" },
   { id: "2", name: "TechStart Inc", slug: "techstart", role: "ADMIN" },
   { id: "3", name: "DevTeam", slug: "devteam", role: "MEMBER" },
 ];
 
-
-
-export function DashboardHeader({ user }: DashboardHeaderProps) {
+export function DashboardHeader({
+  user,
+  organizations = fallbackOrganizations,
+  currentOrganization,
+  onOrganizationChange
+}: DashboardHeaderProps) {
   const router = useRouter();
   const { setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
-  const [selectedOrg, setSelectedOrg] = useState<Organization>(organizations[0]);
+  const [selectedOrg, setSelectedOrg] = useState<Organization>(
+    currentOrganization || organizations[0]
+  );
 
   const handleSignOut = () => {
     signOut({
@@ -148,6 +156,7 @@ export function DashboardHeader({ user }: DashboardHeaderProps) {
                       onSelect={() => {
                         setSelectedOrg(org);
                         setOpen(false);
+                        onOrganizationChange?.(org);
                       }}
                     >
                       <div className="flex items-center gap-2 flex-1">

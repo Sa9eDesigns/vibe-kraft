@@ -5,6 +5,7 @@ export const createWorkspaceSchema = z.object({
   name: z.string().min(1, "Workspace name is required").max(100, "Workspace name must be less than 100 characters"),
   description: z.string().optional(),
   projectId: z.string().min(1, "Project is required"),
+  type: z.enum(["WEBVM", "FIRECRACKER"]).default("WEBVM"),
   status: z.enum(["ACTIVE", "INACTIVE", "ARCHIVED", "ERROR"]).default("INACTIVE"),
   config: z.record(z.any()).optional(), // JSON configuration object
 });
@@ -12,6 +13,7 @@ export const createWorkspaceSchema = z.object({
 export const updateWorkspaceSchema = z.object({
   name: z.string().min(1, "Workspace name is required").max(100, "Workspace name must be less than 100 characters").optional(),
   description: z.string().optional(),
+  type: z.enum(["WEBVM", "FIRECRACKER"]).optional(),
   status: z.enum(["ACTIVE", "INACTIVE", "ARCHIVED", "ERROR"]).optional(),
   config: z.record(z.any()).optional(),
 });

@@ -354,6 +354,7 @@ model WebVMMetric {
 enum WorkspaceType {
   WEBVM       // Browser-based WebVM workspaces
   FIRECRACKER // Firecracker microVM workspaces
+  PYODIDE     // Python workspaces powered by Pyodide
 }
 
 enum WorkspaceStatus {

@@ -300,7 +300,6 @@ export function DashboardCharts({ className, organizationId }: DashboardChartsPr
         if (!response.ok) {
           // Fallback to mock data if API fails
           setData(generateMockChartData());
-        }
         } else {
           const chartData = await response.json();
           setData(chartData);
@@ -309,7 +308,6 @@ export function DashboardCharts({ className, organizationId }: DashboardChartsPr
         console.error("Failed to fetch chart data:", error);
         // Set mock data on error
         setData(generateMockChartData());
-
       } finally {
         setLoading(false);
       }

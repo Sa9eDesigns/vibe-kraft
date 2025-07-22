@@ -8,6 +8,12 @@ import { SearchAddon } from 'xterm-addon-search';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu';
 import { 
   Terminal as TerminalIcon, 
   Plus, 
@@ -256,15 +262,34 @@ export function FirecrackerTerminal({
           </div>
           
           <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => createNewSession()}
-              disabled={vmStatus.status !== 'RUNNING'}
-              title="New Terminal"
-            >
-              <Plus className="h-3 w-3" />
-            </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  disabled={vmStatus.status !== 'RUNNING'}
+                  title="New Terminal"
+                >
+                  <Plus className="h-3 w-3" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => createNewSession()}>
+                  <TerminalIcon className="h-4 w-4 mr-2" />
+                  VM Terminal
+                </DropdownMenuItem>
+                {workspace.containers.map((container) => (
+                  <DropdownMenuItem
+                    key={container.id}
+                    onClick={() => createNewSession(container.id, container.name)}
+                    disabled={container.status !== 'RUNNING'}
+                  >
+                    <Container className="h-4 w-4 mr-2" />
+                    {container.name}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             
             <Button
               variant="ghost"

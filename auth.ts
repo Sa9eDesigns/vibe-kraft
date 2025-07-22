@@ -13,9 +13,10 @@ export const {
   unstable_update,
 } = NextAuth({
   ...authConfig,
-  adapter: PrismaAdapter(db),
+  // Don't use PrismaAdapter with JWT sessions and credentials provider
+  // adapter: PrismaAdapter(db),
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/auth/login",
     signOut: "/auth/signout",
     error: "/auth/error",
   },

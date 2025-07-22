@@ -1,12 +1,15 @@
 'use client';
 
 import React, { useState, useCallback, useEffect } from 'react';
+import { useWorkspaceContext } from '@/hooks/use-workspace-context';
 import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from '@/components/ui/resizable';
 import { TabSystem, TabItem } from './tab-system';
 import { CodeEditor } from './monaco-editor';
 import { Terminal } from './terminal';
 import { FileExplorer } from './file-explorer';
 import { AIAssistant } from './ai-assistant';
+import { AdvancedChatInterface } from '@/components/ai/advanced-chat-interface';
+import { AIWorkspacePanel } from '@/components/ai/ai-workspace-panel';
 import { WorkspaceManager } from './workspace-manager';
 import { NetworkingConfig } from './networking-config';
 import { Button } from '@/components/ui/button';
@@ -37,6 +40,7 @@ interface WorkspaceLayoutV2Props {
   onFileChange?: (path: string, content: string) => void;
   networkingConfig?: NetworkingConfigType;
   onNetworkingChange?: (config: NetworkingConfigType) => void;
+  enableAIChat?: boolean;
 }
 
 interface OpenFile {
@@ -52,8 +56,16 @@ export function WorkspaceLayoutV2({
   onFileOpen,
   onFileChange,
   networkingConfig,
-  onNetworkingChange
+  onNetworkingChange,
+  enableAIChat = false
 }: WorkspaceLayoutV2Props) {
+  // Workspace context for AI integration
+  const workspaceContext = useWorkspaceContext({
+    autoSnapshot: true,
+    trackFileChanges: true,
+    trackTerminalHistory: true
+  });
+
   // Sidebar tabs
   const [sidebarTabs, setSidebarTabs] = useState<TabItem[]>([
     {
@@ -331,6 +343,18 @@ export function WorkspaceLayoutV2({
             </div>
           );
         }
+
+        // Use advanced AI workspace panel if enabled
+        if (enableAIChat) {
+          return (
+            <AIWorkspacePanel
+              sandbox={sandbox}
+              className="h-full"
+            />
+          );
+        }
+
+        // Fallback to original AI assistant
         return (
           <AIAssistant
             sandbox={sandbox}

@@ -48,19 +48,25 @@ export interface StorageBucket extends BaseResource {
 }
 
 export interface StorageObject {
+  id?: string; // For Appwrite compatibility
   key: string;
+  bucket?: string; // For Appwrite compatibility
+  name?: string; // For Appwrite compatibility
   size: number;
   lastModified: Date;
   etag: string;
-  contentType: string;
-  metadata?: Record<string, string>;
+  mimeType?: string; // For Appwrite compatibility
+  contentType?: string; // For MinIO compatibility
+  metadata?: Record<string, any>; // Changed to any for flexibility
+  url?: string; // For Appwrite compatibility
 }
 
 export interface StorageUploadRequest {
   file: File;
   key: string;
   bucket: string;
-  metadata?: Record<string, string>;
+  metadata?: Record<string, any>; // Changed to any for flexibility
+  permissions?: string[]; // For Appwrite compatibility
 }
 
 export interface StorageDownloadRequest {

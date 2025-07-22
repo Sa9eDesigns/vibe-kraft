@@ -1,7 +1,7 @@
 import { db } from "@/lib/db";
 import { CreateProjectInput, UpdateProjectInput } from "@/lib/validations/project";
 
-export const getProjectsByOrganization = async (organizationId: string) => {
+export const getProjectsByOrganization = async (organizationId: string, includeWorkspaces = false) => {
   try {
     const projects = await db.project.findMany({
       where: { organizationId },
@@ -18,6 +18,17 @@ export const getProjectsByOrganization = async (organizationId: string) => {
             },
           },
         },
+        workspaces: includeWorkspaces ? {
+          select: {
+            id: true,
+            name: true,
+            type: true,
+            status: true,
+            config: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        } : false,
         organization: {
           select: {
             id: true,
@@ -52,6 +63,20 @@ export const getProjectById = async (id: string) => {
             },
           },
           orderBy: { createdAt: "desc" },
+        },
+        workspaces: {
+          include: {
+            files: {
+              select: {
+                id: true,
+                name: true,
+                path: true,
+                type: true,
+                size: true,
+              },
+              take: 10, // Limit files for performance
+            },
+          },
         },
         organization: {
           select: {

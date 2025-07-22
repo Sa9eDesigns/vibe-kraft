@@ -74,6 +74,36 @@ export type Workspace = $Result.DefaultSelection<Prisma.$WorkspacePayload>
  */
 export type WebVMInstance = $Result.DefaultSelection<Prisma.$WebVMInstancePayload>
 /**
+ * Model FirecrackerVM
+ * 
+ */
+export type FirecrackerVM = $Result.DefaultSelection<Prisma.$FirecrackerVMPayload>
+/**
+ * Model FirecrackerContainer
+ * 
+ */
+export type FirecrackerContainer = $Result.DefaultSelection<Prisma.$FirecrackerContainerPayload>
+/**
+ * Model FirecrackerMetric
+ * 
+ */
+export type FirecrackerMetric = $Result.DefaultSelection<Prisma.$FirecrackerMetricPayload>
+/**
+ * Model FirecrackerSnapshot
+ * 
+ */
+export type FirecrackerSnapshot = $Result.DefaultSelection<Prisma.$FirecrackerSnapshotPayload>
+/**
+ * Model FirecrackerTemplate
+ * 
+ */
+export type FirecrackerTemplate = $Result.DefaultSelection<Prisma.$FirecrackerTemplatePayload>
+/**
+ * Model FirecrackerContainerLog
+ * 
+ */
+export type FirecrackerContainerLog = $Result.DefaultSelection<Prisma.$FirecrackerContainerLogPayload>
+/**
  * Model WebVMMetric
  * 
  */
@@ -209,6 +239,15 @@ export const TaskPriority: {
 export type TaskPriority = (typeof TaskPriority)[keyof typeof TaskPriority]
 
 
+export const WorkspaceType: {
+  WEBVM: 'WEBVM',
+  FIRECRACKER: 'FIRECRACKER',
+  PYODIDE: 'PYODIDE'
+};
+
+export type WorkspaceType = (typeof WorkspaceType)[keyof typeof WorkspaceType]
+
+
 export const WorkspaceStatus: {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE',
@@ -229,6 +268,19 @@ export const WebVMStatus: {
 };
 
 export type WebVMStatus = (typeof WebVMStatus)[keyof typeof WebVMStatus]
+
+
+export const FirecrackerStatus: {
+  STARTING: 'STARTING',
+  RUNNING: 'RUNNING',
+  STOPPING: 'STOPPING',
+  STOPPED: 'STOPPED',
+  ERROR: 'ERROR',
+  SUSPENDED: 'SUSPENDED',
+  PAUSED: 'PAUSED'
+};
+
+export type FirecrackerStatus = (typeof FirecrackerStatus)[keyof typeof FirecrackerStatus]
 
 
 export const MetricType: {
@@ -343,6 +395,10 @@ export type TaskPriority = $Enums.TaskPriority
 
 export const TaskPriority: typeof $Enums.TaskPriority
 
+export type WorkspaceType = $Enums.WorkspaceType
+
+export const WorkspaceType: typeof $Enums.WorkspaceType
+
 export type WorkspaceStatus = $Enums.WorkspaceStatus
 
 export const WorkspaceStatus: typeof $Enums.WorkspaceStatus
@@ -350,6 +406,10 @@ export const WorkspaceStatus: typeof $Enums.WorkspaceStatus
 export type WebVMStatus = $Enums.WebVMStatus
 
 export const WebVMStatus: typeof $Enums.WebVMStatus
+
+export type FirecrackerStatus = $Enums.FirecrackerStatus
+
+export const FirecrackerStatus: typeof $Enums.FirecrackerStatus
 
 export type MetricType = $Enums.MetricType
 
@@ -631,6 +691,66 @@ export class PrismaClient<
     * ```
     */
   get webVMInstance(): Prisma.WebVMInstanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerVM`: Exposes CRUD operations for the **FirecrackerVM** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerVMS
+    * const firecrackerVMS = await prisma.firecrackerVM.findMany()
+    * ```
+    */
+  get firecrackerVM(): Prisma.FirecrackerVMDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerContainer`: Exposes CRUD operations for the **FirecrackerContainer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerContainers
+    * const firecrackerContainers = await prisma.firecrackerContainer.findMany()
+    * ```
+    */
+  get firecrackerContainer(): Prisma.FirecrackerContainerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerMetric`: Exposes CRUD operations for the **FirecrackerMetric** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerMetrics
+    * const firecrackerMetrics = await prisma.firecrackerMetric.findMany()
+    * ```
+    */
+  get firecrackerMetric(): Prisma.FirecrackerMetricDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerSnapshot`: Exposes CRUD operations for the **FirecrackerSnapshot** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerSnapshots
+    * const firecrackerSnapshots = await prisma.firecrackerSnapshot.findMany()
+    * ```
+    */
+  get firecrackerSnapshot(): Prisma.FirecrackerSnapshotDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerTemplate`: Exposes CRUD operations for the **FirecrackerTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerTemplates
+    * const firecrackerTemplates = await prisma.firecrackerTemplate.findMany()
+    * ```
+    */
+  get firecrackerTemplate(): Prisma.FirecrackerTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.firecrackerContainerLog`: Exposes CRUD operations for the **FirecrackerContainerLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more FirecrackerContainerLogs
+    * const firecrackerContainerLogs = await prisma.firecrackerContainerLog.findMany()
+    * ```
+    */
+  get firecrackerContainerLog(): Prisma.FirecrackerContainerLogDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.webVMMetric`: Exposes CRUD operations for the **WebVMMetric** model.
@@ -1273,6 +1393,12 @@ export namespace Prisma {
     Task: 'Task',
     Workspace: 'Workspace',
     WebVMInstance: 'WebVMInstance',
+    FirecrackerVM: 'FirecrackerVM',
+    FirecrackerContainer: 'FirecrackerContainer',
+    FirecrackerMetric: 'FirecrackerMetric',
+    FirecrackerSnapshot: 'FirecrackerSnapshot',
+    FirecrackerTemplate: 'FirecrackerTemplate',
+    FirecrackerContainerLog: 'FirecrackerContainerLog',
     WebVMMetric: 'WebVMMetric',
     StorageBucket: 'StorageBucket',
     StorageObject: 'StorageObject',
@@ -1310,7 +1436,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "userPreference" | "organization" | "organizationMember" | "organizationInvitation" | "project" | "task" | "workspace" | "webVMInstance" | "webVMMetric" | "storageBucket" | "storageObject" | "storageUsage" | "container" | "containerStats" | "containerLog" | "serviceHealth" | "infrastructureMetric" | "auditLog" | "webVMTemplate" | "webVMSnapshot" | "workspacePersistence" | "infrastructureAlert" | "alertNotification" | "workspaceFile" | "fileIndex" | "workspaceState" | "workspaceSync"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "userPreference" | "organization" | "organizationMember" | "organizationInvitation" | "project" | "task" | "workspace" | "webVMInstance" | "firecrackerVM" | "firecrackerContainer" | "firecrackerMetric" | "firecrackerSnapshot" | "firecrackerTemplate" | "firecrackerContainerLog" | "webVMMetric" | "storageBucket" | "storageObject" | "storageUsage" | "container" | "containerStats" | "containerLog" | "serviceHealth" | "infrastructureMetric" | "auditLog" | "webVMTemplate" | "webVMSnapshot" | "workspacePersistence" | "infrastructureAlert" | "alertNotification" | "workspaceFile" | "fileIndex" | "workspaceState" | "workspaceSync"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2199,6 +2325,450 @@ export namespace Prisma {
           count: {
             args: Prisma.WebVMInstanceCountArgs<ExtArgs>
             result: $Utils.Optional<WebVMInstanceCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerVM: {
+        payload: Prisma.$FirecrackerVMPayload<ExtArgs>
+        fields: Prisma.FirecrackerVMFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerVMFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerVMFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerVMFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerVMFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerVMFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerVMCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerVMCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerVMCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerVMDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          update: {
+            args: Prisma.FirecrackerVMUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerVMDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerVMUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerVMUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerVMUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerVMPayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerVMAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerVM>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerVMGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerVMGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerVMCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerVMCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerContainer: {
+        payload: Prisma.$FirecrackerContainerPayload<ExtArgs>
+        fields: Prisma.FirecrackerContainerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerContainerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerContainerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerContainerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerContainerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerContainerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerContainerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerContainerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerContainerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerContainerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          update: {
+            args: Prisma.FirecrackerContainerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerContainerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerContainerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerContainerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerContainerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerPayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerContainerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerContainer>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerContainerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerContainerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerContainerCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerContainerCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerMetric: {
+        payload: Prisma.$FirecrackerMetricPayload<ExtArgs>
+        fields: Prisma.FirecrackerMetricFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerMetricFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerMetricFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerMetricFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerMetricFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerMetricFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerMetricCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerMetricCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerMetricCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerMetricDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          update: {
+            args: Prisma.FirecrackerMetricUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerMetricDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerMetricUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerMetricUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerMetricUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerMetricPayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerMetricAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerMetric>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerMetricGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerMetricGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerMetricCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerMetricCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerSnapshot: {
+        payload: Prisma.$FirecrackerSnapshotPayload<ExtArgs>
+        fields: Prisma.FirecrackerSnapshotFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerSnapshotFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerSnapshotFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerSnapshotFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerSnapshotFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerSnapshotFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerSnapshotCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerSnapshotCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerSnapshotCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerSnapshotDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          update: {
+            args: Prisma.FirecrackerSnapshotUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerSnapshotDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerSnapshotUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerSnapshotUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerSnapshotUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerSnapshotPayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerSnapshotAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerSnapshot>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerSnapshotGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerSnapshotGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerSnapshotCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerSnapshotCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerTemplate: {
+        payload: Prisma.$FirecrackerTemplatePayload<ExtArgs>
+        fields: Prisma.FirecrackerTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          update: {
+            args: Prisma.FirecrackerTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerTemplate>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      FirecrackerContainerLog: {
+        payload: Prisma.$FirecrackerContainerLogPayload<ExtArgs>
+        fields: Prisma.FirecrackerContainerLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FirecrackerContainerLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FirecrackerContainerLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          findFirst: {
+            args: Prisma.FirecrackerContainerLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FirecrackerContainerLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          findMany: {
+            args: Prisma.FirecrackerContainerLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>[]
+          }
+          create: {
+            args: Prisma.FirecrackerContainerLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          createMany: {
+            args: Prisma.FirecrackerContainerLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FirecrackerContainerLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>[]
+          }
+          delete: {
+            args: Prisma.FirecrackerContainerLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          update: {
+            args: Prisma.FirecrackerContainerLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.FirecrackerContainerLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FirecrackerContainerLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FirecrackerContainerLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.FirecrackerContainerLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FirecrackerContainerLogPayload>
+          }
+          aggregate: {
+            args: Prisma.FirecrackerContainerLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFirecrackerContainerLog>
+          }
+          groupBy: {
+            args: Prisma.FirecrackerContainerLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerContainerLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FirecrackerContainerLogCountArgs<ExtArgs>
+            result: $Utils.Optional<FirecrackerContainerLogCountAggregateOutputType> | number
           }
         }
       }
@@ -3704,6 +4274,12 @@ export namespace Prisma {
     task?: TaskOmit
     workspace?: WorkspaceOmit
     webVMInstance?: WebVMInstanceOmit
+    firecrackerVM?: FirecrackerVMOmit
+    firecrackerContainer?: FirecrackerContainerOmit
+    firecrackerMetric?: FirecrackerMetricOmit
+    firecrackerSnapshot?: FirecrackerSnapshotOmit
+    firecrackerTemplate?: FirecrackerTemplateOmit
+    firecrackerContainerLog?: FirecrackerContainerLogOmit
     webVMMetric?: WebVMMetricOmit
     storageBucket?: StorageBucketOmit
     storageObject?: StorageObjectOmit
@@ -3974,6 +4550,7 @@ export namespace Prisma {
 
   export type WorkspaceCountOutputType = {
     instances: number
+    firecrackerVMs: number
     files: number
     states: number
     syncs: number
@@ -3981,6 +4558,7 @@ export namespace Prisma {
 
   export type WorkspaceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     instances?: boolean | WorkspaceCountOutputTypeCountInstancesArgs
+    firecrackerVMs?: boolean | WorkspaceCountOutputTypeCountFirecrackerVMsArgs
     files?: boolean | WorkspaceCountOutputTypeCountFilesArgs
     states?: boolean | WorkspaceCountOutputTypeCountStatesArgs
     syncs?: boolean | WorkspaceCountOutputTypeCountSyncsArgs
@@ -4002,6 +4580,13 @@ export namespace Prisma {
    */
   export type WorkspaceCountOutputTypeCountInstancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WebVMInstanceWhereInput
+  }
+
+  /**
+   * WorkspaceCountOutputType without action
+   */
+  export type WorkspaceCountOutputTypeCountFirecrackerVMsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerVMWhereInput
   }
 
   /**
@@ -4063,6 +4648,117 @@ export namespace Prisma {
    */
   export type WebVMInstanceCountOutputTypeCountSnapshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: WebVMSnapshotWhereInput
+  }
+
+
+  /**
+   * Count Type FirecrackerVMCountOutputType
+   */
+
+  export type FirecrackerVMCountOutputType = {
+    containers: number
+    metrics: number
+    snapshots: number
+  }
+
+  export type FirecrackerVMCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    containers?: boolean | FirecrackerVMCountOutputTypeCountContainersArgs
+    metrics?: boolean | FirecrackerVMCountOutputTypeCountMetricsArgs
+    snapshots?: boolean | FirecrackerVMCountOutputTypeCountSnapshotsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FirecrackerVMCountOutputType without action
+   */
+  export type FirecrackerVMCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVMCountOutputType
+     */
+    select?: FirecrackerVMCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerVMCountOutputType without action
+   */
+  export type FirecrackerVMCountOutputTypeCountContainersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerContainerWhereInput
+  }
+
+  /**
+   * FirecrackerVMCountOutputType without action
+   */
+  export type FirecrackerVMCountOutputTypeCountMetricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerMetricWhereInput
+  }
+
+  /**
+   * FirecrackerVMCountOutputType without action
+   */
+  export type FirecrackerVMCountOutputTypeCountSnapshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerSnapshotWhereInput
+  }
+
+
+  /**
+   * Count Type FirecrackerContainerCountOutputType
+   */
+
+  export type FirecrackerContainerCountOutputType = {
+    logs: number
+  }
+
+  export type FirecrackerContainerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    logs?: boolean | FirecrackerContainerCountOutputTypeCountLogsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FirecrackerContainerCountOutputType without action
+   */
+  export type FirecrackerContainerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerCountOutputType
+     */
+    select?: FirecrackerContainerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerContainerCountOutputType without action
+   */
+  export type FirecrackerContainerCountOutputTypeCountLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerContainerLogWhereInput
+  }
+
+
+  /**
+   * Count Type FirecrackerTemplateCountOutputType
+   */
+
+  export type FirecrackerTemplateCountOutputType = {
+    vms: number
+  }
+
+  export type FirecrackerTemplateCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vms?: boolean | FirecrackerTemplateCountOutputTypeCountVmsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FirecrackerTemplateCountOutputType without action
+   */
+  export type FirecrackerTemplateCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplateCountOutputType
+     */
+    select?: FirecrackerTemplateCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerTemplateCountOutputType without action
+   */
+  export type FirecrackerTemplateCountOutputTypeCountVmsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerVMWhereInput
   }
 
 
@@ -15360,6 +16056,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     projectId: string | null
+    type: $Enums.WorkspaceType | null
     status: $Enums.WorkspaceStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15370,6 +16067,7 @@ export namespace Prisma {
     name: string | null
     description: string | null
     projectId: string | null
+    type: $Enums.WorkspaceType | null
     status: $Enums.WorkspaceStatus | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -15380,6 +16078,7 @@ export namespace Prisma {
     name: number
     description: number
     projectId: number
+    type: number
     status: number
     config: number
     createdAt: number
@@ -15393,6 +16092,7 @@ export namespace Prisma {
     name?: true
     description?: true
     projectId?: true
+    type?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -15403,6 +16103,7 @@ export namespace Prisma {
     name?: true
     description?: true
     projectId?: true
+    type?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -15413,6 +16114,7 @@ export namespace Prisma {
     name?: true
     description?: true
     projectId?: true
+    type?: true
     status?: true
     config?: true
     createdAt?: true
@@ -15497,6 +16199,7 @@ export namespace Prisma {
     name: string
     description: string | null
     projectId: string
+    type: $Enums.WorkspaceType
     status: $Enums.WorkspaceStatus
     config: JsonValue | null
     createdAt: Date
@@ -15525,12 +16228,14 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     projectId?: boolean
+    type?: boolean
     status?: boolean
     config?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     instances?: boolean | Workspace$instancesArgs<ExtArgs>
+    firecrackerVMs?: boolean | Workspace$firecrackerVMsArgs<ExtArgs>
     persistence?: boolean | Workspace$persistenceArgs<ExtArgs>
     files?: boolean | Workspace$filesArgs<ExtArgs>
     states?: boolean | Workspace$statesArgs<ExtArgs>
@@ -15543,6 +16248,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     projectId?: boolean
+    type?: boolean
     status?: boolean
     config?: boolean
     createdAt?: boolean
@@ -15555,6 +16261,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     projectId?: boolean
+    type?: boolean
     status?: boolean
     config?: boolean
     createdAt?: boolean
@@ -15567,16 +16274,18 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     projectId?: boolean
+    type?: boolean
     status?: boolean
     config?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type WorkspaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "projectId" | "status" | "config" | "createdAt" | "updatedAt", ExtArgs["result"]["workspace"]>
+  export type WorkspaceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "projectId" | "type" | "status" | "config" | "createdAt" | "updatedAt", ExtArgs["result"]["workspace"]>
   export type WorkspaceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     project?: boolean | ProjectDefaultArgs<ExtArgs>
     instances?: boolean | Workspace$instancesArgs<ExtArgs>
+    firecrackerVMs?: boolean | Workspace$firecrackerVMsArgs<ExtArgs>
     persistence?: boolean | Workspace$persistenceArgs<ExtArgs>
     files?: boolean | Workspace$filesArgs<ExtArgs>
     states?: boolean | Workspace$statesArgs<ExtArgs>
@@ -15595,6 +16304,7 @@ export namespace Prisma {
     objects: {
       project: Prisma.$ProjectPayload<ExtArgs>
       instances: Prisma.$WebVMInstancePayload<ExtArgs>[]
+      firecrackerVMs: Prisma.$FirecrackerVMPayload<ExtArgs>[]
       persistence: Prisma.$WorkspacePersistencePayload<ExtArgs> | null
       files: Prisma.$WorkspaceFilePayload<ExtArgs>[]
       states: Prisma.$WorkspaceStatePayload<ExtArgs>[]
@@ -15605,6 +16315,7 @@ export namespace Prisma {
       name: string
       description: string | null
       projectId: string
+      type: $Enums.WorkspaceType
       status: $Enums.WorkspaceStatus
       config: Prisma.JsonValue | null
       createdAt: Date
@@ -16005,6 +16716,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     project<T extends ProjectDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProjectDefaultArgs<ExtArgs>>): Prisma__ProjectClient<$Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     instances<T extends Workspace$instancesArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$instancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WebVMInstancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    firecrackerVMs<T extends Workspace$firecrackerVMsArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$firecrackerVMsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     persistence<T extends Workspace$persistenceArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$persistenceArgs<ExtArgs>>): Prisma__WorkspacePersistenceClient<$Result.GetResult<Prisma.$WorkspacePersistencePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     files<T extends Workspace$filesArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$filesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkspaceFilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     states<T extends Workspace$statesArgs<ExtArgs> = {}>(args?: Subset<T, Workspace$statesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WorkspaceStatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -16042,6 +16754,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Workspace", 'String'>
     readonly description: FieldRef<"Workspace", 'String'>
     readonly projectId: FieldRef<"Workspace", 'String'>
+    readonly type: FieldRef<"Workspace", 'WorkspaceType'>
     readonly status: FieldRef<"Workspace", 'WorkspaceStatus'>
     readonly config: FieldRef<"Workspace", 'Json'>
     readonly createdAt: FieldRef<"Workspace", 'DateTime'>
@@ -16463,6 +17176,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: WebVMInstanceScalarFieldEnum | WebVMInstanceScalarFieldEnum[]
+  }
+
+  /**
+   * Workspace.firecrackerVMs
+   */
+  export type Workspace$firecrackerVMsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    where?: FirecrackerVMWhereInput
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    cursor?: FirecrackerVMWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerVMScalarFieldEnum | FirecrackerVMScalarFieldEnum[]
   }
 
   /**
@@ -17820,6 +18557,6983 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: WebVMInstanceInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerVM
+   */
+
+  export type AggregateFirecrackerVM = {
+    _count: FirecrackerVMCountAggregateOutputType | null
+    _min: FirecrackerVMMinAggregateOutputType | null
+    _max: FirecrackerVMMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerVMMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    workspaceId: string | null
+    status: $Enums.FirecrackerStatus | null
+    vmId: string | null
+    kernelImage: string | null
+    rootfsImage: string | null
+    socketPath: string | null
+    logPath: string | null
+    metricsPath: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    startedAt: Date | null
+    stoppedAt: Date | null
+    templateId: string | null
+  }
+
+  export type FirecrackerVMMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    workspaceId: string | null
+    status: $Enums.FirecrackerStatus | null
+    vmId: string | null
+    kernelImage: string | null
+    rootfsImage: string | null
+    socketPath: string | null
+    logPath: string | null
+    metricsPath: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    startedAt: Date | null
+    stoppedAt: Date | null
+    templateId: string | null
+  }
+
+  export type FirecrackerVMCountAggregateOutputType = {
+    id: number
+    name: number
+    workspaceId: number
+    status: number
+    vmId: number
+    config: number
+    resources: number
+    networkConfig: number
+    kernelImage: number
+    rootfsImage: number
+    socketPath: number
+    logPath: number
+    metricsPath: number
+    createdAt: number
+    updatedAt: number
+    startedAt: number
+    stoppedAt: number
+    templateId: number
+    _all: number
+  }
+
+
+  export type FirecrackerVMMinAggregateInputType = {
+    id?: true
+    name?: true
+    workspaceId?: true
+    status?: true
+    vmId?: true
+    kernelImage?: true
+    rootfsImage?: true
+    socketPath?: true
+    logPath?: true
+    metricsPath?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+    templateId?: true
+  }
+
+  export type FirecrackerVMMaxAggregateInputType = {
+    id?: true
+    name?: true
+    workspaceId?: true
+    status?: true
+    vmId?: true
+    kernelImage?: true
+    rootfsImage?: true
+    socketPath?: true
+    logPath?: true
+    metricsPath?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+    templateId?: true
+  }
+
+  export type FirecrackerVMCountAggregateInputType = {
+    id?: true
+    name?: true
+    workspaceId?: true
+    status?: true
+    vmId?: true
+    config?: true
+    resources?: true
+    networkConfig?: true
+    kernelImage?: true
+    rootfsImage?: true
+    socketPath?: true
+    logPath?: true
+    metricsPath?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+    templateId?: true
+    _all?: true
+  }
+
+  export type FirecrackerVMAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerVM to aggregate.
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerVMS to fetch.
+     */
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerVMWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerVMS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerVMS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerVMS
+    **/
+    _count?: true | FirecrackerVMCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerVMMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerVMMaxAggregateInputType
+  }
+
+  export type GetFirecrackerVMAggregateType<T extends FirecrackerVMAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerVM]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerVM[P]>
+      : GetScalarType<T[P], AggregateFirecrackerVM[P]>
+  }
+
+
+
+
+  export type FirecrackerVMGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerVMWhereInput
+    orderBy?: FirecrackerVMOrderByWithAggregationInput | FirecrackerVMOrderByWithAggregationInput[]
+    by: FirecrackerVMScalarFieldEnum[] | FirecrackerVMScalarFieldEnum
+    having?: FirecrackerVMScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerVMCountAggregateInputType | true
+    _min?: FirecrackerVMMinAggregateInputType
+    _max?: FirecrackerVMMaxAggregateInputType
+  }
+
+  export type FirecrackerVMGroupByOutputType = {
+    id: string
+    name: string
+    workspaceId: string
+    status: $Enums.FirecrackerStatus
+    vmId: string
+    config: JsonValue | null
+    resources: JsonValue | null
+    networkConfig: JsonValue | null
+    kernelImage: string | null
+    rootfsImage: string | null
+    socketPath: string | null
+    logPath: string | null
+    metricsPath: string | null
+    createdAt: Date
+    updatedAt: Date
+    startedAt: Date | null
+    stoppedAt: Date | null
+    templateId: string | null
+    _count: FirecrackerVMCountAggregateOutputType | null
+    _min: FirecrackerVMMinAggregateOutputType | null
+    _max: FirecrackerVMMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerVMGroupByPayload<T extends FirecrackerVMGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerVMGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerVMGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerVMGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerVMGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerVMSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    workspaceId?: boolean
+    status?: boolean
+    vmId?: boolean
+    config?: boolean
+    resources?: boolean
+    networkConfig?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    socketPath?: boolean
+    logPath?: boolean
+    metricsPath?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    templateId?: boolean
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    containers?: boolean | FirecrackerVM$containersArgs<ExtArgs>
+    metrics?: boolean | FirecrackerVM$metricsArgs<ExtArgs>
+    snapshots?: boolean | FirecrackerVM$snapshotsArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+    _count?: boolean | FirecrackerVMCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerVM"]>
+
+  export type FirecrackerVMSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    workspaceId?: boolean
+    status?: boolean
+    vmId?: boolean
+    config?: boolean
+    resources?: boolean
+    networkConfig?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    socketPath?: boolean
+    logPath?: boolean
+    metricsPath?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    templateId?: boolean
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerVM"]>
+
+  export type FirecrackerVMSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    workspaceId?: boolean
+    status?: boolean
+    vmId?: boolean
+    config?: boolean
+    resources?: boolean
+    networkConfig?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    socketPath?: boolean
+    logPath?: boolean
+    metricsPath?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    templateId?: boolean
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerVM"]>
+
+  export type FirecrackerVMSelectScalar = {
+    id?: boolean
+    name?: boolean
+    workspaceId?: boolean
+    status?: boolean
+    vmId?: boolean
+    config?: boolean
+    resources?: boolean
+    networkConfig?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    socketPath?: boolean
+    logPath?: boolean
+    metricsPath?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    templateId?: boolean
+  }
+
+  export type FirecrackerVMOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "workspaceId" | "status" | "vmId" | "config" | "resources" | "networkConfig" | "kernelImage" | "rootfsImage" | "socketPath" | "logPath" | "metricsPath" | "createdAt" | "updatedAt" | "startedAt" | "stoppedAt" | "templateId", ExtArgs["result"]["firecrackerVM"]>
+  export type FirecrackerVMInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    containers?: boolean | FirecrackerVM$containersArgs<ExtArgs>
+    metrics?: boolean | FirecrackerVM$metricsArgs<ExtArgs>
+    snapshots?: boolean | FirecrackerVM$snapshotsArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+    _count?: boolean | FirecrackerVMCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerVMIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+  }
+  export type FirecrackerVMIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    workspace?: boolean | WorkspaceDefaultArgs<ExtArgs>
+    template?: boolean | FirecrackerVM$templateArgs<ExtArgs>
+  }
+
+  export type $FirecrackerVMPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerVM"
+    objects: {
+      workspace: Prisma.$WorkspacePayload<ExtArgs>
+      containers: Prisma.$FirecrackerContainerPayload<ExtArgs>[]
+      metrics: Prisma.$FirecrackerMetricPayload<ExtArgs>[]
+      snapshots: Prisma.$FirecrackerSnapshotPayload<ExtArgs>[]
+      template: Prisma.$FirecrackerTemplatePayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      workspaceId: string
+      status: $Enums.FirecrackerStatus
+      vmId: string
+      config: Prisma.JsonValue | null
+      resources: Prisma.JsonValue | null
+      networkConfig: Prisma.JsonValue | null
+      kernelImage: string | null
+      rootfsImage: string | null
+      socketPath: string | null
+      logPath: string | null
+      metricsPath: string | null
+      createdAt: Date
+      updatedAt: Date
+      startedAt: Date | null
+      stoppedAt: Date | null
+      templateId: string | null
+    }, ExtArgs["result"]["firecrackerVM"]>
+    composites: {}
+  }
+
+  type FirecrackerVMGetPayload<S extends boolean | null | undefined | FirecrackerVMDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerVMPayload, S>
+
+  type FirecrackerVMCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerVMFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerVMCountAggregateInputType | true
+    }
+
+  export interface FirecrackerVMDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerVM'], meta: { name: 'FirecrackerVM' } }
+    /**
+     * Find zero or one FirecrackerVM that matches the filter.
+     * @param {FirecrackerVMFindUniqueArgs} args - Arguments to find a FirecrackerVM
+     * @example
+     * // Get one FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerVMFindUniqueArgs>(args: SelectSubset<T, FirecrackerVMFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerVM that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerVMFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerVM
+     * @example
+     * // Get one FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerVMFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerVMFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerVM that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMFindFirstArgs} args - Arguments to find a FirecrackerVM
+     * @example
+     * // Get one FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerVMFindFirstArgs>(args?: SelectSubset<T, FirecrackerVMFindFirstArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerVM that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMFindFirstOrThrowArgs} args - Arguments to find a FirecrackerVM
+     * @example
+     * // Get one FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerVMFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerVMFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerVMS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerVMS
+     * const firecrackerVMS = await prisma.firecrackerVM.findMany()
+     * 
+     * // Get first 10 FirecrackerVMS
+     * const firecrackerVMS = await prisma.firecrackerVM.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerVMWithIdOnly = await prisma.firecrackerVM.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerVMFindManyArgs>(args?: SelectSubset<T, FirecrackerVMFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerVM.
+     * @param {FirecrackerVMCreateArgs} args - Arguments to create a FirecrackerVM.
+     * @example
+     * // Create one FirecrackerVM
+     * const FirecrackerVM = await prisma.firecrackerVM.create({
+     *   data: {
+     *     // ... data to create a FirecrackerVM
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerVMCreateArgs>(args: SelectSubset<T, FirecrackerVMCreateArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerVMS.
+     * @param {FirecrackerVMCreateManyArgs} args - Arguments to create many FirecrackerVMS.
+     * @example
+     * // Create many FirecrackerVMS
+     * const firecrackerVM = await prisma.firecrackerVM.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerVMCreateManyArgs>(args?: SelectSubset<T, FirecrackerVMCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerVMS and returns the data saved in the database.
+     * @param {FirecrackerVMCreateManyAndReturnArgs} args - Arguments to create many FirecrackerVMS.
+     * @example
+     * // Create many FirecrackerVMS
+     * const firecrackerVM = await prisma.firecrackerVM.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerVMS and only return the `id`
+     * const firecrackerVMWithIdOnly = await prisma.firecrackerVM.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerVMCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerVMCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerVM.
+     * @param {FirecrackerVMDeleteArgs} args - Arguments to delete one FirecrackerVM.
+     * @example
+     * // Delete one FirecrackerVM
+     * const FirecrackerVM = await prisma.firecrackerVM.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerVM
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerVMDeleteArgs>(args: SelectSubset<T, FirecrackerVMDeleteArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerVM.
+     * @param {FirecrackerVMUpdateArgs} args - Arguments to update one FirecrackerVM.
+     * @example
+     * // Update one FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerVMUpdateArgs>(args: SelectSubset<T, FirecrackerVMUpdateArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerVMS.
+     * @param {FirecrackerVMDeleteManyArgs} args - Arguments to filter FirecrackerVMS to delete.
+     * @example
+     * // Delete a few FirecrackerVMS
+     * const { count } = await prisma.firecrackerVM.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerVMDeleteManyArgs>(args?: SelectSubset<T, FirecrackerVMDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerVMS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerVMS
+     * const firecrackerVM = await prisma.firecrackerVM.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerVMUpdateManyArgs>(args: SelectSubset<T, FirecrackerVMUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerVMS and returns the data updated in the database.
+     * @param {FirecrackerVMUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerVMS.
+     * @example
+     * // Update many FirecrackerVMS
+     * const firecrackerVM = await prisma.firecrackerVM.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerVMS and only return the `id`
+     * const firecrackerVMWithIdOnly = await prisma.firecrackerVM.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerVMUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerVMUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerVM.
+     * @param {FirecrackerVMUpsertArgs} args - Arguments to update or create a FirecrackerVM.
+     * @example
+     * // Update or create a FirecrackerVM
+     * const firecrackerVM = await prisma.firecrackerVM.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerVM
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerVM we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerVMUpsertArgs>(args: SelectSubset<T, FirecrackerVMUpsertArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerVMS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMCountArgs} args - Arguments to filter FirecrackerVMS to count.
+     * @example
+     * // Count the number of FirecrackerVMS
+     * const count = await prisma.firecrackerVM.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerVMS we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerVMCountArgs>(
+      args?: Subset<T, FirecrackerVMCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerVMCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerVM.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerVMAggregateArgs>(args: Subset<T, FirecrackerVMAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerVMAggregateType<T>>
+
+    /**
+     * Group by FirecrackerVM.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerVMGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerVMGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerVMGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerVMGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerVMGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerVMGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerVM model
+   */
+  readonly fields: FirecrackerVMFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerVM.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerVMClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    workspace<T extends WorkspaceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, WorkspaceDefaultArgs<ExtArgs>>): Prisma__WorkspaceClient<$Result.GetResult<Prisma.$WorkspacePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    containers<T extends FirecrackerVM$containersArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVM$containersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    metrics<T extends FirecrackerVM$metricsArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVM$metricsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    snapshots<T extends FirecrackerVM$snapshotsArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVM$snapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    template<T extends FirecrackerVM$templateArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVM$templateArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerVM model
+   */
+  interface FirecrackerVMFieldRefs {
+    readonly id: FieldRef<"FirecrackerVM", 'String'>
+    readonly name: FieldRef<"FirecrackerVM", 'String'>
+    readonly workspaceId: FieldRef<"FirecrackerVM", 'String'>
+    readonly status: FieldRef<"FirecrackerVM", 'FirecrackerStatus'>
+    readonly vmId: FieldRef<"FirecrackerVM", 'String'>
+    readonly config: FieldRef<"FirecrackerVM", 'Json'>
+    readonly resources: FieldRef<"FirecrackerVM", 'Json'>
+    readonly networkConfig: FieldRef<"FirecrackerVM", 'Json'>
+    readonly kernelImage: FieldRef<"FirecrackerVM", 'String'>
+    readonly rootfsImage: FieldRef<"FirecrackerVM", 'String'>
+    readonly socketPath: FieldRef<"FirecrackerVM", 'String'>
+    readonly logPath: FieldRef<"FirecrackerVM", 'String'>
+    readonly metricsPath: FieldRef<"FirecrackerVM", 'String'>
+    readonly createdAt: FieldRef<"FirecrackerVM", 'DateTime'>
+    readonly updatedAt: FieldRef<"FirecrackerVM", 'DateTime'>
+    readonly startedAt: FieldRef<"FirecrackerVM", 'DateTime'>
+    readonly stoppedAt: FieldRef<"FirecrackerVM", 'DateTime'>
+    readonly templateId: FieldRef<"FirecrackerVM", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerVM findUnique
+   */
+  export type FirecrackerVMFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerVM to fetch.
+     */
+    where: FirecrackerVMWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerVM findUniqueOrThrow
+   */
+  export type FirecrackerVMFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerVM to fetch.
+     */
+    where: FirecrackerVMWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerVM findFirst
+   */
+  export type FirecrackerVMFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerVM to fetch.
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerVMS to fetch.
+     */
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerVMS.
+     */
+    cursor?: FirecrackerVMWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerVMS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerVMS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerVMS.
+     */
+    distinct?: FirecrackerVMScalarFieldEnum | FirecrackerVMScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM findFirstOrThrow
+   */
+  export type FirecrackerVMFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerVM to fetch.
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerVMS to fetch.
+     */
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerVMS.
+     */
+    cursor?: FirecrackerVMWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerVMS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerVMS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerVMS.
+     */
+    distinct?: FirecrackerVMScalarFieldEnum | FirecrackerVMScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM findMany
+   */
+  export type FirecrackerVMFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerVMS to fetch.
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerVMS to fetch.
+     */
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerVMS.
+     */
+    cursor?: FirecrackerVMWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerVMS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerVMS.
+     */
+    skip?: number
+    distinct?: FirecrackerVMScalarFieldEnum | FirecrackerVMScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM create
+   */
+  export type FirecrackerVMCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerVM.
+     */
+    data: XOR<FirecrackerVMCreateInput, FirecrackerVMUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerVM createMany
+   */
+  export type FirecrackerVMCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerVMS.
+     */
+    data: FirecrackerVMCreateManyInput | FirecrackerVMCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerVM createManyAndReturn
+   */
+  export type FirecrackerVMCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerVMS.
+     */
+    data: FirecrackerVMCreateManyInput | FirecrackerVMCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerVM update
+   */
+  export type FirecrackerVMUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerVM.
+     */
+    data: XOR<FirecrackerVMUpdateInput, FirecrackerVMUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerVM to update.
+     */
+    where: FirecrackerVMWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerVM updateMany
+   */
+  export type FirecrackerVMUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerVMS.
+     */
+    data: XOR<FirecrackerVMUpdateManyMutationInput, FirecrackerVMUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerVMS to update
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * Limit how many FirecrackerVMS to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerVM updateManyAndReturn
+   */
+  export type FirecrackerVMUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerVMS.
+     */
+    data: XOR<FirecrackerVMUpdateManyMutationInput, FirecrackerVMUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerVMS to update
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * Limit how many FirecrackerVMS to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerVM upsert
+   */
+  export type FirecrackerVMUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerVM to update in case it exists.
+     */
+    where: FirecrackerVMWhereUniqueInput
+    /**
+     * In case the FirecrackerVM found by the `where` argument doesn't exist, create a new FirecrackerVM with this data.
+     */
+    create: XOR<FirecrackerVMCreateInput, FirecrackerVMUncheckedCreateInput>
+    /**
+     * In case the FirecrackerVM was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerVMUpdateInput, FirecrackerVMUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerVM delete
+   */
+  export type FirecrackerVMDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerVM to delete.
+     */
+    where: FirecrackerVMWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerVM deleteMany
+   */
+  export type FirecrackerVMDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerVMS to delete
+     */
+    where?: FirecrackerVMWhereInput
+    /**
+     * Limit how many FirecrackerVMS to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerVM.containers
+   */
+  export type FirecrackerVM$containersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    where?: FirecrackerContainerWhereInput
+    orderBy?: FirecrackerContainerOrderByWithRelationInput | FirecrackerContainerOrderByWithRelationInput[]
+    cursor?: FirecrackerContainerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerContainerScalarFieldEnum | FirecrackerContainerScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM.metrics
+   */
+  export type FirecrackerVM$metricsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    where?: FirecrackerMetricWhereInput
+    orderBy?: FirecrackerMetricOrderByWithRelationInput | FirecrackerMetricOrderByWithRelationInput[]
+    cursor?: FirecrackerMetricWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerMetricScalarFieldEnum | FirecrackerMetricScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM.snapshots
+   */
+  export type FirecrackerVM$snapshotsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    where?: FirecrackerSnapshotWhereInput
+    orderBy?: FirecrackerSnapshotOrderByWithRelationInput | FirecrackerSnapshotOrderByWithRelationInput[]
+    cursor?: FirecrackerSnapshotWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerSnapshotScalarFieldEnum | FirecrackerSnapshotScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerVM.template
+   */
+  export type FirecrackerVM$templateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    where?: FirecrackerTemplateWhereInput
+  }
+
+  /**
+   * FirecrackerVM without action
+   */
+  export type FirecrackerVMDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerContainer
+   */
+
+  export type AggregateFirecrackerContainer = {
+    _count: FirecrackerContainerCountAggregateOutputType | null
+    _min: FirecrackerContainerMinAggregateOutputType | null
+    _max: FirecrackerContainerMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerContainerMinAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    name: string | null
+    image: string | null
+    status: $Enums.ContainerStatus | null
+    command: string | null
+    workingDir: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    startedAt: Date | null
+    stoppedAt: Date | null
+  }
+
+  export type FirecrackerContainerMaxAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    name: string | null
+    image: string | null
+    status: $Enums.ContainerStatus | null
+    command: string | null
+    workingDir: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    startedAt: Date | null
+    stoppedAt: Date | null
+  }
+
+  export type FirecrackerContainerCountAggregateOutputType = {
+    id: number
+    vmId: number
+    name: number
+    image: number
+    status: number
+    config: number
+    ports: number
+    volumes: number
+    environment: number
+    command: number
+    workingDir: number
+    createdAt: number
+    updatedAt: number
+    startedAt: number
+    stoppedAt: number
+    _all: number
+  }
+
+
+  export type FirecrackerContainerMinAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    image?: true
+    status?: true
+    command?: true
+    workingDir?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+  }
+
+  export type FirecrackerContainerMaxAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    image?: true
+    status?: true
+    command?: true
+    workingDir?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+  }
+
+  export type FirecrackerContainerCountAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    image?: true
+    status?: true
+    config?: true
+    ports?: true
+    volumes?: true
+    environment?: true
+    command?: true
+    workingDir?: true
+    createdAt?: true
+    updatedAt?: true
+    startedAt?: true
+    stoppedAt?: true
+    _all?: true
+  }
+
+  export type FirecrackerContainerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerContainer to aggregate.
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainers to fetch.
+     */
+    orderBy?: FirecrackerContainerOrderByWithRelationInput | FirecrackerContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerContainers
+    **/
+    _count?: true | FirecrackerContainerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerContainerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerContainerMaxAggregateInputType
+  }
+
+  export type GetFirecrackerContainerAggregateType<T extends FirecrackerContainerAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerContainer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerContainer[P]>
+      : GetScalarType<T[P], AggregateFirecrackerContainer[P]>
+  }
+
+
+
+
+  export type FirecrackerContainerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerContainerWhereInput
+    orderBy?: FirecrackerContainerOrderByWithAggregationInput | FirecrackerContainerOrderByWithAggregationInput[]
+    by: FirecrackerContainerScalarFieldEnum[] | FirecrackerContainerScalarFieldEnum
+    having?: FirecrackerContainerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerContainerCountAggregateInputType | true
+    _min?: FirecrackerContainerMinAggregateInputType
+    _max?: FirecrackerContainerMaxAggregateInputType
+  }
+
+  export type FirecrackerContainerGroupByOutputType = {
+    id: string
+    vmId: string
+    name: string
+    image: string
+    status: $Enums.ContainerStatus
+    config: JsonValue | null
+    ports: JsonValue | null
+    volumes: JsonValue | null
+    environment: JsonValue | null
+    command: string | null
+    workingDir: string | null
+    createdAt: Date
+    updatedAt: Date
+    startedAt: Date | null
+    stoppedAt: Date | null
+    _count: FirecrackerContainerCountAggregateOutputType | null
+    _min: FirecrackerContainerMinAggregateOutputType | null
+    _max: FirecrackerContainerMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerContainerGroupByPayload<T extends FirecrackerContainerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerContainerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerContainerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerContainerGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerContainerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerContainerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    image?: boolean
+    status?: boolean
+    config?: boolean
+    ports?: boolean
+    volumes?: boolean
+    environment?: boolean
+    command?: boolean
+    workingDir?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+    logs?: boolean | FirecrackerContainer$logsArgs<ExtArgs>
+    _count?: boolean | FirecrackerContainerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainer"]>
+
+  export type FirecrackerContainerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    image?: boolean
+    status?: boolean
+    config?: boolean
+    ports?: boolean
+    volumes?: boolean
+    environment?: boolean
+    command?: boolean
+    workingDir?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainer"]>
+
+  export type FirecrackerContainerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    image?: boolean
+    status?: boolean
+    config?: boolean
+    ports?: boolean
+    volumes?: boolean
+    environment?: boolean
+    command?: boolean
+    workingDir?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainer"]>
+
+  export type FirecrackerContainerSelectScalar = {
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    image?: boolean
+    status?: boolean
+    config?: boolean
+    ports?: boolean
+    volumes?: boolean
+    environment?: boolean
+    command?: boolean
+    workingDir?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    startedAt?: boolean
+    stoppedAt?: boolean
+  }
+
+  export type FirecrackerContainerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vmId" | "name" | "image" | "status" | "config" | "ports" | "volumes" | "environment" | "command" | "workingDir" | "createdAt" | "updatedAt" | "startedAt" | "stoppedAt", ExtArgs["result"]["firecrackerContainer"]>
+  export type FirecrackerContainerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+    logs?: boolean | FirecrackerContainer$logsArgs<ExtArgs>
+    _count?: boolean | FirecrackerContainerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerContainerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerContainerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+
+  export type $FirecrackerContainerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerContainer"
+    objects: {
+      vm: Prisma.$FirecrackerVMPayload<ExtArgs>
+      logs: Prisma.$FirecrackerContainerLogPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      vmId: string
+      name: string
+      image: string
+      status: $Enums.ContainerStatus
+      config: Prisma.JsonValue | null
+      ports: Prisma.JsonValue | null
+      volumes: Prisma.JsonValue | null
+      environment: Prisma.JsonValue | null
+      command: string | null
+      workingDir: string | null
+      createdAt: Date
+      updatedAt: Date
+      startedAt: Date | null
+      stoppedAt: Date | null
+    }, ExtArgs["result"]["firecrackerContainer"]>
+    composites: {}
+  }
+
+  type FirecrackerContainerGetPayload<S extends boolean | null | undefined | FirecrackerContainerDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerContainerPayload, S>
+
+  type FirecrackerContainerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerContainerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerContainerCountAggregateInputType | true
+    }
+
+  export interface FirecrackerContainerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerContainer'], meta: { name: 'FirecrackerContainer' } }
+    /**
+     * Find zero or one FirecrackerContainer that matches the filter.
+     * @param {FirecrackerContainerFindUniqueArgs} args - Arguments to find a FirecrackerContainer
+     * @example
+     * // Get one FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerContainerFindUniqueArgs>(args: SelectSubset<T, FirecrackerContainerFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerContainer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerContainerFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerContainer
+     * @example
+     * // Get one FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerContainerFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerContainerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerContainer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerFindFirstArgs} args - Arguments to find a FirecrackerContainer
+     * @example
+     * // Get one FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerContainerFindFirstArgs>(args?: SelectSubset<T, FirecrackerContainerFindFirstArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerContainer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerFindFirstOrThrowArgs} args - Arguments to find a FirecrackerContainer
+     * @example
+     * // Get one FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerContainerFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerContainerFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerContainers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerContainers
+     * const firecrackerContainers = await prisma.firecrackerContainer.findMany()
+     * 
+     * // Get first 10 FirecrackerContainers
+     * const firecrackerContainers = await prisma.firecrackerContainer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerContainerWithIdOnly = await prisma.firecrackerContainer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerContainerFindManyArgs>(args?: SelectSubset<T, FirecrackerContainerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerContainer.
+     * @param {FirecrackerContainerCreateArgs} args - Arguments to create a FirecrackerContainer.
+     * @example
+     * // Create one FirecrackerContainer
+     * const FirecrackerContainer = await prisma.firecrackerContainer.create({
+     *   data: {
+     *     // ... data to create a FirecrackerContainer
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerContainerCreateArgs>(args: SelectSubset<T, FirecrackerContainerCreateArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerContainers.
+     * @param {FirecrackerContainerCreateManyArgs} args - Arguments to create many FirecrackerContainers.
+     * @example
+     * // Create many FirecrackerContainers
+     * const firecrackerContainer = await prisma.firecrackerContainer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerContainerCreateManyArgs>(args?: SelectSubset<T, FirecrackerContainerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerContainers and returns the data saved in the database.
+     * @param {FirecrackerContainerCreateManyAndReturnArgs} args - Arguments to create many FirecrackerContainers.
+     * @example
+     * // Create many FirecrackerContainers
+     * const firecrackerContainer = await prisma.firecrackerContainer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerContainers and only return the `id`
+     * const firecrackerContainerWithIdOnly = await prisma.firecrackerContainer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerContainerCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerContainerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerContainer.
+     * @param {FirecrackerContainerDeleteArgs} args - Arguments to delete one FirecrackerContainer.
+     * @example
+     * // Delete one FirecrackerContainer
+     * const FirecrackerContainer = await prisma.firecrackerContainer.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerContainer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerContainerDeleteArgs>(args: SelectSubset<T, FirecrackerContainerDeleteArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerContainer.
+     * @param {FirecrackerContainerUpdateArgs} args - Arguments to update one FirecrackerContainer.
+     * @example
+     * // Update one FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerContainerUpdateArgs>(args: SelectSubset<T, FirecrackerContainerUpdateArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerContainers.
+     * @param {FirecrackerContainerDeleteManyArgs} args - Arguments to filter FirecrackerContainers to delete.
+     * @example
+     * // Delete a few FirecrackerContainers
+     * const { count } = await prisma.firecrackerContainer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerContainerDeleteManyArgs>(args?: SelectSubset<T, FirecrackerContainerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerContainers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerContainers
+     * const firecrackerContainer = await prisma.firecrackerContainer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerContainerUpdateManyArgs>(args: SelectSubset<T, FirecrackerContainerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerContainers and returns the data updated in the database.
+     * @param {FirecrackerContainerUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerContainers.
+     * @example
+     * // Update many FirecrackerContainers
+     * const firecrackerContainer = await prisma.firecrackerContainer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerContainers and only return the `id`
+     * const firecrackerContainerWithIdOnly = await prisma.firecrackerContainer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerContainerUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerContainerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerContainer.
+     * @param {FirecrackerContainerUpsertArgs} args - Arguments to update or create a FirecrackerContainer.
+     * @example
+     * // Update or create a FirecrackerContainer
+     * const firecrackerContainer = await prisma.firecrackerContainer.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerContainer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerContainer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerContainerUpsertArgs>(args: SelectSubset<T, FirecrackerContainerUpsertArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerContainers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerCountArgs} args - Arguments to filter FirecrackerContainers to count.
+     * @example
+     * // Count the number of FirecrackerContainers
+     * const count = await prisma.firecrackerContainer.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerContainers we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerContainerCountArgs>(
+      args?: Subset<T, FirecrackerContainerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerContainerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerContainer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerContainerAggregateArgs>(args: Subset<T, FirecrackerContainerAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerContainerAggregateType<T>>
+
+    /**
+     * Group by FirecrackerContainer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerContainerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerContainerGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerContainerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerContainerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerContainerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerContainer model
+   */
+  readonly fields: FirecrackerContainerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerContainer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerContainerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vm<T extends FirecrackerVMDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVMDefaultArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    logs<T extends FirecrackerContainer$logsArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerContainer$logsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerContainer model
+   */
+  interface FirecrackerContainerFieldRefs {
+    readonly id: FieldRef<"FirecrackerContainer", 'String'>
+    readonly vmId: FieldRef<"FirecrackerContainer", 'String'>
+    readonly name: FieldRef<"FirecrackerContainer", 'String'>
+    readonly image: FieldRef<"FirecrackerContainer", 'String'>
+    readonly status: FieldRef<"FirecrackerContainer", 'ContainerStatus'>
+    readonly config: FieldRef<"FirecrackerContainer", 'Json'>
+    readonly ports: FieldRef<"FirecrackerContainer", 'Json'>
+    readonly volumes: FieldRef<"FirecrackerContainer", 'Json'>
+    readonly environment: FieldRef<"FirecrackerContainer", 'Json'>
+    readonly command: FieldRef<"FirecrackerContainer", 'String'>
+    readonly workingDir: FieldRef<"FirecrackerContainer", 'String'>
+    readonly createdAt: FieldRef<"FirecrackerContainer", 'DateTime'>
+    readonly updatedAt: FieldRef<"FirecrackerContainer", 'DateTime'>
+    readonly startedAt: FieldRef<"FirecrackerContainer", 'DateTime'>
+    readonly stoppedAt: FieldRef<"FirecrackerContainer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerContainer findUnique
+   */
+  export type FirecrackerContainerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainer to fetch.
+     */
+    where: FirecrackerContainerWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainer findUniqueOrThrow
+   */
+  export type FirecrackerContainerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainer to fetch.
+     */
+    where: FirecrackerContainerWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainer findFirst
+   */
+  export type FirecrackerContainerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainer to fetch.
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainers to fetch.
+     */
+    orderBy?: FirecrackerContainerOrderByWithRelationInput | FirecrackerContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerContainers.
+     */
+    cursor?: FirecrackerContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerContainers.
+     */
+    distinct?: FirecrackerContainerScalarFieldEnum | FirecrackerContainerScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainer findFirstOrThrow
+   */
+  export type FirecrackerContainerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainer to fetch.
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainers to fetch.
+     */
+    orderBy?: FirecrackerContainerOrderByWithRelationInput | FirecrackerContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerContainers.
+     */
+    cursor?: FirecrackerContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerContainers.
+     */
+    distinct?: FirecrackerContainerScalarFieldEnum | FirecrackerContainerScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainer findMany
+   */
+  export type FirecrackerContainerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainers to fetch.
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainers to fetch.
+     */
+    orderBy?: FirecrackerContainerOrderByWithRelationInput | FirecrackerContainerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerContainers.
+     */
+    cursor?: FirecrackerContainerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainers.
+     */
+    skip?: number
+    distinct?: FirecrackerContainerScalarFieldEnum | FirecrackerContainerScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainer create
+   */
+  export type FirecrackerContainerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerContainer.
+     */
+    data: XOR<FirecrackerContainerCreateInput, FirecrackerContainerUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerContainer createMany
+   */
+  export type FirecrackerContainerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerContainers.
+     */
+    data: FirecrackerContainerCreateManyInput | FirecrackerContainerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerContainer createManyAndReturn
+   */
+  export type FirecrackerContainerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerContainers.
+     */
+    data: FirecrackerContainerCreateManyInput | FirecrackerContainerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerContainer update
+   */
+  export type FirecrackerContainerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerContainer.
+     */
+    data: XOR<FirecrackerContainerUpdateInput, FirecrackerContainerUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerContainer to update.
+     */
+    where: FirecrackerContainerWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainer updateMany
+   */
+  export type FirecrackerContainerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerContainers.
+     */
+    data: XOR<FirecrackerContainerUpdateManyMutationInput, FirecrackerContainerUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerContainers to update
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * Limit how many FirecrackerContainers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerContainer updateManyAndReturn
+   */
+  export type FirecrackerContainerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerContainers.
+     */
+    data: XOR<FirecrackerContainerUpdateManyMutationInput, FirecrackerContainerUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerContainers to update
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * Limit how many FirecrackerContainers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerContainer upsert
+   */
+  export type FirecrackerContainerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerContainer to update in case it exists.
+     */
+    where: FirecrackerContainerWhereUniqueInput
+    /**
+     * In case the FirecrackerContainer found by the `where` argument doesn't exist, create a new FirecrackerContainer with this data.
+     */
+    create: XOR<FirecrackerContainerCreateInput, FirecrackerContainerUncheckedCreateInput>
+    /**
+     * In case the FirecrackerContainer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerContainerUpdateInput, FirecrackerContainerUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerContainer delete
+   */
+  export type FirecrackerContainerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerContainer to delete.
+     */
+    where: FirecrackerContainerWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainer deleteMany
+   */
+  export type FirecrackerContainerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerContainers to delete
+     */
+    where?: FirecrackerContainerWhereInput
+    /**
+     * Limit how many FirecrackerContainers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerContainer.logs
+   */
+  export type FirecrackerContainer$logsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    where?: FirecrackerContainerLogWhereInput
+    orderBy?: FirecrackerContainerLogOrderByWithRelationInput | FirecrackerContainerLogOrderByWithRelationInput[]
+    cursor?: FirecrackerContainerLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerContainerLogScalarFieldEnum | FirecrackerContainerLogScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainer without action
+   */
+  export type FirecrackerContainerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainer
+     */
+    select?: FirecrackerContainerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainer
+     */
+    omit?: FirecrackerContainerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerMetric
+   */
+
+  export type AggregateFirecrackerMetric = {
+    _count: FirecrackerMetricCountAggregateOutputType | null
+    _avg: FirecrackerMetricAvgAggregateOutputType | null
+    _sum: FirecrackerMetricSumAggregateOutputType | null
+    _min: FirecrackerMetricMinAggregateOutputType | null
+    _max: FirecrackerMetricMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerMetricAvgAggregateOutputType = {
+    value: number | null
+  }
+
+  export type FirecrackerMetricSumAggregateOutputType = {
+    value: number | null
+  }
+
+  export type FirecrackerMetricMinAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    metricType: $Enums.MetricType | null
+    value: number | null
+    unit: string | null
+    timestamp: Date | null
+  }
+
+  export type FirecrackerMetricMaxAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    metricType: $Enums.MetricType | null
+    value: number | null
+    unit: string | null
+    timestamp: Date | null
+  }
+
+  export type FirecrackerMetricCountAggregateOutputType = {
+    id: number
+    vmId: number
+    metricType: number
+    value: number
+    unit: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type FirecrackerMetricAvgAggregateInputType = {
+    value?: true
+  }
+
+  export type FirecrackerMetricSumAggregateInputType = {
+    value?: true
+  }
+
+  export type FirecrackerMetricMinAggregateInputType = {
+    id?: true
+    vmId?: true
+    metricType?: true
+    value?: true
+    unit?: true
+    timestamp?: true
+  }
+
+  export type FirecrackerMetricMaxAggregateInputType = {
+    id?: true
+    vmId?: true
+    metricType?: true
+    value?: true
+    unit?: true
+    timestamp?: true
+  }
+
+  export type FirecrackerMetricCountAggregateInputType = {
+    id?: true
+    vmId?: true
+    metricType?: true
+    value?: true
+    unit?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type FirecrackerMetricAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerMetric to aggregate.
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerMetrics to fetch.
+     */
+    orderBy?: FirecrackerMetricOrderByWithRelationInput | FirecrackerMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerMetrics
+    **/
+    _count?: true | FirecrackerMetricCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FirecrackerMetricAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FirecrackerMetricSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerMetricMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerMetricMaxAggregateInputType
+  }
+
+  export type GetFirecrackerMetricAggregateType<T extends FirecrackerMetricAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerMetric]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerMetric[P]>
+      : GetScalarType<T[P], AggregateFirecrackerMetric[P]>
+  }
+
+
+
+
+  export type FirecrackerMetricGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerMetricWhereInput
+    orderBy?: FirecrackerMetricOrderByWithAggregationInput | FirecrackerMetricOrderByWithAggregationInput[]
+    by: FirecrackerMetricScalarFieldEnum[] | FirecrackerMetricScalarFieldEnum
+    having?: FirecrackerMetricScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerMetricCountAggregateInputType | true
+    _avg?: FirecrackerMetricAvgAggregateInputType
+    _sum?: FirecrackerMetricSumAggregateInputType
+    _min?: FirecrackerMetricMinAggregateInputType
+    _max?: FirecrackerMetricMaxAggregateInputType
+  }
+
+  export type FirecrackerMetricGroupByOutputType = {
+    id: string
+    vmId: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp: Date
+    _count: FirecrackerMetricCountAggregateOutputType | null
+    _avg: FirecrackerMetricAvgAggregateOutputType | null
+    _sum: FirecrackerMetricSumAggregateOutputType | null
+    _min: FirecrackerMetricMinAggregateOutputType | null
+    _max: FirecrackerMetricMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerMetricGroupByPayload<T extends FirecrackerMetricGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerMetricGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerMetricGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerMetricGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerMetricGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerMetricSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    metricType?: boolean
+    value?: boolean
+    unit?: boolean
+    timestamp?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerMetric"]>
+
+  export type FirecrackerMetricSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    metricType?: boolean
+    value?: boolean
+    unit?: boolean
+    timestamp?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerMetric"]>
+
+  export type FirecrackerMetricSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    metricType?: boolean
+    value?: boolean
+    unit?: boolean
+    timestamp?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerMetric"]>
+
+  export type FirecrackerMetricSelectScalar = {
+    id?: boolean
+    vmId?: boolean
+    metricType?: boolean
+    value?: boolean
+    unit?: boolean
+    timestamp?: boolean
+  }
+
+  export type FirecrackerMetricOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vmId" | "metricType" | "value" | "unit" | "timestamp", ExtArgs["result"]["firecrackerMetric"]>
+  export type FirecrackerMetricInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerMetricIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerMetricIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+
+  export type $FirecrackerMetricPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerMetric"
+    objects: {
+      vm: Prisma.$FirecrackerVMPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      vmId: string
+      metricType: $Enums.MetricType
+      value: number
+      unit: string
+      timestamp: Date
+    }, ExtArgs["result"]["firecrackerMetric"]>
+    composites: {}
+  }
+
+  type FirecrackerMetricGetPayload<S extends boolean | null | undefined | FirecrackerMetricDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerMetricPayload, S>
+
+  type FirecrackerMetricCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerMetricFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerMetricCountAggregateInputType | true
+    }
+
+  export interface FirecrackerMetricDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerMetric'], meta: { name: 'FirecrackerMetric' } }
+    /**
+     * Find zero or one FirecrackerMetric that matches the filter.
+     * @param {FirecrackerMetricFindUniqueArgs} args - Arguments to find a FirecrackerMetric
+     * @example
+     * // Get one FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerMetricFindUniqueArgs>(args: SelectSubset<T, FirecrackerMetricFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerMetric that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerMetricFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerMetric
+     * @example
+     * // Get one FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerMetricFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerMetricFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerMetric that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricFindFirstArgs} args - Arguments to find a FirecrackerMetric
+     * @example
+     * // Get one FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerMetricFindFirstArgs>(args?: SelectSubset<T, FirecrackerMetricFindFirstArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerMetric that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricFindFirstOrThrowArgs} args - Arguments to find a FirecrackerMetric
+     * @example
+     * // Get one FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerMetricFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerMetricFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerMetrics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerMetrics
+     * const firecrackerMetrics = await prisma.firecrackerMetric.findMany()
+     * 
+     * // Get first 10 FirecrackerMetrics
+     * const firecrackerMetrics = await prisma.firecrackerMetric.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerMetricWithIdOnly = await prisma.firecrackerMetric.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerMetricFindManyArgs>(args?: SelectSubset<T, FirecrackerMetricFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerMetric.
+     * @param {FirecrackerMetricCreateArgs} args - Arguments to create a FirecrackerMetric.
+     * @example
+     * // Create one FirecrackerMetric
+     * const FirecrackerMetric = await prisma.firecrackerMetric.create({
+     *   data: {
+     *     // ... data to create a FirecrackerMetric
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerMetricCreateArgs>(args: SelectSubset<T, FirecrackerMetricCreateArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerMetrics.
+     * @param {FirecrackerMetricCreateManyArgs} args - Arguments to create many FirecrackerMetrics.
+     * @example
+     * // Create many FirecrackerMetrics
+     * const firecrackerMetric = await prisma.firecrackerMetric.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerMetricCreateManyArgs>(args?: SelectSubset<T, FirecrackerMetricCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerMetrics and returns the data saved in the database.
+     * @param {FirecrackerMetricCreateManyAndReturnArgs} args - Arguments to create many FirecrackerMetrics.
+     * @example
+     * // Create many FirecrackerMetrics
+     * const firecrackerMetric = await prisma.firecrackerMetric.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerMetrics and only return the `id`
+     * const firecrackerMetricWithIdOnly = await prisma.firecrackerMetric.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerMetricCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerMetricCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerMetric.
+     * @param {FirecrackerMetricDeleteArgs} args - Arguments to delete one FirecrackerMetric.
+     * @example
+     * // Delete one FirecrackerMetric
+     * const FirecrackerMetric = await prisma.firecrackerMetric.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerMetric
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerMetricDeleteArgs>(args: SelectSubset<T, FirecrackerMetricDeleteArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerMetric.
+     * @param {FirecrackerMetricUpdateArgs} args - Arguments to update one FirecrackerMetric.
+     * @example
+     * // Update one FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerMetricUpdateArgs>(args: SelectSubset<T, FirecrackerMetricUpdateArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerMetrics.
+     * @param {FirecrackerMetricDeleteManyArgs} args - Arguments to filter FirecrackerMetrics to delete.
+     * @example
+     * // Delete a few FirecrackerMetrics
+     * const { count } = await prisma.firecrackerMetric.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerMetricDeleteManyArgs>(args?: SelectSubset<T, FirecrackerMetricDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerMetrics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerMetrics
+     * const firecrackerMetric = await prisma.firecrackerMetric.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerMetricUpdateManyArgs>(args: SelectSubset<T, FirecrackerMetricUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerMetrics and returns the data updated in the database.
+     * @param {FirecrackerMetricUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerMetrics.
+     * @example
+     * // Update many FirecrackerMetrics
+     * const firecrackerMetric = await prisma.firecrackerMetric.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerMetrics and only return the `id`
+     * const firecrackerMetricWithIdOnly = await prisma.firecrackerMetric.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerMetricUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerMetricUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerMetric.
+     * @param {FirecrackerMetricUpsertArgs} args - Arguments to update or create a FirecrackerMetric.
+     * @example
+     * // Update or create a FirecrackerMetric
+     * const firecrackerMetric = await prisma.firecrackerMetric.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerMetric
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerMetric we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerMetricUpsertArgs>(args: SelectSubset<T, FirecrackerMetricUpsertArgs<ExtArgs>>): Prisma__FirecrackerMetricClient<$Result.GetResult<Prisma.$FirecrackerMetricPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerMetrics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricCountArgs} args - Arguments to filter FirecrackerMetrics to count.
+     * @example
+     * // Count the number of FirecrackerMetrics
+     * const count = await prisma.firecrackerMetric.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerMetrics we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerMetricCountArgs>(
+      args?: Subset<T, FirecrackerMetricCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerMetricCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerMetric.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerMetricAggregateArgs>(args: Subset<T, FirecrackerMetricAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerMetricAggregateType<T>>
+
+    /**
+     * Group by FirecrackerMetric.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerMetricGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerMetricGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerMetricGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerMetricGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerMetricGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerMetricGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerMetric model
+   */
+  readonly fields: FirecrackerMetricFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerMetric.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerMetricClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vm<T extends FirecrackerVMDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVMDefaultArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerMetric model
+   */
+  interface FirecrackerMetricFieldRefs {
+    readonly id: FieldRef<"FirecrackerMetric", 'String'>
+    readonly vmId: FieldRef<"FirecrackerMetric", 'String'>
+    readonly metricType: FieldRef<"FirecrackerMetric", 'MetricType'>
+    readonly value: FieldRef<"FirecrackerMetric", 'Float'>
+    readonly unit: FieldRef<"FirecrackerMetric", 'String'>
+    readonly timestamp: FieldRef<"FirecrackerMetric", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerMetric findUnique
+   */
+  export type FirecrackerMetricFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerMetric to fetch.
+     */
+    where: FirecrackerMetricWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerMetric findUniqueOrThrow
+   */
+  export type FirecrackerMetricFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerMetric to fetch.
+     */
+    where: FirecrackerMetricWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerMetric findFirst
+   */
+  export type FirecrackerMetricFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerMetric to fetch.
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerMetrics to fetch.
+     */
+    orderBy?: FirecrackerMetricOrderByWithRelationInput | FirecrackerMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerMetrics.
+     */
+    cursor?: FirecrackerMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerMetrics.
+     */
+    distinct?: FirecrackerMetricScalarFieldEnum | FirecrackerMetricScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerMetric findFirstOrThrow
+   */
+  export type FirecrackerMetricFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerMetric to fetch.
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerMetrics to fetch.
+     */
+    orderBy?: FirecrackerMetricOrderByWithRelationInput | FirecrackerMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerMetrics.
+     */
+    cursor?: FirecrackerMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerMetrics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerMetrics.
+     */
+    distinct?: FirecrackerMetricScalarFieldEnum | FirecrackerMetricScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerMetric findMany
+   */
+  export type FirecrackerMetricFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerMetrics to fetch.
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerMetrics to fetch.
+     */
+    orderBy?: FirecrackerMetricOrderByWithRelationInput | FirecrackerMetricOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerMetrics.
+     */
+    cursor?: FirecrackerMetricWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerMetrics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerMetrics.
+     */
+    skip?: number
+    distinct?: FirecrackerMetricScalarFieldEnum | FirecrackerMetricScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerMetric create
+   */
+  export type FirecrackerMetricCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerMetric.
+     */
+    data: XOR<FirecrackerMetricCreateInput, FirecrackerMetricUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerMetric createMany
+   */
+  export type FirecrackerMetricCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerMetrics.
+     */
+    data: FirecrackerMetricCreateManyInput | FirecrackerMetricCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerMetric createManyAndReturn
+   */
+  export type FirecrackerMetricCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerMetrics.
+     */
+    data: FirecrackerMetricCreateManyInput | FirecrackerMetricCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerMetric update
+   */
+  export type FirecrackerMetricUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerMetric.
+     */
+    data: XOR<FirecrackerMetricUpdateInput, FirecrackerMetricUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerMetric to update.
+     */
+    where: FirecrackerMetricWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerMetric updateMany
+   */
+  export type FirecrackerMetricUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerMetrics.
+     */
+    data: XOR<FirecrackerMetricUpdateManyMutationInput, FirecrackerMetricUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerMetrics to update
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * Limit how many FirecrackerMetrics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerMetric updateManyAndReturn
+   */
+  export type FirecrackerMetricUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerMetrics.
+     */
+    data: XOR<FirecrackerMetricUpdateManyMutationInput, FirecrackerMetricUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerMetrics to update
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * Limit how many FirecrackerMetrics to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerMetric upsert
+   */
+  export type FirecrackerMetricUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerMetric to update in case it exists.
+     */
+    where: FirecrackerMetricWhereUniqueInput
+    /**
+     * In case the FirecrackerMetric found by the `where` argument doesn't exist, create a new FirecrackerMetric with this data.
+     */
+    create: XOR<FirecrackerMetricCreateInput, FirecrackerMetricUncheckedCreateInput>
+    /**
+     * In case the FirecrackerMetric was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerMetricUpdateInput, FirecrackerMetricUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerMetric delete
+   */
+  export type FirecrackerMetricDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerMetric to delete.
+     */
+    where: FirecrackerMetricWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerMetric deleteMany
+   */
+  export type FirecrackerMetricDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerMetrics to delete
+     */
+    where?: FirecrackerMetricWhereInput
+    /**
+     * Limit how many FirecrackerMetrics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerMetric without action
+   */
+  export type FirecrackerMetricDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerMetric
+     */
+    select?: FirecrackerMetricSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerMetric
+     */
+    omit?: FirecrackerMetricOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerMetricInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerSnapshot
+   */
+
+  export type AggregateFirecrackerSnapshot = {
+    _count: FirecrackerSnapshotCountAggregateOutputType | null
+    _avg: FirecrackerSnapshotAvgAggregateOutputType | null
+    _sum: FirecrackerSnapshotSumAggregateOutputType | null
+    _min: FirecrackerSnapshotMinAggregateOutputType | null
+    _max: FirecrackerSnapshotMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerSnapshotAvgAggregateOutputType = {
+    size: number | null
+  }
+
+  export type FirecrackerSnapshotSumAggregateOutputType = {
+    size: bigint | null
+  }
+
+  export type FirecrackerSnapshotMinAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    name: string | null
+    description: string | null
+    snapshotPath: string | null
+    memoryPath: string | null
+    size: bigint | null
+    createdAt: Date | null
+  }
+
+  export type FirecrackerSnapshotMaxAggregateOutputType = {
+    id: string | null
+    vmId: string | null
+    name: string | null
+    description: string | null
+    snapshotPath: string | null
+    memoryPath: string | null
+    size: bigint | null
+    createdAt: Date | null
+  }
+
+  export type FirecrackerSnapshotCountAggregateOutputType = {
+    id: number
+    vmId: number
+    name: number
+    description: number
+    snapshotPath: number
+    memoryPath: number
+    size: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FirecrackerSnapshotAvgAggregateInputType = {
+    size?: true
+  }
+
+  export type FirecrackerSnapshotSumAggregateInputType = {
+    size?: true
+  }
+
+  export type FirecrackerSnapshotMinAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    description?: true
+    snapshotPath?: true
+    memoryPath?: true
+    size?: true
+    createdAt?: true
+  }
+
+  export type FirecrackerSnapshotMaxAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    description?: true
+    snapshotPath?: true
+    memoryPath?: true
+    size?: true
+    createdAt?: true
+  }
+
+  export type FirecrackerSnapshotCountAggregateInputType = {
+    id?: true
+    vmId?: true
+    name?: true
+    description?: true
+    snapshotPath?: true
+    memoryPath?: true
+    size?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FirecrackerSnapshotAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerSnapshot to aggregate.
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerSnapshots to fetch.
+     */
+    orderBy?: FirecrackerSnapshotOrderByWithRelationInput | FirecrackerSnapshotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerSnapshotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerSnapshots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerSnapshots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerSnapshots
+    **/
+    _count?: true | FirecrackerSnapshotCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FirecrackerSnapshotAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FirecrackerSnapshotSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerSnapshotMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerSnapshotMaxAggregateInputType
+  }
+
+  export type GetFirecrackerSnapshotAggregateType<T extends FirecrackerSnapshotAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerSnapshot]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerSnapshot[P]>
+      : GetScalarType<T[P], AggregateFirecrackerSnapshot[P]>
+  }
+
+
+
+
+  export type FirecrackerSnapshotGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerSnapshotWhereInput
+    orderBy?: FirecrackerSnapshotOrderByWithAggregationInput | FirecrackerSnapshotOrderByWithAggregationInput[]
+    by: FirecrackerSnapshotScalarFieldEnum[] | FirecrackerSnapshotScalarFieldEnum
+    having?: FirecrackerSnapshotScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerSnapshotCountAggregateInputType | true
+    _avg?: FirecrackerSnapshotAvgAggregateInputType
+    _sum?: FirecrackerSnapshotSumAggregateInputType
+    _min?: FirecrackerSnapshotMinAggregateInputType
+    _max?: FirecrackerSnapshotMaxAggregateInputType
+  }
+
+  export type FirecrackerSnapshotGroupByOutputType = {
+    id: string
+    vmId: string
+    name: string
+    description: string | null
+    snapshotPath: string
+    memoryPath: string | null
+    size: bigint
+    createdAt: Date
+    _count: FirecrackerSnapshotCountAggregateOutputType | null
+    _avg: FirecrackerSnapshotAvgAggregateOutputType | null
+    _sum: FirecrackerSnapshotSumAggregateOutputType | null
+    _min: FirecrackerSnapshotMinAggregateOutputType | null
+    _max: FirecrackerSnapshotMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerSnapshotGroupByPayload<T extends FirecrackerSnapshotGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerSnapshotGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerSnapshotGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerSnapshotGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerSnapshotGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerSnapshotSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    description?: boolean
+    snapshotPath?: boolean
+    memoryPath?: boolean
+    size?: boolean
+    createdAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerSnapshot"]>
+
+  export type FirecrackerSnapshotSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    description?: boolean
+    snapshotPath?: boolean
+    memoryPath?: boolean
+    size?: boolean
+    createdAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerSnapshot"]>
+
+  export type FirecrackerSnapshotSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    description?: boolean
+    snapshotPath?: boolean
+    memoryPath?: boolean
+    size?: boolean
+    createdAt?: boolean
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerSnapshot"]>
+
+  export type FirecrackerSnapshotSelectScalar = {
+    id?: boolean
+    vmId?: boolean
+    name?: boolean
+    description?: boolean
+    snapshotPath?: boolean
+    memoryPath?: boolean
+    size?: boolean
+    createdAt?: boolean
+  }
+
+  export type FirecrackerSnapshotOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vmId" | "name" | "description" | "snapshotPath" | "memoryPath" | "size" | "createdAt", ExtArgs["result"]["firecrackerSnapshot"]>
+  export type FirecrackerSnapshotInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerSnapshotIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerSnapshotIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vm?: boolean | FirecrackerVMDefaultArgs<ExtArgs>
+  }
+
+  export type $FirecrackerSnapshotPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerSnapshot"
+    objects: {
+      vm: Prisma.$FirecrackerVMPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      vmId: string
+      name: string
+      description: string | null
+      snapshotPath: string
+      memoryPath: string | null
+      size: bigint
+      createdAt: Date
+    }, ExtArgs["result"]["firecrackerSnapshot"]>
+    composites: {}
+  }
+
+  type FirecrackerSnapshotGetPayload<S extends boolean | null | undefined | FirecrackerSnapshotDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerSnapshotPayload, S>
+
+  type FirecrackerSnapshotCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerSnapshotFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerSnapshotCountAggregateInputType | true
+    }
+
+  export interface FirecrackerSnapshotDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerSnapshot'], meta: { name: 'FirecrackerSnapshot' } }
+    /**
+     * Find zero or one FirecrackerSnapshot that matches the filter.
+     * @param {FirecrackerSnapshotFindUniqueArgs} args - Arguments to find a FirecrackerSnapshot
+     * @example
+     * // Get one FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerSnapshotFindUniqueArgs>(args: SelectSubset<T, FirecrackerSnapshotFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerSnapshot that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerSnapshotFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerSnapshot
+     * @example
+     * // Get one FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerSnapshotFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerSnapshotFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerSnapshot that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotFindFirstArgs} args - Arguments to find a FirecrackerSnapshot
+     * @example
+     * // Get one FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerSnapshotFindFirstArgs>(args?: SelectSubset<T, FirecrackerSnapshotFindFirstArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerSnapshot that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotFindFirstOrThrowArgs} args - Arguments to find a FirecrackerSnapshot
+     * @example
+     * // Get one FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerSnapshotFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerSnapshotFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerSnapshots that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerSnapshots
+     * const firecrackerSnapshots = await prisma.firecrackerSnapshot.findMany()
+     * 
+     * // Get first 10 FirecrackerSnapshots
+     * const firecrackerSnapshots = await prisma.firecrackerSnapshot.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerSnapshotWithIdOnly = await prisma.firecrackerSnapshot.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerSnapshotFindManyArgs>(args?: SelectSubset<T, FirecrackerSnapshotFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerSnapshot.
+     * @param {FirecrackerSnapshotCreateArgs} args - Arguments to create a FirecrackerSnapshot.
+     * @example
+     * // Create one FirecrackerSnapshot
+     * const FirecrackerSnapshot = await prisma.firecrackerSnapshot.create({
+     *   data: {
+     *     // ... data to create a FirecrackerSnapshot
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerSnapshotCreateArgs>(args: SelectSubset<T, FirecrackerSnapshotCreateArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerSnapshots.
+     * @param {FirecrackerSnapshotCreateManyArgs} args - Arguments to create many FirecrackerSnapshots.
+     * @example
+     * // Create many FirecrackerSnapshots
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerSnapshotCreateManyArgs>(args?: SelectSubset<T, FirecrackerSnapshotCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerSnapshots and returns the data saved in the database.
+     * @param {FirecrackerSnapshotCreateManyAndReturnArgs} args - Arguments to create many FirecrackerSnapshots.
+     * @example
+     * // Create many FirecrackerSnapshots
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerSnapshots and only return the `id`
+     * const firecrackerSnapshotWithIdOnly = await prisma.firecrackerSnapshot.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerSnapshotCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerSnapshotCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerSnapshot.
+     * @param {FirecrackerSnapshotDeleteArgs} args - Arguments to delete one FirecrackerSnapshot.
+     * @example
+     * // Delete one FirecrackerSnapshot
+     * const FirecrackerSnapshot = await prisma.firecrackerSnapshot.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerSnapshot
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerSnapshotDeleteArgs>(args: SelectSubset<T, FirecrackerSnapshotDeleteArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerSnapshot.
+     * @param {FirecrackerSnapshotUpdateArgs} args - Arguments to update one FirecrackerSnapshot.
+     * @example
+     * // Update one FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerSnapshotUpdateArgs>(args: SelectSubset<T, FirecrackerSnapshotUpdateArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerSnapshots.
+     * @param {FirecrackerSnapshotDeleteManyArgs} args - Arguments to filter FirecrackerSnapshots to delete.
+     * @example
+     * // Delete a few FirecrackerSnapshots
+     * const { count } = await prisma.firecrackerSnapshot.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerSnapshotDeleteManyArgs>(args?: SelectSubset<T, FirecrackerSnapshotDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerSnapshots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerSnapshots
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerSnapshotUpdateManyArgs>(args: SelectSubset<T, FirecrackerSnapshotUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerSnapshots and returns the data updated in the database.
+     * @param {FirecrackerSnapshotUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerSnapshots.
+     * @example
+     * // Update many FirecrackerSnapshots
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerSnapshots and only return the `id`
+     * const firecrackerSnapshotWithIdOnly = await prisma.firecrackerSnapshot.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerSnapshotUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerSnapshotUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerSnapshot.
+     * @param {FirecrackerSnapshotUpsertArgs} args - Arguments to update or create a FirecrackerSnapshot.
+     * @example
+     * // Update or create a FirecrackerSnapshot
+     * const firecrackerSnapshot = await prisma.firecrackerSnapshot.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerSnapshot
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerSnapshot we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerSnapshotUpsertArgs>(args: SelectSubset<T, FirecrackerSnapshotUpsertArgs<ExtArgs>>): Prisma__FirecrackerSnapshotClient<$Result.GetResult<Prisma.$FirecrackerSnapshotPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerSnapshots.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotCountArgs} args - Arguments to filter FirecrackerSnapshots to count.
+     * @example
+     * // Count the number of FirecrackerSnapshots
+     * const count = await prisma.firecrackerSnapshot.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerSnapshots we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerSnapshotCountArgs>(
+      args?: Subset<T, FirecrackerSnapshotCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerSnapshotCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerSnapshot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerSnapshotAggregateArgs>(args: Subset<T, FirecrackerSnapshotAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerSnapshotAggregateType<T>>
+
+    /**
+     * Group by FirecrackerSnapshot.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerSnapshotGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerSnapshotGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerSnapshotGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerSnapshotGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerSnapshotGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerSnapshotGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerSnapshot model
+   */
+  readonly fields: FirecrackerSnapshotFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerSnapshot.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerSnapshotClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vm<T extends FirecrackerVMDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerVMDefaultArgs<ExtArgs>>): Prisma__FirecrackerVMClient<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerSnapshot model
+   */
+  interface FirecrackerSnapshotFieldRefs {
+    readonly id: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly vmId: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly name: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly description: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly snapshotPath: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly memoryPath: FieldRef<"FirecrackerSnapshot", 'String'>
+    readonly size: FieldRef<"FirecrackerSnapshot", 'BigInt'>
+    readonly createdAt: FieldRef<"FirecrackerSnapshot", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerSnapshot findUnique
+   */
+  export type FirecrackerSnapshotFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerSnapshot to fetch.
+     */
+    where: FirecrackerSnapshotWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerSnapshot findUniqueOrThrow
+   */
+  export type FirecrackerSnapshotFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerSnapshot to fetch.
+     */
+    where: FirecrackerSnapshotWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerSnapshot findFirst
+   */
+  export type FirecrackerSnapshotFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerSnapshot to fetch.
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerSnapshots to fetch.
+     */
+    orderBy?: FirecrackerSnapshotOrderByWithRelationInput | FirecrackerSnapshotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerSnapshots.
+     */
+    cursor?: FirecrackerSnapshotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerSnapshots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerSnapshots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerSnapshots.
+     */
+    distinct?: FirecrackerSnapshotScalarFieldEnum | FirecrackerSnapshotScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerSnapshot findFirstOrThrow
+   */
+  export type FirecrackerSnapshotFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerSnapshot to fetch.
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerSnapshots to fetch.
+     */
+    orderBy?: FirecrackerSnapshotOrderByWithRelationInput | FirecrackerSnapshotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerSnapshots.
+     */
+    cursor?: FirecrackerSnapshotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerSnapshots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerSnapshots.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerSnapshots.
+     */
+    distinct?: FirecrackerSnapshotScalarFieldEnum | FirecrackerSnapshotScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerSnapshot findMany
+   */
+  export type FirecrackerSnapshotFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerSnapshots to fetch.
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerSnapshots to fetch.
+     */
+    orderBy?: FirecrackerSnapshotOrderByWithRelationInput | FirecrackerSnapshotOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerSnapshots.
+     */
+    cursor?: FirecrackerSnapshotWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerSnapshots from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerSnapshots.
+     */
+    skip?: number
+    distinct?: FirecrackerSnapshotScalarFieldEnum | FirecrackerSnapshotScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerSnapshot create
+   */
+  export type FirecrackerSnapshotCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerSnapshot.
+     */
+    data: XOR<FirecrackerSnapshotCreateInput, FirecrackerSnapshotUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerSnapshot createMany
+   */
+  export type FirecrackerSnapshotCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerSnapshots.
+     */
+    data: FirecrackerSnapshotCreateManyInput | FirecrackerSnapshotCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerSnapshot createManyAndReturn
+   */
+  export type FirecrackerSnapshotCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerSnapshots.
+     */
+    data: FirecrackerSnapshotCreateManyInput | FirecrackerSnapshotCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerSnapshot update
+   */
+  export type FirecrackerSnapshotUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerSnapshot.
+     */
+    data: XOR<FirecrackerSnapshotUpdateInput, FirecrackerSnapshotUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerSnapshot to update.
+     */
+    where: FirecrackerSnapshotWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerSnapshot updateMany
+   */
+  export type FirecrackerSnapshotUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerSnapshots.
+     */
+    data: XOR<FirecrackerSnapshotUpdateManyMutationInput, FirecrackerSnapshotUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerSnapshots to update
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * Limit how many FirecrackerSnapshots to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerSnapshot updateManyAndReturn
+   */
+  export type FirecrackerSnapshotUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerSnapshots.
+     */
+    data: XOR<FirecrackerSnapshotUpdateManyMutationInput, FirecrackerSnapshotUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerSnapshots to update
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * Limit how many FirecrackerSnapshots to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerSnapshot upsert
+   */
+  export type FirecrackerSnapshotUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerSnapshot to update in case it exists.
+     */
+    where: FirecrackerSnapshotWhereUniqueInput
+    /**
+     * In case the FirecrackerSnapshot found by the `where` argument doesn't exist, create a new FirecrackerSnapshot with this data.
+     */
+    create: XOR<FirecrackerSnapshotCreateInput, FirecrackerSnapshotUncheckedCreateInput>
+    /**
+     * In case the FirecrackerSnapshot was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerSnapshotUpdateInput, FirecrackerSnapshotUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerSnapshot delete
+   */
+  export type FirecrackerSnapshotDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerSnapshot to delete.
+     */
+    where: FirecrackerSnapshotWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerSnapshot deleteMany
+   */
+  export type FirecrackerSnapshotDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerSnapshots to delete
+     */
+    where?: FirecrackerSnapshotWhereInput
+    /**
+     * Limit how many FirecrackerSnapshots to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerSnapshot without action
+   */
+  export type FirecrackerSnapshotDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerSnapshot
+     */
+    select?: FirecrackerSnapshotSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerSnapshot
+     */
+    omit?: FirecrackerSnapshotOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerSnapshotInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerTemplate
+   */
+
+  export type AggregateFirecrackerTemplate = {
+    _count: FirecrackerTemplateCountAggregateOutputType | null
+    _min: FirecrackerTemplateMinAggregateOutputType | null
+    _max: FirecrackerTemplateMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerTemplateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    category: string | null
+    kernelImage: string | null
+    rootfsImage: string | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FirecrackerTemplateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    category: string | null
+    kernelImage: string | null
+    rootfsImage: string | null
+    isPublic: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FirecrackerTemplateCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    category: number
+    kernelImage: number
+    rootfsImage: number
+    config: number
+    resources: number
+    isPublic: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FirecrackerTemplateMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    category?: true
+    kernelImage?: true
+    rootfsImage?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FirecrackerTemplateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    category?: true
+    kernelImage?: true
+    rootfsImage?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FirecrackerTemplateCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    category?: true
+    kernelImage?: true
+    rootfsImage?: true
+    config?: true
+    resources?: true
+    isPublic?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FirecrackerTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerTemplate to aggregate.
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerTemplates to fetch.
+     */
+    orderBy?: FirecrackerTemplateOrderByWithRelationInput | FirecrackerTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerTemplates
+    **/
+    _count?: true | FirecrackerTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerTemplateMaxAggregateInputType
+  }
+
+  export type GetFirecrackerTemplateAggregateType<T extends FirecrackerTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerTemplate[P]>
+      : GetScalarType<T[P], AggregateFirecrackerTemplate[P]>
+  }
+
+
+
+
+  export type FirecrackerTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerTemplateWhereInput
+    orderBy?: FirecrackerTemplateOrderByWithAggregationInput | FirecrackerTemplateOrderByWithAggregationInput[]
+    by: FirecrackerTemplateScalarFieldEnum[] | FirecrackerTemplateScalarFieldEnum
+    having?: FirecrackerTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerTemplateCountAggregateInputType | true
+    _min?: FirecrackerTemplateMinAggregateInputType
+    _max?: FirecrackerTemplateMaxAggregateInputType
+  }
+
+  export type FirecrackerTemplateGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    category: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonValue
+    resources: JsonValue
+    isPublic: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: FirecrackerTemplateCountAggregateOutputType | null
+    _min: FirecrackerTemplateMinAggregateOutputType | null
+    _max: FirecrackerTemplateMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerTemplateGroupByPayload<T extends FirecrackerTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    category?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    config?: boolean
+    resources?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    vms?: boolean | FirecrackerTemplate$vmsArgs<ExtArgs>
+    _count?: boolean | FirecrackerTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerTemplate"]>
+
+  export type FirecrackerTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    category?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    config?: boolean
+    resources?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["firecrackerTemplate"]>
+
+  export type FirecrackerTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    category?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    config?: boolean
+    resources?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["firecrackerTemplate"]>
+
+  export type FirecrackerTemplateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    category?: boolean
+    kernelImage?: boolean
+    rootfsImage?: boolean
+    config?: boolean
+    resources?: boolean
+    isPublic?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FirecrackerTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "category" | "kernelImage" | "rootfsImage" | "config" | "resources" | "isPublic" | "createdAt" | "updatedAt", ExtArgs["result"]["firecrackerTemplate"]>
+  export type FirecrackerTemplateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vms?: boolean | FirecrackerTemplate$vmsArgs<ExtArgs>
+    _count?: boolean | FirecrackerTemplateCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerTemplateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FirecrackerTemplateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FirecrackerTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerTemplate"
+    objects: {
+      vms: Prisma.$FirecrackerVMPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      category: string
+      kernelImage: string
+      rootfsImage: string
+      config: Prisma.JsonValue
+      resources: Prisma.JsonValue
+      isPublic: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["firecrackerTemplate"]>
+    composites: {}
+  }
+
+  type FirecrackerTemplateGetPayload<S extends boolean | null | undefined | FirecrackerTemplateDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerTemplatePayload, S>
+
+  type FirecrackerTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerTemplateCountAggregateInputType | true
+    }
+
+  export interface FirecrackerTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerTemplate'], meta: { name: 'FirecrackerTemplate' } }
+    /**
+     * Find zero or one FirecrackerTemplate that matches the filter.
+     * @param {FirecrackerTemplateFindUniqueArgs} args - Arguments to find a FirecrackerTemplate
+     * @example
+     * // Get one FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerTemplateFindUniqueArgs>(args: SelectSubset<T, FirecrackerTemplateFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerTemplateFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerTemplate
+     * @example
+     * // Get one FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateFindFirstArgs} args - Arguments to find a FirecrackerTemplate
+     * @example
+     * // Get one FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerTemplateFindFirstArgs>(args?: SelectSubset<T, FirecrackerTemplateFindFirstArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateFindFirstOrThrowArgs} args - Arguments to find a FirecrackerTemplate
+     * @example
+     * // Get one FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerTemplates
+     * const firecrackerTemplates = await prisma.firecrackerTemplate.findMany()
+     * 
+     * // Get first 10 FirecrackerTemplates
+     * const firecrackerTemplates = await prisma.firecrackerTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerTemplateWithIdOnly = await prisma.firecrackerTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerTemplateFindManyArgs>(args?: SelectSubset<T, FirecrackerTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerTemplate.
+     * @param {FirecrackerTemplateCreateArgs} args - Arguments to create a FirecrackerTemplate.
+     * @example
+     * // Create one FirecrackerTemplate
+     * const FirecrackerTemplate = await prisma.firecrackerTemplate.create({
+     *   data: {
+     *     // ... data to create a FirecrackerTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerTemplateCreateArgs>(args: SelectSubset<T, FirecrackerTemplateCreateArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerTemplates.
+     * @param {FirecrackerTemplateCreateManyArgs} args - Arguments to create many FirecrackerTemplates.
+     * @example
+     * // Create many FirecrackerTemplates
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerTemplateCreateManyArgs>(args?: SelectSubset<T, FirecrackerTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerTemplates and returns the data saved in the database.
+     * @param {FirecrackerTemplateCreateManyAndReturnArgs} args - Arguments to create many FirecrackerTemplates.
+     * @example
+     * // Create many FirecrackerTemplates
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerTemplates and only return the `id`
+     * const firecrackerTemplateWithIdOnly = await prisma.firecrackerTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerTemplate.
+     * @param {FirecrackerTemplateDeleteArgs} args - Arguments to delete one FirecrackerTemplate.
+     * @example
+     * // Delete one FirecrackerTemplate
+     * const FirecrackerTemplate = await prisma.firecrackerTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerTemplateDeleteArgs>(args: SelectSubset<T, FirecrackerTemplateDeleteArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerTemplate.
+     * @param {FirecrackerTemplateUpdateArgs} args - Arguments to update one FirecrackerTemplate.
+     * @example
+     * // Update one FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerTemplateUpdateArgs>(args: SelectSubset<T, FirecrackerTemplateUpdateArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerTemplates.
+     * @param {FirecrackerTemplateDeleteManyArgs} args - Arguments to filter FirecrackerTemplates to delete.
+     * @example
+     * // Delete a few FirecrackerTemplates
+     * const { count } = await prisma.firecrackerTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerTemplateDeleteManyArgs>(args?: SelectSubset<T, FirecrackerTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerTemplates
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerTemplateUpdateManyArgs>(args: SelectSubset<T, FirecrackerTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerTemplates and returns the data updated in the database.
+     * @param {FirecrackerTemplateUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerTemplates.
+     * @example
+     * // Update many FirecrackerTemplates
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerTemplates and only return the `id`
+     * const firecrackerTemplateWithIdOnly = await prisma.firecrackerTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerTemplate.
+     * @param {FirecrackerTemplateUpsertArgs} args - Arguments to update or create a FirecrackerTemplate.
+     * @example
+     * // Update or create a FirecrackerTemplate
+     * const firecrackerTemplate = await prisma.firecrackerTemplate.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerTemplateUpsertArgs>(args: SelectSubset<T, FirecrackerTemplateUpsertArgs<ExtArgs>>): Prisma__FirecrackerTemplateClient<$Result.GetResult<Prisma.$FirecrackerTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateCountArgs} args - Arguments to filter FirecrackerTemplates to count.
+     * @example
+     * // Count the number of FirecrackerTemplates
+     * const count = await prisma.firecrackerTemplate.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerTemplateCountArgs>(
+      args?: Subset<T, FirecrackerTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerTemplateAggregateArgs>(args: Subset<T, FirecrackerTemplateAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerTemplateAggregateType<T>>
+
+    /**
+     * Group by FirecrackerTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerTemplate model
+   */
+  readonly fields: FirecrackerTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vms<T extends FirecrackerTemplate$vmsArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerTemplate$vmsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerVMPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerTemplate model
+   */
+  interface FirecrackerTemplateFieldRefs {
+    readonly id: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly name: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly description: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly category: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly kernelImage: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly rootfsImage: FieldRef<"FirecrackerTemplate", 'String'>
+    readonly config: FieldRef<"FirecrackerTemplate", 'Json'>
+    readonly resources: FieldRef<"FirecrackerTemplate", 'Json'>
+    readonly isPublic: FieldRef<"FirecrackerTemplate", 'Boolean'>
+    readonly createdAt: FieldRef<"FirecrackerTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"FirecrackerTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerTemplate findUnique
+   */
+  export type FirecrackerTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerTemplate to fetch.
+     */
+    where: FirecrackerTemplateWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerTemplate findUniqueOrThrow
+   */
+  export type FirecrackerTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerTemplate to fetch.
+     */
+    where: FirecrackerTemplateWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerTemplate findFirst
+   */
+  export type FirecrackerTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerTemplate to fetch.
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerTemplates to fetch.
+     */
+    orderBy?: FirecrackerTemplateOrderByWithRelationInput | FirecrackerTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerTemplates.
+     */
+    cursor?: FirecrackerTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerTemplates.
+     */
+    distinct?: FirecrackerTemplateScalarFieldEnum | FirecrackerTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerTemplate findFirstOrThrow
+   */
+  export type FirecrackerTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerTemplate to fetch.
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerTemplates to fetch.
+     */
+    orderBy?: FirecrackerTemplateOrderByWithRelationInput | FirecrackerTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerTemplates.
+     */
+    cursor?: FirecrackerTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerTemplates.
+     */
+    distinct?: FirecrackerTemplateScalarFieldEnum | FirecrackerTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerTemplate findMany
+   */
+  export type FirecrackerTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerTemplates to fetch.
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerTemplates to fetch.
+     */
+    orderBy?: FirecrackerTemplateOrderByWithRelationInput | FirecrackerTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerTemplates.
+     */
+    cursor?: FirecrackerTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerTemplates.
+     */
+    skip?: number
+    distinct?: FirecrackerTemplateScalarFieldEnum | FirecrackerTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerTemplate create
+   */
+  export type FirecrackerTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerTemplate.
+     */
+    data: XOR<FirecrackerTemplateCreateInput, FirecrackerTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerTemplate createMany
+   */
+  export type FirecrackerTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerTemplates.
+     */
+    data: FirecrackerTemplateCreateManyInput | FirecrackerTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerTemplate createManyAndReturn
+   */
+  export type FirecrackerTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerTemplates.
+     */
+    data: FirecrackerTemplateCreateManyInput | FirecrackerTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerTemplate update
+   */
+  export type FirecrackerTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerTemplate.
+     */
+    data: XOR<FirecrackerTemplateUpdateInput, FirecrackerTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerTemplate to update.
+     */
+    where: FirecrackerTemplateWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerTemplate updateMany
+   */
+  export type FirecrackerTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerTemplates.
+     */
+    data: XOR<FirecrackerTemplateUpdateManyMutationInput, FirecrackerTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerTemplates to update
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * Limit how many FirecrackerTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerTemplate updateManyAndReturn
+   */
+  export type FirecrackerTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerTemplates.
+     */
+    data: XOR<FirecrackerTemplateUpdateManyMutationInput, FirecrackerTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerTemplates to update
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * Limit how many FirecrackerTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerTemplate upsert
+   */
+  export type FirecrackerTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerTemplate to update in case it exists.
+     */
+    where: FirecrackerTemplateWhereUniqueInput
+    /**
+     * In case the FirecrackerTemplate found by the `where` argument doesn't exist, create a new FirecrackerTemplate with this data.
+     */
+    create: XOR<FirecrackerTemplateCreateInput, FirecrackerTemplateUncheckedCreateInput>
+    /**
+     * In case the FirecrackerTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerTemplateUpdateInput, FirecrackerTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerTemplate delete
+   */
+  export type FirecrackerTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerTemplate to delete.
+     */
+    where: FirecrackerTemplateWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerTemplate deleteMany
+   */
+  export type FirecrackerTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerTemplates to delete
+     */
+    where?: FirecrackerTemplateWhereInput
+    /**
+     * Limit how many FirecrackerTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerTemplate.vms
+   */
+  export type FirecrackerTemplate$vmsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerVM
+     */
+    select?: FirecrackerVMSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerVM
+     */
+    omit?: FirecrackerVMOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerVMInclude<ExtArgs> | null
+    where?: FirecrackerVMWhereInput
+    orderBy?: FirecrackerVMOrderByWithRelationInput | FirecrackerVMOrderByWithRelationInput[]
+    cursor?: FirecrackerVMWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FirecrackerVMScalarFieldEnum | FirecrackerVMScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerTemplate without action
+   */
+  export type FirecrackerTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerTemplate
+     */
+    select?: FirecrackerTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerTemplate
+     */
+    omit?: FirecrackerTemplateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerTemplateInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model FirecrackerContainerLog
+   */
+
+  export type AggregateFirecrackerContainerLog = {
+    _count: FirecrackerContainerLogCountAggregateOutputType | null
+    _min: FirecrackerContainerLogMinAggregateOutputType | null
+    _max: FirecrackerContainerLogMaxAggregateOutputType | null
+  }
+
+  export type FirecrackerContainerLogMinAggregateOutputType = {
+    id: string | null
+    containerId: string | null
+    timestamp: Date | null
+    level: $Enums.LogLevel | null
+    message: string | null
+    source: string | null
+  }
+
+  export type FirecrackerContainerLogMaxAggregateOutputType = {
+    id: string | null
+    containerId: string | null
+    timestamp: Date | null
+    level: $Enums.LogLevel | null
+    message: string | null
+    source: string | null
+  }
+
+  export type FirecrackerContainerLogCountAggregateOutputType = {
+    id: number
+    containerId: number
+    timestamp: number
+    level: number
+    message: number
+    source: number
+    _all: number
+  }
+
+
+  export type FirecrackerContainerLogMinAggregateInputType = {
+    id?: true
+    containerId?: true
+    timestamp?: true
+    level?: true
+    message?: true
+    source?: true
+  }
+
+  export type FirecrackerContainerLogMaxAggregateInputType = {
+    id?: true
+    containerId?: true
+    timestamp?: true
+    level?: true
+    message?: true
+    source?: true
+  }
+
+  export type FirecrackerContainerLogCountAggregateInputType = {
+    id?: true
+    containerId?: true
+    timestamp?: true
+    level?: true
+    message?: true
+    source?: true
+    _all?: true
+  }
+
+  export type FirecrackerContainerLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerContainerLog to aggregate.
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainerLogs to fetch.
+     */
+    orderBy?: FirecrackerContainerLogOrderByWithRelationInput | FirecrackerContainerLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FirecrackerContainerLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainerLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainerLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned FirecrackerContainerLogs
+    **/
+    _count?: true | FirecrackerContainerLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FirecrackerContainerLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FirecrackerContainerLogMaxAggregateInputType
+  }
+
+  export type GetFirecrackerContainerLogAggregateType<T extends FirecrackerContainerLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateFirecrackerContainerLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFirecrackerContainerLog[P]>
+      : GetScalarType<T[P], AggregateFirecrackerContainerLog[P]>
+  }
+
+
+
+
+  export type FirecrackerContainerLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FirecrackerContainerLogWhereInput
+    orderBy?: FirecrackerContainerLogOrderByWithAggregationInput | FirecrackerContainerLogOrderByWithAggregationInput[]
+    by: FirecrackerContainerLogScalarFieldEnum[] | FirecrackerContainerLogScalarFieldEnum
+    having?: FirecrackerContainerLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FirecrackerContainerLogCountAggregateInputType | true
+    _min?: FirecrackerContainerLogMinAggregateInputType
+    _max?: FirecrackerContainerLogMaxAggregateInputType
+  }
+
+  export type FirecrackerContainerLogGroupByOutputType = {
+    id: string
+    containerId: string
+    timestamp: Date
+    level: $Enums.LogLevel
+    message: string
+    source: string | null
+    _count: FirecrackerContainerLogCountAggregateOutputType | null
+    _min: FirecrackerContainerLogMinAggregateOutputType | null
+    _max: FirecrackerContainerLogMaxAggregateOutputType | null
+  }
+
+  type GetFirecrackerContainerLogGroupByPayload<T extends FirecrackerContainerLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FirecrackerContainerLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FirecrackerContainerLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FirecrackerContainerLogGroupByOutputType[P]>
+            : GetScalarType<T[P], FirecrackerContainerLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FirecrackerContainerLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    containerId?: boolean
+    timestamp?: boolean
+    level?: boolean
+    message?: boolean
+    source?: boolean
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainerLog"]>
+
+  export type FirecrackerContainerLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    containerId?: boolean
+    timestamp?: boolean
+    level?: boolean
+    message?: boolean
+    source?: boolean
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainerLog"]>
+
+  export type FirecrackerContainerLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    containerId?: boolean
+    timestamp?: boolean
+    level?: boolean
+    message?: boolean
+    source?: boolean
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["firecrackerContainerLog"]>
+
+  export type FirecrackerContainerLogSelectScalar = {
+    id?: boolean
+    containerId?: boolean
+    timestamp?: boolean
+    level?: boolean
+    message?: boolean
+    source?: boolean
+  }
+
+  export type FirecrackerContainerLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "containerId" | "timestamp" | "level" | "message" | "source", ExtArgs["result"]["firecrackerContainerLog"]>
+  export type FirecrackerContainerLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerContainerLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }
+  export type FirecrackerContainerLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    container?: boolean | FirecrackerContainerDefaultArgs<ExtArgs>
+  }
+
+  export type $FirecrackerContainerLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "FirecrackerContainerLog"
+    objects: {
+      container: Prisma.$FirecrackerContainerPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      containerId: string
+      timestamp: Date
+      level: $Enums.LogLevel
+      message: string
+      source: string | null
+    }, ExtArgs["result"]["firecrackerContainerLog"]>
+    composites: {}
+  }
+
+  type FirecrackerContainerLogGetPayload<S extends boolean | null | undefined | FirecrackerContainerLogDefaultArgs> = $Result.GetResult<Prisma.$FirecrackerContainerLogPayload, S>
+
+  type FirecrackerContainerLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FirecrackerContainerLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FirecrackerContainerLogCountAggregateInputType | true
+    }
+
+  export interface FirecrackerContainerLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['FirecrackerContainerLog'], meta: { name: 'FirecrackerContainerLog' } }
+    /**
+     * Find zero or one FirecrackerContainerLog that matches the filter.
+     * @param {FirecrackerContainerLogFindUniqueArgs} args - Arguments to find a FirecrackerContainerLog
+     * @example
+     * // Get one FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FirecrackerContainerLogFindUniqueArgs>(args: SelectSubset<T, FirecrackerContainerLogFindUniqueArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one FirecrackerContainerLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FirecrackerContainerLogFindUniqueOrThrowArgs} args - Arguments to find a FirecrackerContainerLog
+     * @example
+     * // Get one FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FirecrackerContainerLogFindUniqueOrThrowArgs>(args: SelectSubset<T, FirecrackerContainerLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerContainerLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogFindFirstArgs} args - Arguments to find a FirecrackerContainerLog
+     * @example
+     * // Get one FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FirecrackerContainerLogFindFirstArgs>(args?: SelectSubset<T, FirecrackerContainerLogFindFirstArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first FirecrackerContainerLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogFindFirstOrThrowArgs} args - Arguments to find a FirecrackerContainerLog
+     * @example
+     * // Get one FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FirecrackerContainerLogFindFirstOrThrowArgs>(args?: SelectSubset<T, FirecrackerContainerLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more FirecrackerContainerLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all FirecrackerContainerLogs
+     * const firecrackerContainerLogs = await prisma.firecrackerContainerLog.findMany()
+     * 
+     * // Get first 10 FirecrackerContainerLogs
+     * const firecrackerContainerLogs = await prisma.firecrackerContainerLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const firecrackerContainerLogWithIdOnly = await prisma.firecrackerContainerLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FirecrackerContainerLogFindManyArgs>(args?: SelectSubset<T, FirecrackerContainerLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a FirecrackerContainerLog.
+     * @param {FirecrackerContainerLogCreateArgs} args - Arguments to create a FirecrackerContainerLog.
+     * @example
+     * // Create one FirecrackerContainerLog
+     * const FirecrackerContainerLog = await prisma.firecrackerContainerLog.create({
+     *   data: {
+     *     // ... data to create a FirecrackerContainerLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends FirecrackerContainerLogCreateArgs>(args: SelectSubset<T, FirecrackerContainerLogCreateArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many FirecrackerContainerLogs.
+     * @param {FirecrackerContainerLogCreateManyArgs} args - Arguments to create many FirecrackerContainerLogs.
+     * @example
+     * // Create many FirecrackerContainerLogs
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FirecrackerContainerLogCreateManyArgs>(args?: SelectSubset<T, FirecrackerContainerLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many FirecrackerContainerLogs and returns the data saved in the database.
+     * @param {FirecrackerContainerLogCreateManyAndReturnArgs} args - Arguments to create many FirecrackerContainerLogs.
+     * @example
+     * // Create many FirecrackerContainerLogs
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many FirecrackerContainerLogs and only return the `id`
+     * const firecrackerContainerLogWithIdOnly = await prisma.firecrackerContainerLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FirecrackerContainerLogCreateManyAndReturnArgs>(args?: SelectSubset<T, FirecrackerContainerLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a FirecrackerContainerLog.
+     * @param {FirecrackerContainerLogDeleteArgs} args - Arguments to delete one FirecrackerContainerLog.
+     * @example
+     * // Delete one FirecrackerContainerLog
+     * const FirecrackerContainerLog = await prisma.firecrackerContainerLog.delete({
+     *   where: {
+     *     // ... filter to delete one FirecrackerContainerLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FirecrackerContainerLogDeleteArgs>(args: SelectSubset<T, FirecrackerContainerLogDeleteArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one FirecrackerContainerLog.
+     * @param {FirecrackerContainerLogUpdateArgs} args - Arguments to update one FirecrackerContainerLog.
+     * @example
+     * // Update one FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FirecrackerContainerLogUpdateArgs>(args: SelectSubset<T, FirecrackerContainerLogUpdateArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more FirecrackerContainerLogs.
+     * @param {FirecrackerContainerLogDeleteManyArgs} args - Arguments to filter FirecrackerContainerLogs to delete.
+     * @example
+     * // Delete a few FirecrackerContainerLogs
+     * const { count } = await prisma.firecrackerContainerLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FirecrackerContainerLogDeleteManyArgs>(args?: SelectSubset<T, FirecrackerContainerLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerContainerLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many FirecrackerContainerLogs
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FirecrackerContainerLogUpdateManyArgs>(args: SelectSubset<T, FirecrackerContainerLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more FirecrackerContainerLogs and returns the data updated in the database.
+     * @param {FirecrackerContainerLogUpdateManyAndReturnArgs} args - Arguments to update many FirecrackerContainerLogs.
+     * @example
+     * // Update many FirecrackerContainerLogs
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more FirecrackerContainerLogs and only return the `id`
+     * const firecrackerContainerLogWithIdOnly = await prisma.firecrackerContainerLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FirecrackerContainerLogUpdateManyAndReturnArgs>(args: SelectSubset<T, FirecrackerContainerLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one FirecrackerContainerLog.
+     * @param {FirecrackerContainerLogUpsertArgs} args - Arguments to update or create a FirecrackerContainerLog.
+     * @example
+     * // Update or create a FirecrackerContainerLog
+     * const firecrackerContainerLog = await prisma.firecrackerContainerLog.upsert({
+     *   create: {
+     *     // ... data to create a FirecrackerContainerLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the FirecrackerContainerLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FirecrackerContainerLogUpsertArgs>(args: SelectSubset<T, FirecrackerContainerLogUpsertArgs<ExtArgs>>): Prisma__FirecrackerContainerLogClient<$Result.GetResult<Prisma.$FirecrackerContainerLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of FirecrackerContainerLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogCountArgs} args - Arguments to filter FirecrackerContainerLogs to count.
+     * @example
+     * // Count the number of FirecrackerContainerLogs
+     * const count = await prisma.firecrackerContainerLog.count({
+     *   where: {
+     *     // ... the filter for the FirecrackerContainerLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends FirecrackerContainerLogCountArgs>(
+      args?: Subset<T, FirecrackerContainerLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FirecrackerContainerLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a FirecrackerContainerLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FirecrackerContainerLogAggregateArgs>(args: Subset<T, FirecrackerContainerLogAggregateArgs>): Prisma.PrismaPromise<GetFirecrackerContainerLogAggregateType<T>>
+
+    /**
+     * Group by FirecrackerContainerLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FirecrackerContainerLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FirecrackerContainerLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FirecrackerContainerLogGroupByArgs['orderBy'] }
+        : { orderBy?: FirecrackerContainerLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FirecrackerContainerLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFirecrackerContainerLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the FirecrackerContainerLog model
+   */
+  readonly fields: FirecrackerContainerLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for FirecrackerContainerLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FirecrackerContainerLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    container<T extends FirecrackerContainerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, FirecrackerContainerDefaultArgs<ExtArgs>>): Prisma__FirecrackerContainerClient<$Result.GetResult<Prisma.$FirecrackerContainerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the FirecrackerContainerLog model
+   */
+  interface FirecrackerContainerLogFieldRefs {
+    readonly id: FieldRef<"FirecrackerContainerLog", 'String'>
+    readonly containerId: FieldRef<"FirecrackerContainerLog", 'String'>
+    readonly timestamp: FieldRef<"FirecrackerContainerLog", 'DateTime'>
+    readonly level: FieldRef<"FirecrackerContainerLog", 'LogLevel'>
+    readonly message: FieldRef<"FirecrackerContainerLog", 'String'>
+    readonly source: FieldRef<"FirecrackerContainerLog", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * FirecrackerContainerLog findUnique
+   */
+  export type FirecrackerContainerLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainerLog to fetch.
+     */
+    where: FirecrackerContainerLogWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainerLog findUniqueOrThrow
+   */
+  export type FirecrackerContainerLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainerLog to fetch.
+     */
+    where: FirecrackerContainerLogWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainerLog findFirst
+   */
+  export type FirecrackerContainerLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainerLog to fetch.
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainerLogs to fetch.
+     */
+    orderBy?: FirecrackerContainerLogOrderByWithRelationInput | FirecrackerContainerLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerContainerLogs.
+     */
+    cursor?: FirecrackerContainerLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainerLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainerLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerContainerLogs.
+     */
+    distinct?: FirecrackerContainerLogScalarFieldEnum | FirecrackerContainerLogScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainerLog findFirstOrThrow
+   */
+  export type FirecrackerContainerLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainerLog to fetch.
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainerLogs to fetch.
+     */
+    orderBy?: FirecrackerContainerLogOrderByWithRelationInput | FirecrackerContainerLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for FirecrackerContainerLogs.
+     */
+    cursor?: FirecrackerContainerLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainerLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainerLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of FirecrackerContainerLogs.
+     */
+    distinct?: FirecrackerContainerLogScalarFieldEnum | FirecrackerContainerLogScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainerLog findMany
+   */
+  export type FirecrackerContainerLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter, which FirecrackerContainerLogs to fetch.
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of FirecrackerContainerLogs to fetch.
+     */
+    orderBy?: FirecrackerContainerLogOrderByWithRelationInput | FirecrackerContainerLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing FirecrackerContainerLogs.
+     */
+    cursor?: FirecrackerContainerLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` FirecrackerContainerLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` FirecrackerContainerLogs.
+     */
+    skip?: number
+    distinct?: FirecrackerContainerLogScalarFieldEnum | FirecrackerContainerLogScalarFieldEnum[]
+  }
+
+  /**
+   * FirecrackerContainerLog create
+   */
+  export type FirecrackerContainerLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a FirecrackerContainerLog.
+     */
+    data: XOR<FirecrackerContainerLogCreateInput, FirecrackerContainerLogUncheckedCreateInput>
+  }
+
+  /**
+   * FirecrackerContainerLog createMany
+   */
+  export type FirecrackerContainerLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many FirecrackerContainerLogs.
+     */
+    data: FirecrackerContainerLogCreateManyInput | FirecrackerContainerLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * FirecrackerContainerLog createManyAndReturn
+   */
+  export type FirecrackerContainerLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many FirecrackerContainerLogs.
+     */
+    data: FirecrackerContainerLogCreateManyInput | FirecrackerContainerLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerContainerLog update
+   */
+  export type FirecrackerContainerLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a FirecrackerContainerLog.
+     */
+    data: XOR<FirecrackerContainerLogUpdateInput, FirecrackerContainerLogUncheckedUpdateInput>
+    /**
+     * Choose, which FirecrackerContainerLog to update.
+     */
+    where: FirecrackerContainerLogWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainerLog updateMany
+   */
+  export type FirecrackerContainerLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update FirecrackerContainerLogs.
+     */
+    data: XOR<FirecrackerContainerLogUpdateManyMutationInput, FirecrackerContainerLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerContainerLogs to update
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * Limit how many FirecrackerContainerLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerContainerLog updateManyAndReturn
+   */
+  export type FirecrackerContainerLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * The data used to update FirecrackerContainerLogs.
+     */
+    data: XOR<FirecrackerContainerLogUpdateManyMutationInput, FirecrackerContainerLogUncheckedUpdateManyInput>
+    /**
+     * Filter which FirecrackerContainerLogs to update
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * Limit how many FirecrackerContainerLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * FirecrackerContainerLog upsert
+   */
+  export type FirecrackerContainerLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the FirecrackerContainerLog to update in case it exists.
+     */
+    where: FirecrackerContainerLogWhereUniqueInput
+    /**
+     * In case the FirecrackerContainerLog found by the `where` argument doesn't exist, create a new FirecrackerContainerLog with this data.
+     */
+    create: XOR<FirecrackerContainerLogCreateInput, FirecrackerContainerLogUncheckedCreateInput>
+    /**
+     * In case the FirecrackerContainerLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FirecrackerContainerLogUpdateInput, FirecrackerContainerLogUncheckedUpdateInput>
+  }
+
+  /**
+   * FirecrackerContainerLog delete
+   */
+  export type FirecrackerContainerLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
+    /**
+     * Filter which FirecrackerContainerLog to delete.
+     */
+    where: FirecrackerContainerLogWhereUniqueInput
+  }
+
+  /**
+   * FirecrackerContainerLog deleteMany
+   */
+  export type FirecrackerContainerLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which FirecrackerContainerLogs to delete
+     */
+    where?: FirecrackerContainerLogWhereInput
+    /**
+     * Limit how many FirecrackerContainerLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * FirecrackerContainerLog without action
+   */
+  export type FirecrackerContainerLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FirecrackerContainerLog
+     */
+    select?: FirecrackerContainerLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the FirecrackerContainerLog
+     */
+    omit?: FirecrackerContainerLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FirecrackerContainerLogInclude<ExtArgs> | null
   }
 
 
@@ -39660,6 +47374,7 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     projectId: 'projectId',
+    type: 'type',
     status: 'status',
     config: 'config',
     createdAt: 'createdAt',
@@ -39687,6 +47402,106 @@ export namespace Prisma {
   };
 
   export type WebVMInstanceScalarFieldEnum = (typeof WebVMInstanceScalarFieldEnum)[keyof typeof WebVMInstanceScalarFieldEnum]
+
+
+  export const FirecrackerVMScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    workspaceId: 'workspaceId',
+    status: 'status',
+    vmId: 'vmId',
+    config: 'config',
+    resources: 'resources',
+    networkConfig: 'networkConfig',
+    kernelImage: 'kernelImage',
+    rootfsImage: 'rootfsImage',
+    socketPath: 'socketPath',
+    logPath: 'logPath',
+    metricsPath: 'metricsPath',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    startedAt: 'startedAt',
+    stoppedAt: 'stoppedAt',
+    templateId: 'templateId'
+  };
+
+  export type FirecrackerVMScalarFieldEnum = (typeof FirecrackerVMScalarFieldEnum)[keyof typeof FirecrackerVMScalarFieldEnum]
+
+
+  export const FirecrackerContainerScalarFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    name: 'name',
+    image: 'image',
+    status: 'status',
+    config: 'config',
+    ports: 'ports',
+    volumes: 'volumes',
+    environment: 'environment',
+    command: 'command',
+    workingDir: 'workingDir',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    startedAt: 'startedAt',
+    stoppedAt: 'stoppedAt'
+  };
+
+  export type FirecrackerContainerScalarFieldEnum = (typeof FirecrackerContainerScalarFieldEnum)[keyof typeof FirecrackerContainerScalarFieldEnum]
+
+
+  export const FirecrackerMetricScalarFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    metricType: 'metricType',
+    value: 'value',
+    unit: 'unit',
+    timestamp: 'timestamp'
+  };
+
+  export type FirecrackerMetricScalarFieldEnum = (typeof FirecrackerMetricScalarFieldEnum)[keyof typeof FirecrackerMetricScalarFieldEnum]
+
+
+  export const FirecrackerSnapshotScalarFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    name: 'name',
+    description: 'description',
+    snapshotPath: 'snapshotPath',
+    memoryPath: 'memoryPath',
+    size: 'size',
+    createdAt: 'createdAt'
+  };
+
+  export type FirecrackerSnapshotScalarFieldEnum = (typeof FirecrackerSnapshotScalarFieldEnum)[keyof typeof FirecrackerSnapshotScalarFieldEnum]
+
+
+  export const FirecrackerTemplateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    category: 'category',
+    kernelImage: 'kernelImage',
+    rootfsImage: 'rootfsImage',
+    config: 'config',
+    resources: 'resources',
+    isPublic: 'isPublic',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FirecrackerTemplateScalarFieldEnum = (typeof FirecrackerTemplateScalarFieldEnum)[keyof typeof FirecrackerTemplateScalarFieldEnum]
+
+
+  export const FirecrackerContainerLogScalarFieldEnum: {
+    id: 'id',
+    containerId: 'containerId',
+    timestamp: 'timestamp',
+    level: 'level',
+    message: 'message',
+    source: 'source'
+  };
+
+  export type FirecrackerContainerLogScalarFieldEnum = (typeof FirecrackerContainerLogScalarFieldEnum)[keyof typeof FirecrackerContainerLogScalarFieldEnum]
 
 
   export const WebVMMetricScalarFieldEnum: {
@@ -40165,6 +47980,77 @@ export namespace Prisma {
   export type WebVMInstanceOrderByRelevanceFieldEnum = (typeof WebVMInstanceOrderByRelevanceFieldEnum)[keyof typeof WebVMInstanceOrderByRelevanceFieldEnum]
 
 
+  export const FirecrackerVMOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    workspaceId: 'workspaceId',
+    vmId: 'vmId',
+    kernelImage: 'kernelImage',
+    rootfsImage: 'rootfsImage',
+    socketPath: 'socketPath',
+    logPath: 'logPath',
+    metricsPath: 'metricsPath',
+    templateId: 'templateId'
+  };
+
+  export type FirecrackerVMOrderByRelevanceFieldEnum = (typeof FirecrackerVMOrderByRelevanceFieldEnum)[keyof typeof FirecrackerVMOrderByRelevanceFieldEnum]
+
+
+  export const FirecrackerContainerOrderByRelevanceFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    name: 'name',
+    image: 'image',
+    command: 'command',
+    workingDir: 'workingDir'
+  };
+
+  export type FirecrackerContainerOrderByRelevanceFieldEnum = (typeof FirecrackerContainerOrderByRelevanceFieldEnum)[keyof typeof FirecrackerContainerOrderByRelevanceFieldEnum]
+
+
+  export const FirecrackerMetricOrderByRelevanceFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    unit: 'unit'
+  };
+
+  export type FirecrackerMetricOrderByRelevanceFieldEnum = (typeof FirecrackerMetricOrderByRelevanceFieldEnum)[keyof typeof FirecrackerMetricOrderByRelevanceFieldEnum]
+
+
+  export const FirecrackerSnapshotOrderByRelevanceFieldEnum: {
+    id: 'id',
+    vmId: 'vmId',
+    name: 'name',
+    description: 'description',
+    snapshotPath: 'snapshotPath',
+    memoryPath: 'memoryPath'
+  };
+
+  export type FirecrackerSnapshotOrderByRelevanceFieldEnum = (typeof FirecrackerSnapshotOrderByRelevanceFieldEnum)[keyof typeof FirecrackerSnapshotOrderByRelevanceFieldEnum]
+
+
+  export const FirecrackerTemplateOrderByRelevanceFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    category: 'category',
+    kernelImage: 'kernelImage',
+    rootfsImage: 'rootfsImage'
+  };
+
+  export type FirecrackerTemplateOrderByRelevanceFieldEnum = (typeof FirecrackerTemplateOrderByRelevanceFieldEnum)[keyof typeof FirecrackerTemplateOrderByRelevanceFieldEnum]
+
+
+  export const FirecrackerContainerLogOrderByRelevanceFieldEnum: {
+    id: 'id',
+    containerId: 'containerId',
+    message: 'message',
+    source: 'source'
+  };
+
+  export type FirecrackerContainerLogOrderByRelevanceFieldEnum = (typeof FirecrackerContainerLogOrderByRelevanceFieldEnum)[keyof typeof FirecrackerContainerLogOrderByRelevanceFieldEnum]
+
+
   export const WebVMMetricOrderByRelevanceFieldEnum: {
     id: 'id',
     instanceId: 'instanceId',
@@ -40464,6 +48350,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'WorkspaceType'
+   */
+  export type EnumWorkspaceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkspaceType'>
+    
+
+
+  /**
+   * Reference to a field of type 'WorkspaceType[]'
+   */
+  export type ListEnumWorkspaceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkspaceType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'WorkspaceStatus'
    */
   export type EnumWorkspaceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WorkspaceStatus'>
@@ -40506,6 +48406,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'FirecrackerStatus'
+   */
+  export type EnumFirecrackerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirecrackerStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'FirecrackerStatus[]'
+   */
+  export type ListEnumFirecrackerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FirecrackerStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ContainerStatus'
+   */
+  export type EnumContainerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ContainerStatus[]'
+   */
+  export type ListEnumContainerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'MetricType'
    */
   export type EnumMetricTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MetricType'>
@@ -40534,13 +48462,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'BigInt'
    */
   export type BigIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'BigInt'>
@@ -40555,16 +48476,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'ContainerStatus'
+   * Reference to a field of type 'Boolean'
    */
-  export type EnumContainerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerStatus'>
-    
-
-
-  /**
-   * Reference to a field of type 'ContainerStatus[]'
-   */
-  export type ListEnumContainerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ContainerStatus[]'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -41362,12 +49276,14 @@ export namespace Prisma {
     name?: StringFilter<"Workspace"> | string
     description?: StringNullableFilter<"Workspace"> | string | null
     projectId?: StringFilter<"Workspace"> | string
+    type?: EnumWorkspaceTypeFilter<"Workspace"> | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFilter<"Workspace"> | $Enums.WorkspaceStatus
     config?: JsonNullableFilter<"Workspace">
     createdAt?: DateTimeFilter<"Workspace"> | Date | string
     updatedAt?: DateTimeFilter<"Workspace"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     instances?: WebVMInstanceListRelationFilter
+    firecrackerVMs?: FirecrackerVMListRelationFilter
     persistence?: XOR<WorkspacePersistenceNullableScalarRelationFilter, WorkspacePersistenceWhereInput> | null
     files?: WorkspaceFileListRelationFilter
     states?: WorkspaceStateListRelationFilter
@@ -41379,12 +49295,14 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     projectId?: SortOrder
+    type?: SortOrder
     status?: SortOrder
     config?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     project?: ProjectOrderByWithRelationInput
     instances?: WebVMInstanceOrderByRelationAggregateInput
+    firecrackerVMs?: FirecrackerVMOrderByRelationAggregateInput
     persistence?: WorkspacePersistenceOrderByWithRelationInput
     files?: WorkspaceFileOrderByRelationAggregateInput
     states?: WorkspaceStateOrderByRelationAggregateInput
@@ -41400,12 +49318,14 @@ export namespace Prisma {
     name?: StringFilter<"Workspace"> | string
     description?: StringNullableFilter<"Workspace"> | string | null
     projectId?: StringFilter<"Workspace"> | string
+    type?: EnumWorkspaceTypeFilter<"Workspace"> | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFilter<"Workspace"> | $Enums.WorkspaceStatus
     config?: JsonNullableFilter<"Workspace">
     createdAt?: DateTimeFilter<"Workspace"> | Date | string
     updatedAt?: DateTimeFilter<"Workspace"> | Date | string
     project?: XOR<ProjectScalarRelationFilter, ProjectWhereInput>
     instances?: WebVMInstanceListRelationFilter
+    firecrackerVMs?: FirecrackerVMListRelationFilter
     persistence?: XOR<WorkspacePersistenceNullableScalarRelationFilter, WorkspacePersistenceWhereInput> | null
     files?: WorkspaceFileListRelationFilter
     states?: WorkspaceStateListRelationFilter
@@ -41417,6 +49337,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrderInput | SortOrder
     projectId?: SortOrder
+    type?: SortOrder
     status?: SortOrder
     config?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -41434,6 +49355,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Workspace"> | string
     description?: StringNullableWithAggregatesFilter<"Workspace"> | string | null
     projectId?: StringWithAggregatesFilter<"Workspace"> | string
+    type?: EnumWorkspaceTypeWithAggregatesFilter<"Workspace"> | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusWithAggregatesFilter<"Workspace"> | $Enums.WorkspaceStatus
     config?: JsonNullableWithAggregatesFilter<"Workspace">
     createdAt?: DateTimeWithAggregatesFilter<"Workspace"> | Date | string
@@ -41548,6 +49470,531 @@ export namespace Prisma {
     startedAt?: DateTimeNullableWithAggregatesFilter<"WebVMInstance"> | Date | string | null
     stoppedAt?: DateTimeNullableWithAggregatesFilter<"WebVMInstance"> | Date | string | null
     templateId?: StringNullableWithAggregatesFilter<"WebVMInstance"> | string | null
+  }
+
+  export type FirecrackerVMWhereInput = {
+    AND?: FirecrackerVMWhereInput | FirecrackerVMWhereInput[]
+    OR?: FirecrackerVMWhereInput[]
+    NOT?: FirecrackerVMWhereInput | FirecrackerVMWhereInput[]
+    id?: StringFilter<"FirecrackerVM"> | string
+    name?: StringFilter<"FirecrackerVM"> | string
+    workspaceId?: StringFilter<"FirecrackerVM"> | string
+    status?: EnumFirecrackerStatusFilter<"FirecrackerVM"> | $Enums.FirecrackerStatus
+    vmId?: StringFilter<"FirecrackerVM"> | string
+    config?: JsonNullableFilter<"FirecrackerVM">
+    resources?: JsonNullableFilter<"FirecrackerVM">
+    networkConfig?: JsonNullableFilter<"FirecrackerVM">
+    kernelImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    rootfsImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    socketPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    logPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    metricsPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    templateId?: StringNullableFilter<"FirecrackerVM"> | string | null
+    workspace?: XOR<WorkspaceScalarRelationFilter, WorkspaceWhereInput>
+    containers?: FirecrackerContainerListRelationFilter
+    metrics?: FirecrackerMetricListRelationFilter
+    snapshots?: FirecrackerSnapshotListRelationFilter
+    template?: XOR<FirecrackerTemplateNullableScalarRelationFilter, FirecrackerTemplateWhereInput> | null
+  }
+
+  export type FirecrackerVMOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    workspaceId?: SortOrder
+    status?: SortOrder
+    vmId?: SortOrder
+    config?: SortOrderInput | SortOrder
+    resources?: SortOrderInput | SortOrder
+    networkConfig?: SortOrderInput | SortOrder
+    kernelImage?: SortOrderInput | SortOrder
+    rootfsImage?: SortOrderInput | SortOrder
+    socketPath?: SortOrderInput | SortOrder
+    logPath?: SortOrderInput | SortOrder
+    metricsPath?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    stoppedAt?: SortOrderInput | SortOrder
+    templateId?: SortOrderInput | SortOrder
+    workspace?: WorkspaceOrderByWithRelationInput
+    containers?: FirecrackerContainerOrderByRelationAggregateInput
+    metrics?: FirecrackerMetricOrderByRelationAggregateInput
+    snapshots?: FirecrackerSnapshotOrderByRelationAggregateInput
+    template?: FirecrackerTemplateOrderByWithRelationInput
+    _relevance?: FirecrackerVMOrderByRelevanceInput
+  }
+
+  export type FirecrackerVMWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    vmId?: string
+    AND?: FirecrackerVMWhereInput | FirecrackerVMWhereInput[]
+    OR?: FirecrackerVMWhereInput[]
+    NOT?: FirecrackerVMWhereInput | FirecrackerVMWhereInput[]
+    name?: StringFilter<"FirecrackerVM"> | string
+    workspaceId?: StringFilter<"FirecrackerVM"> | string
+    status?: EnumFirecrackerStatusFilter<"FirecrackerVM"> | $Enums.FirecrackerStatus
+    config?: JsonNullableFilter<"FirecrackerVM">
+    resources?: JsonNullableFilter<"FirecrackerVM">
+    networkConfig?: JsonNullableFilter<"FirecrackerVM">
+    kernelImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    rootfsImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    socketPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    logPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    metricsPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    templateId?: StringNullableFilter<"FirecrackerVM"> | string | null
+    workspace?: XOR<WorkspaceScalarRelationFilter, WorkspaceWhereInput>
+    containers?: FirecrackerContainerListRelationFilter
+    metrics?: FirecrackerMetricListRelationFilter
+    snapshots?: FirecrackerSnapshotListRelationFilter
+    template?: XOR<FirecrackerTemplateNullableScalarRelationFilter, FirecrackerTemplateWhereInput> | null
+  }, "id" | "vmId">
+
+  export type FirecrackerVMOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    workspaceId?: SortOrder
+    status?: SortOrder
+    vmId?: SortOrder
+    config?: SortOrderInput | SortOrder
+    resources?: SortOrderInput | SortOrder
+    networkConfig?: SortOrderInput | SortOrder
+    kernelImage?: SortOrderInput | SortOrder
+    rootfsImage?: SortOrderInput | SortOrder
+    socketPath?: SortOrderInput | SortOrder
+    logPath?: SortOrderInput | SortOrder
+    metricsPath?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    stoppedAt?: SortOrderInput | SortOrder
+    templateId?: SortOrderInput | SortOrder
+    _count?: FirecrackerVMCountOrderByAggregateInput
+    _max?: FirecrackerVMMaxOrderByAggregateInput
+    _min?: FirecrackerVMMinOrderByAggregateInput
+  }
+
+  export type FirecrackerVMScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerVMScalarWhereWithAggregatesInput | FirecrackerVMScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerVMScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerVMScalarWhereWithAggregatesInput | FirecrackerVMScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerVM"> | string
+    name?: StringWithAggregatesFilter<"FirecrackerVM"> | string
+    workspaceId?: StringWithAggregatesFilter<"FirecrackerVM"> | string
+    status?: EnumFirecrackerStatusWithAggregatesFilter<"FirecrackerVM"> | $Enums.FirecrackerStatus
+    vmId?: StringWithAggregatesFilter<"FirecrackerVM"> | string
+    config?: JsonNullableWithAggregatesFilter<"FirecrackerVM">
+    resources?: JsonNullableWithAggregatesFilter<"FirecrackerVM">
+    networkConfig?: JsonNullableWithAggregatesFilter<"FirecrackerVM">
+    kernelImage?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+    rootfsImage?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+    socketPath?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+    logPath?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+    metricsPath?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"FirecrackerVM"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FirecrackerVM"> | Date | string
+    startedAt?: DateTimeNullableWithAggregatesFilter<"FirecrackerVM"> | Date | string | null
+    stoppedAt?: DateTimeNullableWithAggregatesFilter<"FirecrackerVM"> | Date | string | null
+    templateId?: StringNullableWithAggregatesFilter<"FirecrackerVM"> | string | null
+  }
+
+  export type FirecrackerContainerWhereInput = {
+    AND?: FirecrackerContainerWhereInput | FirecrackerContainerWhereInput[]
+    OR?: FirecrackerContainerWhereInput[]
+    NOT?: FirecrackerContainerWhereInput | FirecrackerContainerWhereInput[]
+    id?: StringFilter<"FirecrackerContainer"> | string
+    vmId?: StringFilter<"FirecrackerContainer"> | string
+    name?: StringFilter<"FirecrackerContainer"> | string
+    image?: StringFilter<"FirecrackerContainer"> | string
+    status?: EnumContainerStatusFilter<"FirecrackerContainer"> | $Enums.ContainerStatus
+    config?: JsonNullableFilter<"FirecrackerContainer">
+    ports?: JsonNullableFilter<"FirecrackerContainer">
+    volumes?: JsonNullableFilter<"FirecrackerContainer">
+    environment?: JsonNullableFilter<"FirecrackerContainer">
+    command?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    workingDir?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+    logs?: FirecrackerContainerLogListRelationFilter
+  }
+
+  export type FirecrackerContainerOrderByWithRelationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    config?: SortOrderInput | SortOrder
+    ports?: SortOrderInput | SortOrder
+    volumes?: SortOrderInput | SortOrder
+    environment?: SortOrderInput | SortOrder
+    command?: SortOrderInput | SortOrder
+    workingDir?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    stoppedAt?: SortOrderInput | SortOrder
+    vm?: FirecrackerVMOrderByWithRelationInput
+    logs?: FirecrackerContainerLogOrderByRelationAggregateInput
+    _relevance?: FirecrackerContainerOrderByRelevanceInput
+  }
+
+  export type FirecrackerContainerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FirecrackerContainerWhereInput | FirecrackerContainerWhereInput[]
+    OR?: FirecrackerContainerWhereInput[]
+    NOT?: FirecrackerContainerWhereInput | FirecrackerContainerWhereInput[]
+    vmId?: StringFilter<"FirecrackerContainer"> | string
+    name?: StringFilter<"FirecrackerContainer"> | string
+    image?: StringFilter<"FirecrackerContainer"> | string
+    status?: EnumContainerStatusFilter<"FirecrackerContainer"> | $Enums.ContainerStatus
+    config?: JsonNullableFilter<"FirecrackerContainer">
+    ports?: JsonNullableFilter<"FirecrackerContainer">
+    volumes?: JsonNullableFilter<"FirecrackerContainer">
+    environment?: JsonNullableFilter<"FirecrackerContainer">
+    command?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    workingDir?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+    logs?: FirecrackerContainerLogListRelationFilter
+  }, "id">
+
+  export type FirecrackerContainerOrderByWithAggregationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    config?: SortOrderInput | SortOrder
+    ports?: SortOrderInput | SortOrder
+    volumes?: SortOrderInput | SortOrder
+    environment?: SortOrderInput | SortOrder
+    command?: SortOrderInput | SortOrder
+    workingDir?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrderInput | SortOrder
+    stoppedAt?: SortOrderInput | SortOrder
+    _count?: FirecrackerContainerCountOrderByAggregateInput
+    _max?: FirecrackerContainerMaxOrderByAggregateInput
+    _min?: FirecrackerContainerMinOrderByAggregateInput
+  }
+
+  export type FirecrackerContainerScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerContainerScalarWhereWithAggregatesInput | FirecrackerContainerScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerContainerScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerContainerScalarWhereWithAggregatesInput | FirecrackerContainerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerContainer"> | string
+    vmId?: StringWithAggregatesFilter<"FirecrackerContainer"> | string
+    name?: StringWithAggregatesFilter<"FirecrackerContainer"> | string
+    image?: StringWithAggregatesFilter<"FirecrackerContainer"> | string
+    status?: EnumContainerStatusWithAggregatesFilter<"FirecrackerContainer"> | $Enums.ContainerStatus
+    config?: JsonNullableWithAggregatesFilter<"FirecrackerContainer">
+    ports?: JsonNullableWithAggregatesFilter<"FirecrackerContainer">
+    volumes?: JsonNullableWithAggregatesFilter<"FirecrackerContainer">
+    environment?: JsonNullableWithAggregatesFilter<"FirecrackerContainer">
+    command?: StringNullableWithAggregatesFilter<"FirecrackerContainer"> | string | null
+    workingDir?: StringNullableWithAggregatesFilter<"FirecrackerContainer"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"FirecrackerContainer"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FirecrackerContainer"> | Date | string
+    startedAt?: DateTimeNullableWithAggregatesFilter<"FirecrackerContainer"> | Date | string | null
+    stoppedAt?: DateTimeNullableWithAggregatesFilter<"FirecrackerContainer"> | Date | string | null
+  }
+
+  export type FirecrackerMetricWhereInput = {
+    AND?: FirecrackerMetricWhereInput | FirecrackerMetricWhereInput[]
+    OR?: FirecrackerMetricWhereInput[]
+    NOT?: FirecrackerMetricWhereInput | FirecrackerMetricWhereInput[]
+    id?: StringFilter<"FirecrackerMetric"> | string
+    vmId?: StringFilter<"FirecrackerMetric"> | string
+    metricType?: EnumMetricTypeFilter<"FirecrackerMetric"> | $Enums.MetricType
+    value?: FloatFilter<"FirecrackerMetric"> | number
+    unit?: StringFilter<"FirecrackerMetric"> | string
+    timestamp?: DateTimeFilter<"FirecrackerMetric"> | Date | string
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+  }
+
+  export type FirecrackerMetricOrderByWithRelationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    metricType?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    timestamp?: SortOrder
+    vm?: FirecrackerVMOrderByWithRelationInput
+    _relevance?: FirecrackerMetricOrderByRelevanceInput
+  }
+
+  export type FirecrackerMetricWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FirecrackerMetricWhereInput | FirecrackerMetricWhereInput[]
+    OR?: FirecrackerMetricWhereInput[]
+    NOT?: FirecrackerMetricWhereInput | FirecrackerMetricWhereInput[]
+    vmId?: StringFilter<"FirecrackerMetric"> | string
+    metricType?: EnumMetricTypeFilter<"FirecrackerMetric"> | $Enums.MetricType
+    value?: FloatFilter<"FirecrackerMetric"> | number
+    unit?: StringFilter<"FirecrackerMetric"> | string
+    timestamp?: DateTimeFilter<"FirecrackerMetric"> | Date | string
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+  }, "id">
+
+  export type FirecrackerMetricOrderByWithAggregationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    metricType?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    timestamp?: SortOrder
+    _count?: FirecrackerMetricCountOrderByAggregateInput
+    _avg?: FirecrackerMetricAvgOrderByAggregateInput
+    _max?: FirecrackerMetricMaxOrderByAggregateInput
+    _min?: FirecrackerMetricMinOrderByAggregateInput
+    _sum?: FirecrackerMetricSumOrderByAggregateInput
+  }
+
+  export type FirecrackerMetricScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerMetricScalarWhereWithAggregatesInput | FirecrackerMetricScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerMetricScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerMetricScalarWhereWithAggregatesInput | FirecrackerMetricScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerMetric"> | string
+    vmId?: StringWithAggregatesFilter<"FirecrackerMetric"> | string
+    metricType?: EnumMetricTypeWithAggregatesFilter<"FirecrackerMetric"> | $Enums.MetricType
+    value?: FloatWithAggregatesFilter<"FirecrackerMetric"> | number
+    unit?: StringWithAggregatesFilter<"FirecrackerMetric"> | string
+    timestamp?: DateTimeWithAggregatesFilter<"FirecrackerMetric"> | Date | string
+  }
+
+  export type FirecrackerSnapshotWhereInput = {
+    AND?: FirecrackerSnapshotWhereInput | FirecrackerSnapshotWhereInput[]
+    OR?: FirecrackerSnapshotWhereInput[]
+    NOT?: FirecrackerSnapshotWhereInput | FirecrackerSnapshotWhereInput[]
+    id?: StringFilter<"FirecrackerSnapshot"> | string
+    vmId?: StringFilter<"FirecrackerSnapshot"> | string
+    name?: StringFilter<"FirecrackerSnapshot"> | string
+    description?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    snapshotPath?: StringFilter<"FirecrackerSnapshot"> | string
+    memoryPath?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    size?: BigIntFilter<"FirecrackerSnapshot"> | bigint | number
+    createdAt?: DateTimeFilter<"FirecrackerSnapshot"> | Date | string
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+  }
+
+  export type FirecrackerSnapshotOrderByWithRelationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    snapshotPath?: SortOrder
+    memoryPath?: SortOrderInput | SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    vm?: FirecrackerVMOrderByWithRelationInput
+    _relevance?: FirecrackerSnapshotOrderByRelevanceInput
+  }
+
+  export type FirecrackerSnapshotWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FirecrackerSnapshotWhereInput | FirecrackerSnapshotWhereInput[]
+    OR?: FirecrackerSnapshotWhereInput[]
+    NOT?: FirecrackerSnapshotWhereInput | FirecrackerSnapshotWhereInput[]
+    vmId?: StringFilter<"FirecrackerSnapshot"> | string
+    name?: StringFilter<"FirecrackerSnapshot"> | string
+    description?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    snapshotPath?: StringFilter<"FirecrackerSnapshot"> | string
+    memoryPath?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    size?: BigIntFilter<"FirecrackerSnapshot"> | bigint | number
+    createdAt?: DateTimeFilter<"FirecrackerSnapshot"> | Date | string
+    vm?: XOR<FirecrackerVMScalarRelationFilter, FirecrackerVMWhereInput>
+  }, "id">
+
+  export type FirecrackerSnapshotOrderByWithAggregationInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    snapshotPath?: SortOrder
+    memoryPath?: SortOrderInput | SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+    _count?: FirecrackerSnapshotCountOrderByAggregateInput
+    _avg?: FirecrackerSnapshotAvgOrderByAggregateInput
+    _max?: FirecrackerSnapshotMaxOrderByAggregateInput
+    _min?: FirecrackerSnapshotMinOrderByAggregateInput
+    _sum?: FirecrackerSnapshotSumOrderByAggregateInput
+  }
+
+  export type FirecrackerSnapshotScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerSnapshotScalarWhereWithAggregatesInput | FirecrackerSnapshotScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerSnapshotScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerSnapshotScalarWhereWithAggregatesInput | FirecrackerSnapshotScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerSnapshot"> | string
+    vmId?: StringWithAggregatesFilter<"FirecrackerSnapshot"> | string
+    name?: StringWithAggregatesFilter<"FirecrackerSnapshot"> | string
+    description?: StringNullableWithAggregatesFilter<"FirecrackerSnapshot"> | string | null
+    snapshotPath?: StringWithAggregatesFilter<"FirecrackerSnapshot"> | string
+    memoryPath?: StringNullableWithAggregatesFilter<"FirecrackerSnapshot"> | string | null
+    size?: BigIntWithAggregatesFilter<"FirecrackerSnapshot"> | bigint | number
+    createdAt?: DateTimeWithAggregatesFilter<"FirecrackerSnapshot"> | Date | string
+  }
+
+  export type FirecrackerTemplateWhereInput = {
+    AND?: FirecrackerTemplateWhereInput | FirecrackerTemplateWhereInput[]
+    OR?: FirecrackerTemplateWhereInput[]
+    NOT?: FirecrackerTemplateWhereInput | FirecrackerTemplateWhereInput[]
+    id?: StringFilter<"FirecrackerTemplate"> | string
+    name?: StringFilter<"FirecrackerTemplate"> | string
+    description?: StringNullableFilter<"FirecrackerTemplate"> | string | null
+    category?: StringFilter<"FirecrackerTemplate"> | string
+    kernelImage?: StringFilter<"FirecrackerTemplate"> | string
+    rootfsImage?: StringFilter<"FirecrackerTemplate"> | string
+    config?: JsonFilter<"FirecrackerTemplate">
+    resources?: JsonFilter<"FirecrackerTemplate">
+    isPublic?: BoolFilter<"FirecrackerTemplate"> | boolean
+    createdAt?: DateTimeFilter<"FirecrackerTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerTemplate"> | Date | string
+    vms?: FirecrackerVMListRelationFilter
+  }
+
+  export type FirecrackerTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    category?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    config?: SortOrder
+    resources?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    vms?: FirecrackerVMOrderByRelationAggregateInput
+    _relevance?: FirecrackerTemplateOrderByRelevanceInput
+  }
+
+  export type FirecrackerTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FirecrackerTemplateWhereInput | FirecrackerTemplateWhereInput[]
+    OR?: FirecrackerTemplateWhereInput[]
+    NOT?: FirecrackerTemplateWhereInput | FirecrackerTemplateWhereInput[]
+    name?: StringFilter<"FirecrackerTemplate"> | string
+    description?: StringNullableFilter<"FirecrackerTemplate"> | string | null
+    category?: StringFilter<"FirecrackerTemplate"> | string
+    kernelImage?: StringFilter<"FirecrackerTemplate"> | string
+    rootfsImage?: StringFilter<"FirecrackerTemplate"> | string
+    config?: JsonFilter<"FirecrackerTemplate">
+    resources?: JsonFilter<"FirecrackerTemplate">
+    isPublic?: BoolFilter<"FirecrackerTemplate"> | boolean
+    createdAt?: DateTimeFilter<"FirecrackerTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerTemplate"> | Date | string
+    vms?: FirecrackerVMListRelationFilter
+  }, "id">
+
+  export type FirecrackerTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    category?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    config?: SortOrder
+    resources?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FirecrackerTemplateCountOrderByAggregateInput
+    _max?: FirecrackerTemplateMaxOrderByAggregateInput
+    _min?: FirecrackerTemplateMinOrderByAggregateInput
+  }
+
+  export type FirecrackerTemplateScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerTemplateScalarWhereWithAggregatesInput | FirecrackerTemplateScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerTemplateScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerTemplateScalarWhereWithAggregatesInput | FirecrackerTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerTemplate"> | string
+    name?: StringWithAggregatesFilter<"FirecrackerTemplate"> | string
+    description?: StringNullableWithAggregatesFilter<"FirecrackerTemplate"> | string | null
+    category?: StringWithAggregatesFilter<"FirecrackerTemplate"> | string
+    kernelImage?: StringWithAggregatesFilter<"FirecrackerTemplate"> | string
+    rootfsImage?: StringWithAggregatesFilter<"FirecrackerTemplate"> | string
+    config?: JsonWithAggregatesFilter<"FirecrackerTemplate">
+    resources?: JsonWithAggregatesFilter<"FirecrackerTemplate">
+    isPublic?: BoolWithAggregatesFilter<"FirecrackerTemplate"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"FirecrackerTemplate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"FirecrackerTemplate"> | Date | string
+  }
+
+  export type FirecrackerContainerLogWhereInput = {
+    AND?: FirecrackerContainerLogWhereInput | FirecrackerContainerLogWhereInput[]
+    OR?: FirecrackerContainerLogWhereInput[]
+    NOT?: FirecrackerContainerLogWhereInput | FirecrackerContainerLogWhereInput[]
+    id?: StringFilter<"FirecrackerContainerLog"> | string
+    containerId?: StringFilter<"FirecrackerContainerLog"> | string
+    timestamp?: DateTimeFilter<"FirecrackerContainerLog"> | Date | string
+    level?: EnumLogLevelFilter<"FirecrackerContainerLog"> | $Enums.LogLevel
+    message?: StringFilter<"FirecrackerContainerLog"> | string
+    source?: StringNullableFilter<"FirecrackerContainerLog"> | string | null
+    container?: XOR<FirecrackerContainerScalarRelationFilter, FirecrackerContainerWhereInput>
+  }
+
+  export type FirecrackerContainerLogOrderByWithRelationInput = {
+    id?: SortOrder
+    containerId?: SortOrder
+    timestamp?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    source?: SortOrderInput | SortOrder
+    container?: FirecrackerContainerOrderByWithRelationInput
+    _relevance?: FirecrackerContainerLogOrderByRelevanceInput
+  }
+
+  export type FirecrackerContainerLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: FirecrackerContainerLogWhereInput | FirecrackerContainerLogWhereInput[]
+    OR?: FirecrackerContainerLogWhereInput[]
+    NOT?: FirecrackerContainerLogWhereInput | FirecrackerContainerLogWhereInput[]
+    containerId?: StringFilter<"FirecrackerContainerLog"> | string
+    timestamp?: DateTimeFilter<"FirecrackerContainerLog"> | Date | string
+    level?: EnumLogLevelFilter<"FirecrackerContainerLog"> | $Enums.LogLevel
+    message?: StringFilter<"FirecrackerContainerLog"> | string
+    source?: StringNullableFilter<"FirecrackerContainerLog"> | string | null
+    container?: XOR<FirecrackerContainerScalarRelationFilter, FirecrackerContainerWhereInput>
+  }, "id">
+
+  export type FirecrackerContainerLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    containerId?: SortOrder
+    timestamp?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    source?: SortOrderInput | SortOrder
+    _count?: FirecrackerContainerLogCountOrderByAggregateInput
+    _max?: FirecrackerContainerLogMaxOrderByAggregateInput
+    _min?: FirecrackerContainerLogMinOrderByAggregateInput
+  }
+
+  export type FirecrackerContainerLogScalarWhereWithAggregatesInput = {
+    AND?: FirecrackerContainerLogScalarWhereWithAggregatesInput | FirecrackerContainerLogScalarWhereWithAggregatesInput[]
+    OR?: FirecrackerContainerLogScalarWhereWithAggregatesInput[]
+    NOT?: FirecrackerContainerLogScalarWhereWithAggregatesInput | FirecrackerContainerLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"FirecrackerContainerLog"> | string
+    containerId?: StringWithAggregatesFilter<"FirecrackerContainerLog"> | string
+    timestamp?: DateTimeWithAggregatesFilter<"FirecrackerContainerLog"> | Date | string
+    level?: EnumLogLevelWithAggregatesFilter<"FirecrackerContainerLog"> | $Enums.LogLevel
+    message?: StringWithAggregatesFilter<"FirecrackerContainerLog"> | string
+    source?: StringNullableWithAggregatesFilter<"FirecrackerContainerLog"> | string | null
   }
 
   export type WebVMMetricWhereInput = {
@@ -43841,12 +52288,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
@@ -43858,11 +52307,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -43873,12 +52324,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
@@ -43890,11 +52343,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -43906,6 +52361,7 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
@@ -43916,6 +52372,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -43927,6 +52384,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -44056,6 +52514,594 @@ export namespace Prisma {
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     templateId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerVMCreateInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    workspace: WorkspaceCreateNestedOneWithoutFirecrackerVMsInput
+    containers?: FirecrackerContainerCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotCreateNestedManyWithoutVmInput
+    template?: FirecrackerTemplateCreateNestedOneWithoutVmsInput
+  }
+
+  export type FirecrackerVMUncheckedCreateInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+    containers?: FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workspace?: WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput
+    containers?: FirecrackerContainerUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUpdateManyWithoutVmNestedInput
+    template?: FirecrackerTemplateUpdateOneWithoutVmsNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    containers?: FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMCreateManyInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+  }
+
+  export type FirecrackerVMUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FirecrackerVMUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerContainerCreateInput = {
+    id?: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    vm: FirecrackerVMCreateNestedOneWithoutContainersInput
+    logs?: FirecrackerContainerLogCreateNestedManyWithoutContainerInput
+  }
+
+  export type FirecrackerContainerUncheckedCreateInput = {
+    id?: string
+    vmId: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    logs?: FirecrackerContainerLogUncheckedCreateNestedManyWithoutContainerInput
+  }
+
+  export type FirecrackerContainerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vm?: FirecrackerVMUpdateOneRequiredWithoutContainersNestedInput
+    logs?: FirecrackerContainerLogUpdateManyWithoutContainerNestedInput
+  }
+
+  export type FirecrackerContainerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logs?: FirecrackerContainerLogUncheckedUpdateManyWithoutContainerNestedInput
+  }
+
+  export type FirecrackerContainerCreateManyInput = {
+    id?: string
+    vmId: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+  }
+
+  export type FirecrackerContainerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FirecrackerContainerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FirecrackerMetricCreateInput = {
+    id?: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+    vm: FirecrackerVMCreateNestedOneWithoutMetricsInput
+  }
+
+  export type FirecrackerMetricUncheckedCreateInput = {
+    id?: string
+    vmId: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+  }
+
+  export type FirecrackerMetricUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    vm?: FirecrackerVMUpdateOneRequiredWithoutMetricsNestedInput
+  }
+
+  export type FirecrackerMetricUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerMetricCreateManyInput = {
+    id?: string
+    vmId: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+  }
+
+  export type FirecrackerMetricUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerMetricUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+    vm: FirecrackerVMCreateNestedOneWithoutSnapshotsInput
+  }
+
+  export type FirecrackerSnapshotUncheckedCreateInput = {
+    id?: string
+    vmId: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type FirecrackerSnapshotUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vm?: FirecrackerVMUpdateOneRequiredWithoutSnapshotsNestedInput
+  }
+
+  export type FirecrackerSnapshotUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotCreateManyInput = {
+    id?: string
+    vmId: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type FirecrackerSnapshotUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerTemplateCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    category?: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonNullValueInput | InputJsonValue
+    resources: JsonNullValueInput | InputJsonValue
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    vms?: FirecrackerVMCreateNestedManyWithoutTemplateInput
+  }
+
+  export type FirecrackerTemplateUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    category?: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonNullValueInput | InputJsonValue
+    resources: JsonNullValueInput | InputJsonValue
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    vms?: FirecrackerVMUncheckedCreateNestedManyWithoutTemplateInput
+  }
+
+  export type FirecrackerTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vms?: FirecrackerVMUpdateManyWithoutTemplateNestedInput
+  }
+
+  export type FirecrackerTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vms?: FirecrackerVMUncheckedUpdateManyWithoutTemplateNestedInput
+  }
+
+  export type FirecrackerTemplateCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    category?: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonNullValueInput | InputJsonValue
+    resources: JsonNullValueInput | InputJsonValue
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FirecrackerTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerContainerLogCreateInput = {
+    id?: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+    container: FirecrackerContainerCreateNestedOneWithoutLogsInput
+  }
+
+  export type FirecrackerContainerLogUncheckedCreateInput = {
+    id?: string
+    containerId: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+  }
+
+  export type FirecrackerContainerLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    container?: FirecrackerContainerUpdateOneRequiredWithoutLogsNestedInput
+  }
+
+  export type FirecrackerContainerLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    containerId?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerContainerLogCreateManyInput = {
+    id?: string
+    containerId: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+  }
+
+  export type FirecrackerContainerLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerContainerLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    containerId?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type WebVMMetricCreateInput = {
@@ -46490,6 +55536,13 @@ export namespace Prisma {
     _max?: NestedEnumTaskPriorityFilter<$PrismaModel>
   }
 
+  export type EnumWorkspaceTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkspaceType | EnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkspaceTypeFilter<$PrismaModel> | $Enums.WorkspaceType
+  }
+
   export type EnumWorkspaceStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.WorkspaceStatus | EnumWorkspaceStatusFieldRefInput<$PrismaModel>
     in?: $Enums.WorkspaceStatus[] | ListEnumWorkspaceStatusFieldRefInput<$PrismaModel>
@@ -46526,6 +55579,12 @@ export namespace Prisma {
     none?: WebVMInstanceWhereInput
   }
 
+  export type FirecrackerVMListRelationFilter = {
+    every?: FirecrackerVMWhereInput
+    some?: FirecrackerVMWhereInput
+    none?: FirecrackerVMWhereInput
+  }
+
   export type WorkspacePersistenceNullableScalarRelationFilter = {
     is?: WorkspacePersistenceWhereInput | null
     isNot?: WorkspacePersistenceWhereInput | null
@@ -46553,6 +55612,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type FirecrackerVMOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type WorkspaceFileOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -46576,6 +55639,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     projectId?: SortOrder
+    type?: SortOrder
     status?: SortOrder
     config?: SortOrder
     createdAt?: SortOrder
@@ -46587,6 +55651,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     projectId?: SortOrder
+    type?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -46597,9 +55662,20 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     projectId?: SortOrder
+    type?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type EnumWorkspaceTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkspaceType | EnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkspaceTypeWithAggregatesFilter<$PrismaModel> | $Enums.WorkspaceType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkspaceTypeFilter<$PrismaModel>
+    _max?: NestedEnumWorkspaceTypeFilter<$PrismaModel>
   }
 
   export type EnumWorkspaceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -46736,6 +55812,205 @@ export namespace Prisma {
     _max?: NestedEnumWebVMStatusFilter<$PrismaModel>
   }
 
+  export type EnumFirecrackerStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FirecrackerStatus | EnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFirecrackerStatusFilter<$PrismaModel> | $Enums.FirecrackerStatus
+  }
+
+  export type FirecrackerContainerListRelationFilter = {
+    every?: FirecrackerContainerWhereInput
+    some?: FirecrackerContainerWhereInput
+    none?: FirecrackerContainerWhereInput
+  }
+
+  export type FirecrackerMetricListRelationFilter = {
+    every?: FirecrackerMetricWhereInput
+    some?: FirecrackerMetricWhereInput
+    none?: FirecrackerMetricWhereInput
+  }
+
+  export type FirecrackerSnapshotListRelationFilter = {
+    every?: FirecrackerSnapshotWhereInput
+    some?: FirecrackerSnapshotWhereInput
+    none?: FirecrackerSnapshotWhereInput
+  }
+
+  export type FirecrackerTemplateNullableScalarRelationFilter = {
+    is?: FirecrackerTemplateWhereInput | null
+    isNot?: FirecrackerTemplateWhereInput | null
+  }
+
+  export type FirecrackerContainerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FirecrackerMetricOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FirecrackerSnapshotOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FirecrackerVMOrderByRelevanceInput = {
+    fields: FirecrackerVMOrderByRelevanceFieldEnum | FirecrackerVMOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerVMCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    workspaceId?: SortOrder
+    status?: SortOrder
+    vmId?: SortOrder
+    config?: SortOrder
+    resources?: SortOrder
+    networkConfig?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    socketPath?: SortOrder
+    logPath?: SortOrder
+    metricsPath?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type FirecrackerVMMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    workspaceId?: SortOrder
+    status?: SortOrder
+    vmId?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    socketPath?: SortOrder
+    logPath?: SortOrder
+    metricsPath?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type FirecrackerVMMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    workspaceId?: SortOrder
+    status?: SortOrder
+    vmId?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    socketPath?: SortOrder
+    logPath?: SortOrder
+    metricsPath?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+    templateId?: SortOrder
+  }
+
+  export type EnumFirecrackerStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FirecrackerStatus | EnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFirecrackerStatusWithAggregatesFilter<$PrismaModel> | $Enums.FirecrackerStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFirecrackerStatusFilter<$PrismaModel>
+    _max?: NestedEnumFirecrackerStatusFilter<$PrismaModel>
+  }
+
+  export type EnumContainerStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerStatusFilter<$PrismaModel> | $Enums.ContainerStatus
+  }
+
+  export type FirecrackerVMScalarRelationFilter = {
+    is?: FirecrackerVMWhereInput
+    isNot?: FirecrackerVMWhereInput
+  }
+
+  export type FirecrackerContainerLogListRelationFilter = {
+    every?: FirecrackerContainerLogWhereInput
+    some?: FirecrackerContainerLogWhereInput
+    none?: FirecrackerContainerLogWhereInput
+  }
+
+  export type FirecrackerContainerLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FirecrackerContainerOrderByRelevanceInput = {
+    fields: FirecrackerContainerOrderByRelevanceFieldEnum | FirecrackerContainerOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerContainerCountOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    config?: SortOrder
+    ports?: SortOrder
+    volumes?: SortOrder
+    environment?: SortOrder
+    command?: SortOrder
+    workingDir?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+  }
+
+  export type FirecrackerContainerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    command?: SortOrder
+    workingDir?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+  }
+
+  export type FirecrackerContainerMinOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    image?: SortOrder
+    status?: SortOrder
+    command?: SortOrder
+    workingDir?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    startedAt?: SortOrder
+    stoppedAt?: SortOrder
+  }
+
+  export type EnumContainerStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContainerStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContainerStatusFilter<$PrismaModel>
+    _max?: NestedEnumContainerStatusFilter<$PrismaModel>
+  }
+
   export type EnumMetricTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.MetricType | EnumMetricTypeFieldRefInput<$PrismaModel>
     in?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
@@ -46752,6 +56027,308 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type FirecrackerMetricOrderByRelevanceInput = {
+    fields: FirecrackerMetricOrderByRelevanceFieldEnum | FirecrackerMetricOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerMetricCountOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    metricType?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FirecrackerMetricAvgOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type FirecrackerMetricMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    metricType?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FirecrackerMetricMinOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    metricType?: SortOrder
+    value?: SortOrder
+    unit?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type FirecrackerMetricSumOrderByAggregateInput = {
+    value?: SortOrder
+  }
+
+  export type EnumMetricTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MetricType | EnumMetricTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumMetricTypeWithAggregatesFilter<$PrismaModel> | $Enums.MetricType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMetricTypeFilter<$PrismaModel>
+    _max?: NestedEnumMetricTypeFilter<$PrismaModel>
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type BigIntFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
+  }
+
+  export type FirecrackerSnapshotOrderByRelevanceInput = {
+    fields: FirecrackerSnapshotOrderByRelevanceFieldEnum | FirecrackerSnapshotOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerSnapshotCountOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    snapshotPath?: SortOrder
+    memoryPath?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FirecrackerSnapshotAvgOrderByAggregateInput = {
+    size?: SortOrder
+  }
+
+  export type FirecrackerSnapshotMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    snapshotPath?: SortOrder
+    memoryPath?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FirecrackerSnapshotMinOrderByAggregateInput = {
+    id?: SortOrder
+    vmId?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    snapshotPath?: SortOrder
+    memoryPath?: SortOrder
+    size?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FirecrackerSnapshotSumOrderByAggregateInput = {
+    size?: SortOrder
+  }
+
+  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedBigIntFilter<$PrismaModel>
+    _min?: NestedBigIntFilter<$PrismaModel>
+    _max?: NestedBigIntFilter<$PrismaModel>
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type FirecrackerTemplateOrderByRelevanceInput = {
+    fields: FirecrackerTemplateOrderByRelevanceFieldEnum | FirecrackerTemplateOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    config?: SortOrder
+    resources?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FirecrackerTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FirecrackerTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    kernelImage?: SortOrder
+    rootfsImage?: SortOrder
+    isPublic?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type EnumLogLevelFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelFilter<$PrismaModel> | $Enums.LogLevel
+  }
+
+  export type FirecrackerContainerScalarRelationFilter = {
+    is?: FirecrackerContainerWhereInput
+    isNot?: FirecrackerContainerWhereInput
+  }
+
+  export type FirecrackerContainerLogOrderByRelevanceInput = {
+    fields: FirecrackerContainerLogOrderByRelevanceFieldEnum | FirecrackerContainerLogOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type FirecrackerContainerLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    containerId?: SortOrder
+    timestamp?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    source?: SortOrder
+  }
+
+  export type FirecrackerContainerLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    containerId?: SortOrder
+    timestamp?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    source?: SortOrder
+  }
+
+  export type FirecrackerContainerLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    containerId?: SortOrder
+    timestamp?: SortOrder
+    level?: SortOrder
+    message?: SortOrder
+    source?: SortOrder
+  }
+
+  export type EnumLogLevelWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
+    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
+    not?: NestedEnumLogLevelWithAggregatesFilter<$PrismaModel> | $Enums.LogLevel
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumLogLevelFilter<$PrismaModel>
+    _max?: NestedEnumLogLevelFilter<$PrismaModel>
   }
 
   export type WebVMInstanceScalarRelationFilter = {
@@ -46798,48 +56375,6 @@ export namespace Prisma {
 
   export type WebVMMetricSumOrderByAggregateInput = {
     value?: SortOrder
-  }
-
-  export type EnumMetricTypeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.MetricType | EnumMetricTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumMetricTypeWithAggregatesFilter<$PrismaModel> | $Enums.MetricType
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumMetricTypeFilter<$PrismaModel>
-    _max?: NestedEnumMetricTypeFilter<$PrismaModel>
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type BigIntFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntFilter<$PrismaModel> | bigint | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -46923,30 +56458,6 @@ export namespace Prisma {
   export type StorageBucketSumOrderByAggregateInput = {
     size?: SortOrder
     objectCount?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntWithAggregatesFilter<$PrismaModel> | bigint | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedBigIntFilter<$PrismaModel>
-    _min?: NestedBigIntFilter<$PrismaModel>
-    _max?: NestedBigIntFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -47068,13 +56579,6 @@ export namespace Prisma {
     quota?: SortOrder
   }
 
-  export type EnumContainerStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContainerStatusFilter<$PrismaModel> | $Enums.ContainerStatus
-  }
-
   export type ContainerStatsListRelationFilter = {
     every?: ContainerStatsWhereInput
     some?: ContainerStatsWhereInput
@@ -47143,16 +56647,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     startedAt?: SortOrder
     stoppedAt?: SortOrder
-  }
-
-  export type EnumContainerStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContainerStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContainerStatusFilter<$PrismaModel>
-    _max?: NestedEnumContainerStatusFilter<$PrismaModel>
   }
 
   export type ContainerScalarRelationFilter = {
@@ -47225,13 +56719,6 @@ export namespace Prisma {
     blockWrite?: SortOrder
   }
 
-  export type EnumLogLevelFilter<$PrismaModel = never> = {
-    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumLogLevelFilter<$PrismaModel> | $Enums.LogLevel
-  }
-
   export type ContainerLogOrderByRelevanceInput = {
     fields: ContainerLogOrderByRelevanceFieldEnum | ContainerLogOrderByRelevanceFieldEnum[]
     sort: SortOrder
@@ -47260,16 +56747,6 @@ export namespace Prisma {
     message?: SortOrder
     level?: SortOrder
     timestamp?: SortOrder
-  }
-
-  export type EnumLogLevelWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.LogLevel | EnumLogLevelFieldRefInput<$PrismaModel>
-    in?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
-    notIn?: $Enums.LogLevel[] | ListEnumLogLevelFieldRefInput<$PrismaModel>
-    not?: NestedEnumLogLevelWithAggregatesFilter<$PrismaModel> | $Enums.LogLevel
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumLogLevelFilter<$PrismaModel>
-    _max?: NestedEnumLogLevelFilter<$PrismaModel>
   }
 
   export type EnumHealthStatusFilter<$PrismaModel = never> = {
@@ -47720,29 +57197,6 @@ export namespace Prisma {
     _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
 
   export type WorkspaceFileNullableScalarRelationFilter = {
     is?: WorkspaceFileWhereInput | null
@@ -47837,32 +57291,6 @@ export namespace Prisma {
   export type WorkspaceFileSumOrderByAggregateInput = {
     size?: SortOrder
     version?: SortOrder
-  }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
   }
 
   export type WorkspaceFileScalarRelationFilter = {
@@ -48674,6 +58102,13 @@ export namespace Prisma {
     connect?: WebVMInstanceWhereUniqueInput | WebVMInstanceWhereUniqueInput[]
   }
 
+  export type FirecrackerVMCreateNestedManyWithoutWorkspaceInput = {
+    create?: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput> | FirecrackerVMCreateWithoutWorkspaceInput[] | FirecrackerVMUncheckedCreateWithoutWorkspaceInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutWorkspaceInput | FirecrackerVMCreateOrConnectWithoutWorkspaceInput[]
+    createMany?: FirecrackerVMCreateManyWorkspaceInputEnvelope
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+  }
+
   export type WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput = {
     create?: XOR<WorkspacePersistenceCreateWithoutWorkspaceInput, WorkspacePersistenceUncheckedCreateWithoutWorkspaceInput>
     connectOrCreate?: WorkspacePersistenceCreateOrConnectWithoutWorkspaceInput
@@ -48708,6 +58143,13 @@ export namespace Prisma {
     connect?: WebVMInstanceWhereUniqueInput | WebVMInstanceWhereUniqueInput[]
   }
 
+  export type FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput = {
+    create?: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput> | FirecrackerVMCreateWithoutWorkspaceInput[] | FirecrackerVMUncheckedCreateWithoutWorkspaceInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutWorkspaceInput | FirecrackerVMCreateOrConnectWithoutWorkspaceInput[]
+    createMany?: FirecrackerVMCreateManyWorkspaceInputEnvelope
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+  }
+
   export type WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput = {
     create?: XOR<WorkspacePersistenceCreateWithoutWorkspaceInput, WorkspacePersistenceUncheckedCreateWithoutWorkspaceInput>
     connectOrCreate?: WorkspacePersistenceCreateOrConnectWithoutWorkspaceInput
@@ -48735,6 +58177,10 @@ export namespace Prisma {
     connect?: WorkspaceSyncWhereUniqueInput | WorkspaceSyncWhereUniqueInput[]
   }
 
+  export type EnumWorkspaceTypeFieldUpdateOperationsInput = {
+    set?: $Enums.WorkspaceType
+  }
+
   export type EnumWorkspaceStatusFieldUpdateOperationsInput = {
     set?: $Enums.WorkspaceStatus
   }
@@ -48759,6 +58205,20 @@ export namespace Prisma {
     update?: WebVMInstanceUpdateWithWhereUniqueWithoutWorkspaceInput | WebVMInstanceUpdateWithWhereUniqueWithoutWorkspaceInput[]
     updateMany?: WebVMInstanceUpdateManyWithWhereWithoutWorkspaceInput | WebVMInstanceUpdateManyWithWhereWithoutWorkspaceInput[]
     deleteMany?: WebVMInstanceScalarWhereInput | WebVMInstanceScalarWhereInput[]
+  }
+
+  export type FirecrackerVMUpdateManyWithoutWorkspaceNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput> | FirecrackerVMCreateWithoutWorkspaceInput[] | FirecrackerVMUncheckedCreateWithoutWorkspaceInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutWorkspaceInput | FirecrackerVMCreateOrConnectWithoutWorkspaceInput[]
+    upsert?: FirecrackerVMUpsertWithWhereUniqueWithoutWorkspaceInput | FirecrackerVMUpsertWithWhereUniqueWithoutWorkspaceInput[]
+    createMany?: FirecrackerVMCreateManyWorkspaceInputEnvelope
+    set?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    disconnect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    delete?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    update?: FirecrackerVMUpdateWithWhereUniqueWithoutWorkspaceInput | FirecrackerVMUpdateWithWhereUniqueWithoutWorkspaceInput[]
+    updateMany?: FirecrackerVMUpdateManyWithWhereWithoutWorkspaceInput | FirecrackerVMUpdateManyWithWhereWithoutWorkspaceInput[]
+    deleteMany?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
   }
 
   export type WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput = {
@@ -48825,6 +58285,20 @@ export namespace Prisma {
     update?: WebVMInstanceUpdateWithWhereUniqueWithoutWorkspaceInput | WebVMInstanceUpdateWithWhereUniqueWithoutWorkspaceInput[]
     updateMany?: WebVMInstanceUpdateManyWithWhereWithoutWorkspaceInput | WebVMInstanceUpdateManyWithWhereWithoutWorkspaceInput[]
     deleteMany?: WebVMInstanceScalarWhereInput | WebVMInstanceScalarWhereInput[]
+  }
+
+  export type FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput> | FirecrackerVMCreateWithoutWorkspaceInput[] | FirecrackerVMUncheckedCreateWithoutWorkspaceInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutWorkspaceInput | FirecrackerVMCreateOrConnectWithoutWorkspaceInput[]
+    upsert?: FirecrackerVMUpsertWithWhereUniqueWithoutWorkspaceInput | FirecrackerVMUpsertWithWhereUniqueWithoutWorkspaceInput[]
+    createMany?: FirecrackerVMCreateManyWorkspaceInputEnvelope
+    set?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    disconnect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    delete?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    update?: FirecrackerVMUpdateWithWhereUniqueWithoutWorkspaceInput | FirecrackerVMUpdateWithWhereUniqueWithoutWorkspaceInput[]
+    updateMany?: FirecrackerVMUpdateManyWithWhereWithoutWorkspaceInput | FirecrackerVMUpdateManyWithWhereWithoutWorkspaceInput[]
+    deleteMany?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
   }
 
   export type WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput = {
@@ -48997,10 +58471,230 @@ export namespace Prisma {
     deleteMany?: WebVMSnapshotScalarWhereInput | WebVMSnapshotScalarWhereInput[]
   }
 
-  export type WebVMInstanceCreateNestedOneWithoutMetricsInput = {
-    create?: XOR<WebVMInstanceCreateWithoutMetricsInput, WebVMInstanceUncheckedCreateWithoutMetricsInput>
-    connectOrCreate?: WebVMInstanceCreateOrConnectWithoutMetricsInput
-    connect?: WebVMInstanceWhereUniqueInput
+  export type WorkspaceCreateNestedOneWithoutFirecrackerVMsInput = {
+    create?: XOR<WorkspaceCreateWithoutFirecrackerVMsInput, WorkspaceUncheckedCreateWithoutFirecrackerVMsInput>
+    connectOrCreate?: WorkspaceCreateOrConnectWithoutFirecrackerVMsInput
+    connect?: WorkspaceWhereUniqueInput
+  }
+
+  export type FirecrackerContainerCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput> | FirecrackerContainerCreateWithoutVmInput[] | FirecrackerContainerUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutVmInput | FirecrackerContainerCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerContainerCreateManyVmInputEnvelope
+    connect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+  }
+
+  export type FirecrackerMetricCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput> | FirecrackerMetricCreateWithoutVmInput[] | FirecrackerMetricUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerMetricCreateOrConnectWithoutVmInput | FirecrackerMetricCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerMetricCreateManyVmInputEnvelope
+    connect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+  }
+
+  export type FirecrackerSnapshotCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput> | FirecrackerSnapshotCreateWithoutVmInput[] | FirecrackerSnapshotUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerSnapshotCreateOrConnectWithoutVmInput | FirecrackerSnapshotCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerSnapshotCreateManyVmInputEnvelope
+    connect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+  }
+
+  export type FirecrackerTemplateCreateNestedOneWithoutVmsInput = {
+    create?: XOR<FirecrackerTemplateCreateWithoutVmsInput, FirecrackerTemplateUncheckedCreateWithoutVmsInput>
+    connectOrCreate?: FirecrackerTemplateCreateOrConnectWithoutVmsInput
+    connect?: FirecrackerTemplateWhereUniqueInput
+  }
+
+  export type FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput> | FirecrackerContainerCreateWithoutVmInput[] | FirecrackerContainerUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutVmInput | FirecrackerContainerCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerContainerCreateManyVmInputEnvelope
+    connect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+  }
+
+  export type FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput> | FirecrackerMetricCreateWithoutVmInput[] | FirecrackerMetricUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerMetricCreateOrConnectWithoutVmInput | FirecrackerMetricCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerMetricCreateManyVmInputEnvelope
+    connect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+  }
+
+  export type FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput = {
+    create?: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput> | FirecrackerSnapshotCreateWithoutVmInput[] | FirecrackerSnapshotUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerSnapshotCreateOrConnectWithoutVmInput | FirecrackerSnapshotCreateOrConnectWithoutVmInput[]
+    createMany?: FirecrackerSnapshotCreateManyVmInputEnvelope
+    connect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+  }
+
+  export type EnumFirecrackerStatusFieldUpdateOperationsInput = {
+    set?: $Enums.FirecrackerStatus
+  }
+
+  export type WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput = {
+    create?: XOR<WorkspaceCreateWithoutFirecrackerVMsInput, WorkspaceUncheckedCreateWithoutFirecrackerVMsInput>
+    connectOrCreate?: WorkspaceCreateOrConnectWithoutFirecrackerVMsInput
+    upsert?: WorkspaceUpsertWithoutFirecrackerVMsInput
+    connect?: WorkspaceWhereUniqueInput
+    update?: XOR<XOR<WorkspaceUpdateToOneWithWhereWithoutFirecrackerVMsInput, WorkspaceUpdateWithoutFirecrackerVMsInput>, WorkspaceUncheckedUpdateWithoutFirecrackerVMsInput>
+  }
+
+  export type FirecrackerContainerUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput> | FirecrackerContainerCreateWithoutVmInput[] | FirecrackerContainerUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutVmInput | FirecrackerContainerCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerContainerUpsertWithWhereUniqueWithoutVmInput | FirecrackerContainerUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerContainerCreateManyVmInputEnvelope
+    set?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    disconnect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    delete?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    connect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    update?: FirecrackerContainerUpdateWithWhereUniqueWithoutVmInput | FirecrackerContainerUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerContainerUpdateManyWithWhereWithoutVmInput | FirecrackerContainerUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerContainerScalarWhereInput | FirecrackerContainerScalarWhereInput[]
+  }
+
+  export type FirecrackerMetricUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput> | FirecrackerMetricCreateWithoutVmInput[] | FirecrackerMetricUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerMetricCreateOrConnectWithoutVmInput | FirecrackerMetricCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerMetricUpsertWithWhereUniqueWithoutVmInput | FirecrackerMetricUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerMetricCreateManyVmInputEnvelope
+    set?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    disconnect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    delete?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    connect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    update?: FirecrackerMetricUpdateWithWhereUniqueWithoutVmInput | FirecrackerMetricUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerMetricUpdateManyWithWhereWithoutVmInput | FirecrackerMetricUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerMetricScalarWhereInput | FirecrackerMetricScalarWhereInput[]
+  }
+
+  export type FirecrackerSnapshotUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput> | FirecrackerSnapshotCreateWithoutVmInput[] | FirecrackerSnapshotUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerSnapshotCreateOrConnectWithoutVmInput | FirecrackerSnapshotCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerSnapshotUpsertWithWhereUniqueWithoutVmInput | FirecrackerSnapshotUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerSnapshotCreateManyVmInputEnvelope
+    set?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    disconnect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    delete?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    connect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    update?: FirecrackerSnapshotUpdateWithWhereUniqueWithoutVmInput | FirecrackerSnapshotUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerSnapshotUpdateManyWithWhereWithoutVmInput | FirecrackerSnapshotUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerSnapshotScalarWhereInput | FirecrackerSnapshotScalarWhereInput[]
+  }
+
+  export type FirecrackerTemplateUpdateOneWithoutVmsNestedInput = {
+    create?: XOR<FirecrackerTemplateCreateWithoutVmsInput, FirecrackerTemplateUncheckedCreateWithoutVmsInput>
+    connectOrCreate?: FirecrackerTemplateCreateOrConnectWithoutVmsInput
+    upsert?: FirecrackerTemplateUpsertWithoutVmsInput
+    disconnect?: FirecrackerTemplateWhereInput | boolean
+    delete?: FirecrackerTemplateWhereInput | boolean
+    connect?: FirecrackerTemplateWhereUniqueInput
+    update?: XOR<XOR<FirecrackerTemplateUpdateToOneWithWhereWithoutVmsInput, FirecrackerTemplateUpdateWithoutVmsInput>, FirecrackerTemplateUncheckedUpdateWithoutVmsInput>
+  }
+
+  export type FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput> | FirecrackerContainerCreateWithoutVmInput[] | FirecrackerContainerUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutVmInput | FirecrackerContainerCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerContainerUpsertWithWhereUniqueWithoutVmInput | FirecrackerContainerUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerContainerCreateManyVmInputEnvelope
+    set?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    disconnect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    delete?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    connect?: FirecrackerContainerWhereUniqueInput | FirecrackerContainerWhereUniqueInput[]
+    update?: FirecrackerContainerUpdateWithWhereUniqueWithoutVmInput | FirecrackerContainerUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerContainerUpdateManyWithWhereWithoutVmInput | FirecrackerContainerUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerContainerScalarWhereInput | FirecrackerContainerScalarWhereInput[]
+  }
+
+  export type FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput> | FirecrackerMetricCreateWithoutVmInput[] | FirecrackerMetricUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerMetricCreateOrConnectWithoutVmInput | FirecrackerMetricCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerMetricUpsertWithWhereUniqueWithoutVmInput | FirecrackerMetricUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerMetricCreateManyVmInputEnvelope
+    set?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    disconnect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    delete?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    connect?: FirecrackerMetricWhereUniqueInput | FirecrackerMetricWhereUniqueInput[]
+    update?: FirecrackerMetricUpdateWithWhereUniqueWithoutVmInput | FirecrackerMetricUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerMetricUpdateManyWithWhereWithoutVmInput | FirecrackerMetricUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerMetricScalarWhereInput | FirecrackerMetricScalarWhereInput[]
+  }
+
+  export type FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput = {
+    create?: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput> | FirecrackerSnapshotCreateWithoutVmInput[] | FirecrackerSnapshotUncheckedCreateWithoutVmInput[]
+    connectOrCreate?: FirecrackerSnapshotCreateOrConnectWithoutVmInput | FirecrackerSnapshotCreateOrConnectWithoutVmInput[]
+    upsert?: FirecrackerSnapshotUpsertWithWhereUniqueWithoutVmInput | FirecrackerSnapshotUpsertWithWhereUniqueWithoutVmInput[]
+    createMany?: FirecrackerSnapshotCreateManyVmInputEnvelope
+    set?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    disconnect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    delete?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    connect?: FirecrackerSnapshotWhereUniqueInput | FirecrackerSnapshotWhereUniqueInput[]
+    update?: FirecrackerSnapshotUpdateWithWhereUniqueWithoutVmInput | FirecrackerSnapshotUpdateWithWhereUniqueWithoutVmInput[]
+    updateMany?: FirecrackerSnapshotUpdateManyWithWhereWithoutVmInput | FirecrackerSnapshotUpdateManyWithWhereWithoutVmInput[]
+    deleteMany?: FirecrackerSnapshotScalarWhereInput | FirecrackerSnapshotScalarWhereInput[]
+  }
+
+  export type FirecrackerVMCreateNestedOneWithoutContainersInput = {
+    create?: XOR<FirecrackerVMCreateWithoutContainersInput, FirecrackerVMUncheckedCreateWithoutContainersInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutContainersInput
+    connect?: FirecrackerVMWhereUniqueInput
+  }
+
+  export type FirecrackerContainerLogCreateNestedManyWithoutContainerInput = {
+    create?: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput> | FirecrackerContainerLogCreateWithoutContainerInput[] | FirecrackerContainerLogUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: FirecrackerContainerLogCreateOrConnectWithoutContainerInput | FirecrackerContainerLogCreateOrConnectWithoutContainerInput[]
+    createMany?: FirecrackerContainerLogCreateManyContainerInputEnvelope
+    connect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+  }
+
+  export type FirecrackerContainerLogUncheckedCreateNestedManyWithoutContainerInput = {
+    create?: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput> | FirecrackerContainerLogCreateWithoutContainerInput[] | FirecrackerContainerLogUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: FirecrackerContainerLogCreateOrConnectWithoutContainerInput | FirecrackerContainerLogCreateOrConnectWithoutContainerInput[]
+    createMany?: FirecrackerContainerLogCreateManyContainerInputEnvelope
+    connect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+  }
+
+  export type EnumContainerStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ContainerStatus
+  }
+
+  export type FirecrackerVMUpdateOneRequiredWithoutContainersNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutContainersInput, FirecrackerVMUncheckedCreateWithoutContainersInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutContainersInput
+    upsert?: FirecrackerVMUpsertWithoutContainersInput
+    connect?: FirecrackerVMWhereUniqueInput
+    update?: XOR<XOR<FirecrackerVMUpdateToOneWithWhereWithoutContainersInput, FirecrackerVMUpdateWithoutContainersInput>, FirecrackerVMUncheckedUpdateWithoutContainersInput>
+  }
+
+  export type FirecrackerContainerLogUpdateManyWithoutContainerNestedInput = {
+    create?: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput> | FirecrackerContainerLogCreateWithoutContainerInput[] | FirecrackerContainerLogUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: FirecrackerContainerLogCreateOrConnectWithoutContainerInput | FirecrackerContainerLogCreateOrConnectWithoutContainerInput[]
+    upsert?: FirecrackerContainerLogUpsertWithWhereUniqueWithoutContainerInput | FirecrackerContainerLogUpsertWithWhereUniqueWithoutContainerInput[]
+    createMany?: FirecrackerContainerLogCreateManyContainerInputEnvelope
+    set?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    disconnect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    delete?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    connect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    update?: FirecrackerContainerLogUpdateWithWhereUniqueWithoutContainerInput | FirecrackerContainerLogUpdateWithWhereUniqueWithoutContainerInput[]
+    updateMany?: FirecrackerContainerLogUpdateManyWithWhereWithoutContainerInput | FirecrackerContainerLogUpdateManyWithWhereWithoutContainerInput[]
+    deleteMany?: FirecrackerContainerLogScalarWhereInput | FirecrackerContainerLogScalarWhereInput[]
+  }
+
+  export type FirecrackerContainerLogUncheckedUpdateManyWithoutContainerNestedInput = {
+    create?: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput> | FirecrackerContainerLogCreateWithoutContainerInput[] | FirecrackerContainerLogUncheckedCreateWithoutContainerInput[]
+    connectOrCreate?: FirecrackerContainerLogCreateOrConnectWithoutContainerInput | FirecrackerContainerLogCreateOrConnectWithoutContainerInput[]
+    upsert?: FirecrackerContainerLogUpsertWithWhereUniqueWithoutContainerInput | FirecrackerContainerLogUpsertWithWhereUniqueWithoutContainerInput[]
+    createMany?: FirecrackerContainerLogCreateManyContainerInputEnvelope
+    set?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    disconnect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    delete?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    connect?: FirecrackerContainerLogWhereUniqueInput | FirecrackerContainerLogWhereUniqueInput[]
+    update?: FirecrackerContainerLogUpdateWithWhereUniqueWithoutContainerInput | FirecrackerContainerLogUpdateWithWhereUniqueWithoutContainerInput[]
+    updateMany?: FirecrackerContainerLogUpdateManyWithWhereWithoutContainerInput | FirecrackerContainerLogUpdateManyWithWhereWithoutContainerInput[]
+    deleteMany?: FirecrackerContainerLogScalarWhereInput | FirecrackerContainerLogScalarWhereInput[]
+  }
+
+  export type FirecrackerVMCreateNestedOneWithoutMetricsInput = {
+    create?: XOR<FirecrackerVMCreateWithoutMetricsInput, FirecrackerVMUncheckedCreateWithoutMetricsInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutMetricsInput
+    connect?: FirecrackerVMWhereUniqueInput
   }
 
   export type EnumMetricTypeFieldUpdateOperationsInput = {
@@ -49013,6 +58707,106 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type FirecrackerVMUpdateOneRequiredWithoutMetricsNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutMetricsInput, FirecrackerVMUncheckedCreateWithoutMetricsInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutMetricsInput
+    upsert?: FirecrackerVMUpsertWithoutMetricsInput
+    connect?: FirecrackerVMWhereUniqueInput
+    update?: XOR<XOR<FirecrackerVMUpdateToOneWithWhereWithoutMetricsInput, FirecrackerVMUpdateWithoutMetricsInput>, FirecrackerVMUncheckedUpdateWithoutMetricsInput>
+  }
+
+  export type FirecrackerVMCreateNestedOneWithoutSnapshotsInput = {
+    create?: XOR<FirecrackerVMCreateWithoutSnapshotsInput, FirecrackerVMUncheckedCreateWithoutSnapshotsInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutSnapshotsInput
+    connect?: FirecrackerVMWhereUniqueInput
+  }
+
+  export type BigIntFieldUpdateOperationsInput = {
+    set?: bigint | number
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
+  }
+
+  export type FirecrackerVMUpdateOneRequiredWithoutSnapshotsNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutSnapshotsInput, FirecrackerVMUncheckedCreateWithoutSnapshotsInput>
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutSnapshotsInput
+    upsert?: FirecrackerVMUpsertWithoutSnapshotsInput
+    connect?: FirecrackerVMWhereUniqueInput
+    update?: XOR<XOR<FirecrackerVMUpdateToOneWithWhereWithoutSnapshotsInput, FirecrackerVMUpdateWithoutSnapshotsInput>, FirecrackerVMUncheckedUpdateWithoutSnapshotsInput>
+  }
+
+  export type FirecrackerVMCreateNestedManyWithoutTemplateInput = {
+    create?: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput> | FirecrackerVMCreateWithoutTemplateInput[] | FirecrackerVMUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutTemplateInput | FirecrackerVMCreateOrConnectWithoutTemplateInput[]
+    createMany?: FirecrackerVMCreateManyTemplateInputEnvelope
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+  }
+
+  export type FirecrackerVMUncheckedCreateNestedManyWithoutTemplateInput = {
+    create?: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput> | FirecrackerVMCreateWithoutTemplateInput[] | FirecrackerVMUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutTemplateInput | FirecrackerVMCreateOrConnectWithoutTemplateInput[]
+    createMany?: FirecrackerVMCreateManyTemplateInputEnvelope
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type FirecrackerVMUpdateManyWithoutTemplateNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput> | FirecrackerVMCreateWithoutTemplateInput[] | FirecrackerVMUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutTemplateInput | FirecrackerVMCreateOrConnectWithoutTemplateInput[]
+    upsert?: FirecrackerVMUpsertWithWhereUniqueWithoutTemplateInput | FirecrackerVMUpsertWithWhereUniqueWithoutTemplateInput[]
+    createMany?: FirecrackerVMCreateManyTemplateInputEnvelope
+    set?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    disconnect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    delete?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    update?: FirecrackerVMUpdateWithWhereUniqueWithoutTemplateInput | FirecrackerVMUpdateWithWhereUniqueWithoutTemplateInput[]
+    updateMany?: FirecrackerVMUpdateManyWithWhereWithoutTemplateInput | FirecrackerVMUpdateManyWithWhereWithoutTemplateInput[]
+    deleteMany?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
+  }
+
+  export type FirecrackerVMUncheckedUpdateManyWithoutTemplateNestedInput = {
+    create?: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput> | FirecrackerVMCreateWithoutTemplateInput[] | FirecrackerVMUncheckedCreateWithoutTemplateInput[]
+    connectOrCreate?: FirecrackerVMCreateOrConnectWithoutTemplateInput | FirecrackerVMCreateOrConnectWithoutTemplateInput[]
+    upsert?: FirecrackerVMUpsertWithWhereUniqueWithoutTemplateInput | FirecrackerVMUpsertWithWhereUniqueWithoutTemplateInput[]
+    createMany?: FirecrackerVMCreateManyTemplateInputEnvelope
+    set?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    disconnect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    delete?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    connect?: FirecrackerVMWhereUniqueInput | FirecrackerVMWhereUniqueInput[]
+    update?: FirecrackerVMUpdateWithWhereUniqueWithoutTemplateInput | FirecrackerVMUpdateWithWhereUniqueWithoutTemplateInput[]
+    updateMany?: FirecrackerVMUpdateManyWithWhereWithoutTemplateInput | FirecrackerVMUpdateManyWithWhereWithoutTemplateInput[]
+    deleteMany?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
+  }
+
+  export type FirecrackerContainerCreateNestedOneWithoutLogsInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutLogsInput, FirecrackerContainerUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutLogsInput
+    connect?: FirecrackerContainerWhereUniqueInput
+  }
+
+  export type EnumLogLevelFieldUpdateOperationsInput = {
+    set?: $Enums.LogLevel
+  }
+
+  export type FirecrackerContainerUpdateOneRequiredWithoutLogsNestedInput = {
+    create?: XOR<FirecrackerContainerCreateWithoutLogsInput, FirecrackerContainerUncheckedCreateWithoutLogsInput>
+    connectOrCreate?: FirecrackerContainerCreateOrConnectWithoutLogsInput
+    upsert?: FirecrackerContainerUpsertWithoutLogsInput
+    connect?: FirecrackerContainerWhereUniqueInput
+    update?: XOR<XOR<FirecrackerContainerUpdateToOneWithWhereWithoutLogsInput, FirecrackerContainerUpdateWithoutLogsInput>, FirecrackerContainerUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type WebVMInstanceCreateNestedOneWithoutMetricsInput = {
+    create?: XOR<WebVMInstanceCreateWithoutMetricsInput, WebVMInstanceUncheckedCreateWithoutMetricsInput>
+    connectOrCreate?: WebVMInstanceCreateOrConnectWithoutMetricsInput
+    connect?: WebVMInstanceWhereUniqueInput
   }
 
   export type WebVMInstanceUpdateOneRequiredWithoutMetricsNestedInput = {
@@ -49049,18 +58843,6 @@ export namespace Prisma {
     connectOrCreate?: StorageUsageCreateOrConnectWithoutBucketInput | StorageUsageCreateOrConnectWithoutBucketInput[]
     createMany?: StorageUsageCreateManyBucketInputEnvelope
     connect?: StorageUsageWhereUniqueInput | StorageUsageWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
-  export type BigIntFieldUpdateOperationsInput = {
-    set?: bigint | number
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -49183,10 +58965,6 @@ export namespace Prisma {
     connect?: ContainerLogWhereUniqueInput | ContainerLogWhereUniqueInput[]
   }
 
-  export type EnumContainerStatusFieldUpdateOperationsInput = {
-    set?: $Enums.ContainerStatus
-  }
-
   export type ContainerStatsUpdateManyWithoutContainerNestedInput = {
     create?: XOR<ContainerStatsCreateWithoutContainerInput, ContainerStatsUncheckedCreateWithoutContainerInput> | ContainerStatsCreateWithoutContainerInput[] | ContainerStatsUncheckedCreateWithoutContainerInput[]
     connectOrCreate?: ContainerStatsCreateOrConnectWithoutContainerInput | ContainerStatsCreateOrConnectWithoutContainerInput[]
@@ -49261,10 +59039,6 @@ export namespace Prisma {
     create?: XOR<ContainerCreateWithoutLogsInput, ContainerUncheckedCreateWithoutLogsInput>
     connectOrCreate?: ContainerCreateOrConnectWithoutLogsInput
     connect?: ContainerWhereUniqueInput
-  }
-
-  export type EnumLogLevelFieldUpdateOperationsInput = {
-    set?: $Enums.LogLevel
   }
 
   export type ContainerUpdateOneRequiredWithoutLogsNestedInput = {
@@ -49828,11 +59602,28 @@ export namespace Prisma {
     _max?: NestedEnumTaskPriorityFilter<$PrismaModel>
   }
 
+  export type NestedEnumWorkspaceTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkspaceType | EnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkspaceTypeFilter<$PrismaModel> | $Enums.WorkspaceType
+  }
+
   export type NestedEnumWorkspaceStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.WorkspaceStatus | EnumWorkspaceStatusFieldRefInput<$PrismaModel>
     in?: $Enums.WorkspaceStatus[] | ListEnumWorkspaceStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.WorkspaceStatus[] | ListEnumWorkspaceStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumWorkspaceStatusFilter<$PrismaModel> | $Enums.WorkspaceStatus
+  }
+
+  export type NestedEnumWorkspaceTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WorkspaceType | EnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WorkspaceType[] | ListEnumWorkspaceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumWorkspaceTypeWithAggregatesFilter<$PrismaModel> | $Enums.WorkspaceType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWorkspaceTypeFilter<$PrismaModel>
+    _max?: NestedEnumWorkspaceTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumWorkspaceStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -49885,6 +59676,40 @@ export namespace Prisma {
     _max?: NestedEnumWebVMStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumFirecrackerStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.FirecrackerStatus | EnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFirecrackerStatusFilter<$PrismaModel> | $Enums.FirecrackerStatus
+  }
+
+  export type NestedEnumFirecrackerStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.FirecrackerStatus | EnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.FirecrackerStatus[] | ListEnumFirecrackerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumFirecrackerStatusWithAggregatesFilter<$PrismaModel> | $Enums.FirecrackerStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFirecrackerStatusFilter<$PrismaModel>
+    _max?: NestedEnumFirecrackerStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumContainerStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerStatusFilter<$PrismaModel> | $Enums.ContainerStatus
+  }
+
+  export type NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContainerStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumContainerStatusFilter<$PrismaModel>
+    _max?: NestedEnumContainerStatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumMetricTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.MetricType | EnumMetricTypeFieldRefInput<$PrismaModel>
     in?: $Enums.MetricType[] | ListEnumMetricTypeFieldRefInput<$PrismaModel>
@@ -49929,11 +59754,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedBigIntFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel>
@@ -49943,14 +59763,6 @@ export namespace Prisma {
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     not?: NestedBigIntFilter<$PrismaModel> | bigint | number
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -49969,37 +59781,40 @@ export namespace Prisma {
     _max?: NestedBigIntFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
-  export type NestedEnumContainerStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContainerStatusFilter<$PrismaModel> | $Enums.ContainerStatus
-  }
-
-  export type NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.ContainerStatus | EnumContainerStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.ContainerStatus[] | ListEnumContainerStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumContainerStatusWithAggregatesFilter<$PrismaModel> | $Enums.ContainerStatus
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumContainerStatusFilter<$PrismaModel>
-    _max?: NestedEnumContainerStatusFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumLogLevelFilter<$PrismaModel = never> = {
@@ -50017,6 +59832,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumLogLevelFilter<$PrismaModel>
     _max?: NestedEnumLogLevelFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedEnumHealthStatusFilter<$PrismaModel = never> = {
@@ -50085,29 +59916,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
-  }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedEnumSyncTypeFilter<$PrismaModel = never> = {
@@ -51169,11 +60977,13 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
@@ -51184,11 +60994,13 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -51278,6 +61090,7 @@ export namespace Prisma {
     name?: StringFilter<"Workspace"> | string
     description?: StringNullableFilter<"Workspace"> | string | null
     projectId?: StringFilter<"Workspace"> | string
+    type?: EnumWorkspaceTypeFilter<"Workspace"> | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFilter<"Workspace"> | $Enums.WorkspaceStatus
     config?: JsonNullableFilter<"Workspace">
     createdAt?: DateTimeFilter<"Workspace"> | Date | string
@@ -51492,6 +61305,62 @@ export namespace Prisma {
 
   export type WebVMInstanceCreateManyWorkspaceInputEnvelope = {
     data: WebVMInstanceCreateManyWorkspaceInput | WebVMInstanceCreateManyWorkspaceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerVMCreateWithoutWorkspaceInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    containers?: FirecrackerContainerCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotCreateNestedManyWithoutVmInput
+    template?: FirecrackerTemplateCreateNestedOneWithoutVmsInput
+  }
+
+  export type FirecrackerVMUncheckedCreateWithoutWorkspaceInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+    containers?: FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMCreateOrConnectWithoutWorkspaceInput = {
+    where: FirecrackerVMWhereUniqueInput
+    create: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput>
+  }
+
+  export type FirecrackerVMCreateManyWorkspaceInputEnvelope = {
+    data: FirecrackerVMCreateManyWorkspaceInput | FirecrackerVMCreateManyWorkspaceInput[]
     skipDuplicates?: boolean
   }
 
@@ -51723,6 +61592,46 @@ export namespace Prisma {
     templateId?: StringNullableFilter<"WebVMInstance"> | string | null
   }
 
+  export type FirecrackerVMUpsertWithWhereUniqueWithoutWorkspaceInput = {
+    where: FirecrackerVMWhereUniqueInput
+    update: XOR<FirecrackerVMUpdateWithoutWorkspaceInput, FirecrackerVMUncheckedUpdateWithoutWorkspaceInput>
+    create: XOR<FirecrackerVMCreateWithoutWorkspaceInput, FirecrackerVMUncheckedCreateWithoutWorkspaceInput>
+  }
+
+  export type FirecrackerVMUpdateWithWhereUniqueWithoutWorkspaceInput = {
+    where: FirecrackerVMWhereUniqueInput
+    data: XOR<FirecrackerVMUpdateWithoutWorkspaceInput, FirecrackerVMUncheckedUpdateWithoutWorkspaceInput>
+  }
+
+  export type FirecrackerVMUpdateManyWithWhereWithoutWorkspaceInput = {
+    where: FirecrackerVMScalarWhereInput
+    data: XOR<FirecrackerVMUpdateManyMutationInput, FirecrackerVMUncheckedUpdateManyWithoutWorkspaceInput>
+  }
+
+  export type FirecrackerVMScalarWhereInput = {
+    AND?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
+    OR?: FirecrackerVMScalarWhereInput[]
+    NOT?: FirecrackerVMScalarWhereInput | FirecrackerVMScalarWhereInput[]
+    id?: StringFilter<"FirecrackerVM"> | string
+    name?: StringFilter<"FirecrackerVM"> | string
+    workspaceId?: StringFilter<"FirecrackerVM"> | string
+    status?: EnumFirecrackerStatusFilter<"FirecrackerVM"> | $Enums.FirecrackerStatus
+    vmId?: StringFilter<"FirecrackerVM"> | string
+    config?: JsonNullableFilter<"FirecrackerVM">
+    resources?: JsonNullableFilter<"FirecrackerVM">
+    networkConfig?: JsonNullableFilter<"FirecrackerVM">
+    kernelImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    rootfsImage?: StringNullableFilter<"FirecrackerVM"> | string | null
+    socketPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    logPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    metricsPath?: StringNullableFilter<"FirecrackerVM"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerVM"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerVM"> | Date | string | null
+    templateId?: StringNullableFilter<"FirecrackerVM"> | string | null
+  }
+
   export type WorkspacePersistenceUpsertWithoutWorkspaceInput = {
     update: XOR<WorkspacePersistenceUpdateWithoutWorkspaceInput, WorkspacePersistenceUncheckedUpdateWithoutWorkspaceInput>
     create: XOR<WorkspacePersistenceCreateWithoutWorkspaceInput, WorkspacePersistenceUncheckedCreateWithoutWorkspaceInput>
@@ -51869,11 +61778,13 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
@@ -51885,10 +61796,12 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -52002,11 +61915,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
@@ -52018,10 +61933,12 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -52123,6 +62040,897 @@ export namespace Prisma {
     isPublic?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WorkspaceCreateWithoutFirecrackerVMsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    type?: $Enums.WorkspaceType
+    status?: $Enums.WorkspaceStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    project: ProjectCreateNestedOneWithoutWorkspacesInput
+    instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
+    files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
+    states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
+    syncs?: WorkspaceSyncCreateNestedManyWithoutWorkspaceInput
+  }
+
+  export type WorkspaceUncheckedCreateWithoutFirecrackerVMsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    projectId: string
+    type?: $Enums.WorkspaceType
+    status?: $Enums.WorkspaceStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
+    files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
+    states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
+    syncs?: WorkspaceSyncUncheckedCreateNestedManyWithoutWorkspaceInput
+  }
+
+  export type WorkspaceCreateOrConnectWithoutFirecrackerVMsInput = {
+    where: WorkspaceWhereUniqueInput
+    create: XOR<WorkspaceCreateWithoutFirecrackerVMsInput, WorkspaceUncheckedCreateWithoutFirecrackerVMsInput>
+  }
+
+  export type FirecrackerContainerCreateWithoutVmInput = {
+    id?: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    logs?: FirecrackerContainerLogCreateNestedManyWithoutContainerInput
+  }
+
+  export type FirecrackerContainerUncheckedCreateWithoutVmInput = {
+    id?: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    logs?: FirecrackerContainerLogUncheckedCreateNestedManyWithoutContainerInput
+  }
+
+  export type FirecrackerContainerCreateOrConnectWithoutVmInput = {
+    where: FirecrackerContainerWhereUniqueInput
+    create: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerContainerCreateManyVmInputEnvelope = {
+    data: FirecrackerContainerCreateManyVmInput | FirecrackerContainerCreateManyVmInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerMetricCreateWithoutVmInput = {
+    id?: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+  }
+
+  export type FirecrackerMetricUncheckedCreateWithoutVmInput = {
+    id?: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+  }
+
+  export type FirecrackerMetricCreateOrConnectWithoutVmInput = {
+    where: FirecrackerMetricWhereUniqueInput
+    create: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerMetricCreateManyVmInputEnvelope = {
+    data: FirecrackerMetricCreateManyVmInput | FirecrackerMetricCreateManyVmInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerSnapshotCreateWithoutVmInput = {
+    id?: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type FirecrackerSnapshotUncheckedCreateWithoutVmInput = {
+    id?: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type FirecrackerSnapshotCreateOrConnectWithoutVmInput = {
+    where: FirecrackerSnapshotWhereUniqueInput
+    create: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerSnapshotCreateManyVmInputEnvelope = {
+    data: FirecrackerSnapshotCreateManyVmInput | FirecrackerSnapshotCreateManyVmInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerTemplateCreateWithoutVmsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    category?: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonNullValueInput | InputJsonValue
+    resources: JsonNullValueInput | InputJsonValue
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FirecrackerTemplateUncheckedCreateWithoutVmsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    category?: string
+    kernelImage: string
+    rootfsImage: string
+    config: JsonNullValueInput | InputJsonValue
+    resources: JsonNullValueInput | InputJsonValue
+    isPublic?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FirecrackerTemplateCreateOrConnectWithoutVmsInput = {
+    where: FirecrackerTemplateWhereUniqueInput
+    create: XOR<FirecrackerTemplateCreateWithoutVmsInput, FirecrackerTemplateUncheckedCreateWithoutVmsInput>
+  }
+
+  export type WorkspaceUpsertWithoutFirecrackerVMsInput = {
+    update: XOR<WorkspaceUpdateWithoutFirecrackerVMsInput, WorkspaceUncheckedUpdateWithoutFirecrackerVMsInput>
+    create: XOR<WorkspaceCreateWithoutFirecrackerVMsInput, WorkspaceUncheckedCreateWithoutFirecrackerVMsInput>
+    where?: WorkspaceWhereInput
+  }
+
+  export type WorkspaceUpdateToOneWithWhereWithoutFirecrackerVMsInput = {
+    where?: WorkspaceWhereInput
+    data: XOR<WorkspaceUpdateWithoutFirecrackerVMsInput, WorkspaceUncheckedUpdateWithoutFirecrackerVMsInput>
+  }
+
+  export type WorkspaceUpdateWithoutFirecrackerVMsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
+    status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
+    instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
+    files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
+    states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
+    syncs?: WorkspaceSyncUpdateManyWithoutWorkspaceNestedInput
+  }
+
+  export type WorkspaceUncheckedUpdateWithoutFirecrackerVMsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
+    status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
+    files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
+    states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
+    syncs?: WorkspaceSyncUncheckedUpdateManyWithoutWorkspaceNestedInput
+  }
+
+  export type FirecrackerContainerUpsertWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerContainerWhereUniqueInput
+    update: XOR<FirecrackerContainerUpdateWithoutVmInput, FirecrackerContainerUncheckedUpdateWithoutVmInput>
+    create: XOR<FirecrackerContainerCreateWithoutVmInput, FirecrackerContainerUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerContainerUpdateWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerContainerWhereUniqueInput
+    data: XOR<FirecrackerContainerUpdateWithoutVmInput, FirecrackerContainerUncheckedUpdateWithoutVmInput>
+  }
+
+  export type FirecrackerContainerUpdateManyWithWhereWithoutVmInput = {
+    where: FirecrackerContainerScalarWhereInput
+    data: XOR<FirecrackerContainerUpdateManyMutationInput, FirecrackerContainerUncheckedUpdateManyWithoutVmInput>
+  }
+
+  export type FirecrackerContainerScalarWhereInput = {
+    AND?: FirecrackerContainerScalarWhereInput | FirecrackerContainerScalarWhereInput[]
+    OR?: FirecrackerContainerScalarWhereInput[]
+    NOT?: FirecrackerContainerScalarWhereInput | FirecrackerContainerScalarWhereInput[]
+    id?: StringFilter<"FirecrackerContainer"> | string
+    vmId?: StringFilter<"FirecrackerContainer"> | string
+    name?: StringFilter<"FirecrackerContainer"> | string
+    image?: StringFilter<"FirecrackerContainer"> | string
+    status?: EnumContainerStatusFilter<"FirecrackerContainer"> | $Enums.ContainerStatus
+    config?: JsonNullableFilter<"FirecrackerContainer">
+    ports?: JsonNullableFilter<"FirecrackerContainer">
+    volumes?: JsonNullableFilter<"FirecrackerContainer">
+    environment?: JsonNullableFilter<"FirecrackerContainer">
+    command?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    workingDir?: StringNullableFilter<"FirecrackerContainer"> | string | null
+    createdAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    updatedAt?: DateTimeFilter<"FirecrackerContainer"> | Date | string
+    startedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+    stoppedAt?: DateTimeNullableFilter<"FirecrackerContainer"> | Date | string | null
+  }
+
+  export type FirecrackerMetricUpsertWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerMetricWhereUniqueInput
+    update: XOR<FirecrackerMetricUpdateWithoutVmInput, FirecrackerMetricUncheckedUpdateWithoutVmInput>
+    create: XOR<FirecrackerMetricCreateWithoutVmInput, FirecrackerMetricUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerMetricUpdateWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerMetricWhereUniqueInput
+    data: XOR<FirecrackerMetricUpdateWithoutVmInput, FirecrackerMetricUncheckedUpdateWithoutVmInput>
+  }
+
+  export type FirecrackerMetricUpdateManyWithWhereWithoutVmInput = {
+    where: FirecrackerMetricScalarWhereInput
+    data: XOR<FirecrackerMetricUpdateManyMutationInput, FirecrackerMetricUncheckedUpdateManyWithoutVmInput>
+  }
+
+  export type FirecrackerMetricScalarWhereInput = {
+    AND?: FirecrackerMetricScalarWhereInput | FirecrackerMetricScalarWhereInput[]
+    OR?: FirecrackerMetricScalarWhereInput[]
+    NOT?: FirecrackerMetricScalarWhereInput | FirecrackerMetricScalarWhereInput[]
+    id?: StringFilter<"FirecrackerMetric"> | string
+    vmId?: StringFilter<"FirecrackerMetric"> | string
+    metricType?: EnumMetricTypeFilter<"FirecrackerMetric"> | $Enums.MetricType
+    value?: FloatFilter<"FirecrackerMetric"> | number
+    unit?: StringFilter<"FirecrackerMetric"> | string
+    timestamp?: DateTimeFilter<"FirecrackerMetric"> | Date | string
+  }
+
+  export type FirecrackerSnapshotUpsertWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerSnapshotWhereUniqueInput
+    update: XOR<FirecrackerSnapshotUpdateWithoutVmInput, FirecrackerSnapshotUncheckedUpdateWithoutVmInput>
+    create: XOR<FirecrackerSnapshotCreateWithoutVmInput, FirecrackerSnapshotUncheckedCreateWithoutVmInput>
+  }
+
+  export type FirecrackerSnapshotUpdateWithWhereUniqueWithoutVmInput = {
+    where: FirecrackerSnapshotWhereUniqueInput
+    data: XOR<FirecrackerSnapshotUpdateWithoutVmInput, FirecrackerSnapshotUncheckedUpdateWithoutVmInput>
+  }
+
+  export type FirecrackerSnapshotUpdateManyWithWhereWithoutVmInput = {
+    where: FirecrackerSnapshotScalarWhereInput
+    data: XOR<FirecrackerSnapshotUpdateManyMutationInput, FirecrackerSnapshotUncheckedUpdateManyWithoutVmInput>
+  }
+
+  export type FirecrackerSnapshotScalarWhereInput = {
+    AND?: FirecrackerSnapshotScalarWhereInput | FirecrackerSnapshotScalarWhereInput[]
+    OR?: FirecrackerSnapshotScalarWhereInput[]
+    NOT?: FirecrackerSnapshotScalarWhereInput | FirecrackerSnapshotScalarWhereInput[]
+    id?: StringFilter<"FirecrackerSnapshot"> | string
+    vmId?: StringFilter<"FirecrackerSnapshot"> | string
+    name?: StringFilter<"FirecrackerSnapshot"> | string
+    description?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    snapshotPath?: StringFilter<"FirecrackerSnapshot"> | string
+    memoryPath?: StringNullableFilter<"FirecrackerSnapshot"> | string | null
+    size?: BigIntFilter<"FirecrackerSnapshot"> | bigint | number
+    createdAt?: DateTimeFilter<"FirecrackerSnapshot"> | Date | string
+  }
+
+  export type FirecrackerTemplateUpsertWithoutVmsInput = {
+    update: XOR<FirecrackerTemplateUpdateWithoutVmsInput, FirecrackerTemplateUncheckedUpdateWithoutVmsInput>
+    create: XOR<FirecrackerTemplateCreateWithoutVmsInput, FirecrackerTemplateUncheckedCreateWithoutVmsInput>
+    where?: FirecrackerTemplateWhereInput
+  }
+
+  export type FirecrackerTemplateUpdateToOneWithWhereWithoutVmsInput = {
+    where?: FirecrackerTemplateWhereInput
+    data: XOR<FirecrackerTemplateUpdateWithoutVmsInput, FirecrackerTemplateUncheckedUpdateWithoutVmsInput>
+  }
+
+  export type FirecrackerTemplateUpdateWithoutVmsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerTemplateUncheckedUpdateWithoutVmsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    category?: StringFieldUpdateOperationsInput | string
+    kernelImage?: StringFieldUpdateOperationsInput | string
+    rootfsImage?: StringFieldUpdateOperationsInput | string
+    config?: JsonNullValueInput | InputJsonValue
+    resources?: JsonNullValueInput | InputJsonValue
+    isPublic?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerVMCreateWithoutContainersInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    workspace: WorkspaceCreateNestedOneWithoutFirecrackerVMsInput
+    metrics?: FirecrackerMetricCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotCreateNestedManyWithoutVmInput
+    template?: FirecrackerTemplateCreateNestedOneWithoutVmsInput
+  }
+
+  export type FirecrackerVMUncheckedCreateWithoutContainersInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+    metrics?: FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMCreateOrConnectWithoutContainersInput = {
+    where: FirecrackerVMWhereUniqueInput
+    create: XOR<FirecrackerVMCreateWithoutContainersInput, FirecrackerVMUncheckedCreateWithoutContainersInput>
+  }
+
+  export type FirecrackerContainerLogCreateWithoutContainerInput = {
+    id?: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+  }
+
+  export type FirecrackerContainerLogUncheckedCreateWithoutContainerInput = {
+    id?: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+  }
+
+  export type FirecrackerContainerLogCreateOrConnectWithoutContainerInput = {
+    where: FirecrackerContainerLogWhereUniqueInput
+    create: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput>
+  }
+
+  export type FirecrackerContainerLogCreateManyContainerInputEnvelope = {
+    data: FirecrackerContainerLogCreateManyContainerInput | FirecrackerContainerLogCreateManyContainerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerVMUpsertWithoutContainersInput = {
+    update: XOR<FirecrackerVMUpdateWithoutContainersInput, FirecrackerVMUncheckedUpdateWithoutContainersInput>
+    create: XOR<FirecrackerVMCreateWithoutContainersInput, FirecrackerVMUncheckedCreateWithoutContainersInput>
+    where?: FirecrackerVMWhereInput
+  }
+
+  export type FirecrackerVMUpdateToOneWithWhereWithoutContainersInput = {
+    where?: FirecrackerVMWhereInput
+    data: XOR<FirecrackerVMUpdateWithoutContainersInput, FirecrackerVMUncheckedUpdateWithoutContainersInput>
+  }
+
+  export type FirecrackerVMUpdateWithoutContainersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workspace?: WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput
+    metrics?: FirecrackerMetricUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUpdateManyWithoutVmNestedInput
+    template?: FirecrackerTemplateUpdateOneWithoutVmsNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateWithoutContainersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    metrics?: FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerContainerLogUpsertWithWhereUniqueWithoutContainerInput = {
+    where: FirecrackerContainerLogWhereUniqueInput
+    update: XOR<FirecrackerContainerLogUpdateWithoutContainerInput, FirecrackerContainerLogUncheckedUpdateWithoutContainerInput>
+    create: XOR<FirecrackerContainerLogCreateWithoutContainerInput, FirecrackerContainerLogUncheckedCreateWithoutContainerInput>
+  }
+
+  export type FirecrackerContainerLogUpdateWithWhereUniqueWithoutContainerInput = {
+    where: FirecrackerContainerLogWhereUniqueInput
+    data: XOR<FirecrackerContainerLogUpdateWithoutContainerInput, FirecrackerContainerLogUncheckedUpdateWithoutContainerInput>
+  }
+
+  export type FirecrackerContainerLogUpdateManyWithWhereWithoutContainerInput = {
+    where: FirecrackerContainerLogScalarWhereInput
+    data: XOR<FirecrackerContainerLogUpdateManyMutationInput, FirecrackerContainerLogUncheckedUpdateManyWithoutContainerInput>
+  }
+
+  export type FirecrackerContainerLogScalarWhereInput = {
+    AND?: FirecrackerContainerLogScalarWhereInput | FirecrackerContainerLogScalarWhereInput[]
+    OR?: FirecrackerContainerLogScalarWhereInput[]
+    NOT?: FirecrackerContainerLogScalarWhereInput | FirecrackerContainerLogScalarWhereInput[]
+    id?: StringFilter<"FirecrackerContainerLog"> | string
+    containerId?: StringFilter<"FirecrackerContainerLog"> | string
+    timestamp?: DateTimeFilter<"FirecrackerContainerLog"> | Date | string
+    level?: EnumLogLevelFilter<"FirecrackerContainerLog"> | $Enums.LogLevel
+    message?: StringFilter<"FirecrackerContainerLog"> | string
+    source?: StringNullableFilter<"FirecrackerContainerLog"> | string | null
+  }
+
+  export type FirecrackerVMCreateWithoutMetricsInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    workspace: WorkspaceCreateNestedOneWithoutFirecrackerVMsInput
+    containers?: FirecrackerContainerCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotCreateNestedManyWithoutVmInput
+    template?: FirecrackerTemplateCreateNestedOneWithoutVmsInput
+  }
+
+  export type FirecrackerVMUncheckedCreateWithoutMetricsInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+    containers?: FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMCreateOrConnectWithoutMetricsInput = {
+    where: FirecrackerVMWhereUniqueInput
+    create: XOR<FirecrackerVMCreateWithoutMetricsInput, FirecrackerVMUncheckedCreateWithoutMetricsInput>
+  }
+
+  export type FirecrackerVMUpsertWithoutMetricsInput = {
+    update: XOR<FirecrackerVMUpdateWithoutMetricsInput, FirecrackerVMUncheckedUpdateWithoutMetricsInput>
+    create: XOR<FirecrackerVMCreateWithoutMetricsInput, FirecrackerVMUncheckedCreateWithoutMetricsInput>
+    where?: FirecrackerVMWhereInput
+  }
+
+  export type FirecrackerVMUpdateToOneWithWhereWithoutMetricsInput = {
+    where?: FirecrackerVMWhereInput
+    data: XOR<FirecrackerVMUpdateWithoutMetricsInput, FirecrackerVMUncheckedUpdateWithoutMetricsInput>
+  }
+
+  export type FirecrackerVMUpdateWithoutMetricsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workspace?: WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput
+    containers?: FirecrackerContainerUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUpdateManyWithoutVmNestedInput
+    template?: FirecrackerTemplateUpdateOneWithoutVmsNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateWithoutMetricsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    containers?: FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMCreateWithoutSnapshotsInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    workspace: WorkspaceCreateNestedOneWithoutFirecrackerVMsInput
+    containers?: FirecrackerContainerCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricCreateNestedManyWithoutVmInput
+    template?: FirecrackerTemplateCreateNestedOneWithoutVmsInput
+  }
+
+  export type FirecrackerVMUncheckedCreateWithoutSnapshotsInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+    containers?: FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMCreateOrConnectWithoutSnapshotsInput = {
+    where: FirecrackerVMWhereUniqueInput
+    create: XOR<FirecrackerVMCreateWithoutSnapshotsInput, FirecrackerVMUncheckedCreateWithoutSnapshotsInput>
+  }
+
+  export type FirecrackerVMUpsertWithoutSnapshotsInput = {
+    update: XOR<FirecrackerVMUpdateWithoutSnapshotsInput, FirecrackerVMUncheckedUpdateWithoutSnapshotsInput>
+    create: XOR<FirecrackerVMCreateWithoutSnapshotsInput, FirecrackerVMUncheckedCreateWithoutSnapshotsInput>
+    where?: FirecrackerVMWhereInput
+  }
+
+  export type FirecrackerVMUpdateToOneWithWhereWithoutSnapshotsInput = {
+    where?: FirecrackerVMWhereInput
+    data: XOR<FirecrackerVMUpdateWithoutSnapshotsInput, FirecrackerVMUncheckedUpdateWithoutSnapshotsInput>
+  }
+
+  export type FirecrackerVMUpdateWithoutSnapshotsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workspace?: WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput
+    containers?: FirecrackerContainerUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUpdateManyWithoutVmNestedInput
+    template?: FirecrackerTemplateUpdateOneWithoutVmsNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateWithoutSnapshotsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    containers?: FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMCreateWithoutTemplateInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    workspace: WorkspaceCreateNestedOneWithoutFirecrackerVMsInput
+    containers?: FirecrackerContainerCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMUncheckedCreateWithoutTemplateInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    containers?: FirecrackerContainerUncheckedCreateNestedManyWithoutVmInput
+    metrics?: FirecrackerMetricUncheckedCreateNestedManyWithoutVmInput
+    snapshots?: FirecrackerSnapshotUncheckedCreateNestedManyWithoutVmInput
+  }
+
+  export type FirecrackerVMCreateOrConnectWithoutTemplateInput = {
+    where: FirecrackerVMWhereUniqueInput
+    create: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput>
+  }
+
+  export type FirecrackerVMCreateManyTemplateInputEnvelope = {
+    data: FirecrackerVMCreateManyTemplateInput | FirecrackerVMCreateManyTemplateInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FirecrackerVMUpsertWithWhereUniqueWithoutTemplateInput = {
+    where: FirecrackerVMWhereUniqueInput
+    update: XOR<FirecrackerVMUpdateWithoutTemplateInput, FirecrackerVMUncheckedUpdateWithoutTemplateInput>
+    create: XOR<FirecrackerVMCreateWithoutTemplateInput, FirecrackerVMUncheckedCreateWithoutTemplateInput>
+  }
+
+  export type FirecrackerVMUpdateWithWhereUniqueWithoutTemplateInput = {
+    where: FirecrackerVMWhereUniqueInput
+    data: XOR<FirecrackerVMUpdateWithoutTemplateInput, FirecrackerVMUncheckedUpdateWithoutTemplateInput>
+  }
+
+  export type FirecrackerVMUpdateManyWithWhereWithoutTemplateInput = {
+    where: FirecrackerVMScalarWhereInput
+    data: XOR<FirecrackerVMUpdateManyMutationInput, FirecrackerVMUncheckedUpdateManyWithoutTemplateInput>
+  }
+
+  export type FirecrackerContainerCreateWithoutLogsInput = {
+    id?: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    vm: FirecrackerVMCreateNestedOneWithoutContainersInput
+  }
+
+  export type FirecrackerContainerUncheckedCreateWithoutLogsInput = {
+    id?: string
+    vmId: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+  }
+
+  export type FirecrackerContainerCreateOrConnectWithoutLogsInput = {
+    where: FirecrackerContainerWhereUniqueInput
+    create: XOR<FirecrackerContainerCreateWithoutLogsInput, FirecrackerContainerUncheckedCreateWithoutLogsInput>
+  }
+
+  export type FirecrackerContainerUpsertWithoutLogsInput = {
+    update: XOR<FirecrackerContainerUpdateWithoutLogsInput, FirecrackerContainerUncheckedUpdateWithoutLogsInput>
+    create: XOR<FirecrackerContainerCreateWithoutLogsInput, FirecrackerContainerUncheckedCreateWithoutLogsInput>
+    where?: FirecrackerContainerWhereInput
+  }
+
+  export type FirecrackerContainerUpdateToOneWithWhereWithoutLogsInput = {
+    where?: FirecrackerContainerWhereInput
+    data: XOR<FirecrackerContainerUpdateWithoutLogsInput, FirecrackerContainerUncheckedUpdateWithoutLogsInput>
+  }
+
+  export type FirecrackerContainerUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vm?: FirecrackerVMUpdateOneRequiredWithoutContainersNestedInput
+  }
+
+  export type FirecrackerContainerUncheckedUpdateWithoutLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vmId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type WebVMInstanceCreateWithoutMetricsInput = {
@@ -53005,12 +63813,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncCreateNestedManyWithoutWorkspaceInput
@@ -53021,11 +63831,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -53051,12 +63863,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUpdateManyWithoutWorkspaceNestedInput
@@ -53067,11 +63881,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -53219,12 +64035,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncCreateNestedManyWithoutWorkspaceInput
@@ -53235,11 +64053,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -53406,12 +64226,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUpdateManyWithoutWorkspaceNestedInput
@@ -53422,11 +64244,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -53646,12 +64470,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncCreateNestedManyWithoutWorkspaceInput
@@ -53662,11 +64488,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     syncs?: WorkspaceSyncUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -53692,12 +64520,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUpdateManyWithoutWorkspaceNestedInput
@@ -53708,11 +64538,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     syncs?: WorkspaceSyncUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -53722,12 +64554,14 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     project: ProjectCreateNestedOneWithoutWorkspacesInput
     instances?: WebVMInstanceCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateCreateNestedManyWithoutWorkspaceInput
@@ -53738,11 +64572,13 @@ export namespace Prisma {
     name: string
     description?: string | null
     projectId: string
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
     updatedAt?: Date | string
     instances?: WebVMInstanceUncheckedCreateNestedManyWithoutWorkspaceInput
+    firecrackerVMs?: FirecrackerVMUncheckedCreateNestedManyWithoutWorkspaceInput
     persistence?: WorkspacePersistenceUncheckedCreateNestedOneWithoutWorkspaceInput
     files?: WorkspaceFileUncheckedCreateNestedManyWithoutWorkspaceInput
     states?: WorkspaceStateUncheckedCreateNestedManyWithoutWorkspaceInput
@@ -53768,12 +64604,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutWorkspacesNestedInput
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
@@ -53784,11 +64622,13 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -54118,6 +64958,7 @@ export namespace Prisma {
     id?: string
     name: string
     description?: string | null
+    type?: $Enums.WorkspaceType
     status?: $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
@@ -54164,11 +65005,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUpdateManyWithoutWorkspaceNestedInput
@@ -54179,11 +65022,13 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     instances?: WebVMInstanceUncheckedUpdateManyWithoutWorkspaceNestedInput
+    firecrackerVMs?: FirecrackerVMUncheckedUpdateManyWithoutWorkspaceNestedInput
     persistence?: WorkspacePersistenceUncheckedUpdateOneWithoutWorkspaceNestedInput
     files?: WorkspaceFileUncheckedUpdateManyWithoutWorkspaceNestedInput
     states?: WorkspaceStateUncheckedUpdateManyWithoutWorkspaceNestedInput
@@ -54194,6 +65039,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumWorkspaceTypeFieldUpdateOperationsInput | $Enums.WorkspaceType
     status?: EnumWorkspaceStatusFieldUpdateOperationsInput | $Enums.WorkspaceStatus
     config?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -54209,6 +65055,26 @@ export namespace Prisma {
     resources?: NullableJsonNullValueInput | InputJsonValue
     networkConfig?: NullableJsonNullValueInput | InputJsonValue
     connectionUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+    templateId?: string | null
+  }
+
+  export type FirecrackerVMCreateManyWorkspaceInput = {
+    id?: string
+    name: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     startedAt?: Date | string | null
@@ -54312,6 +65178,72 @@ export namespace Prisma {
     resources?: NullableJsonNullValueInput | InputJsonValue
     networkConfig?: NullableJsonNullValueInput | InputJsonValue
     connectionUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerVMUpdateWithoutWorkspaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    containers?: FirecrackerContainerUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUpdateManyWithoutVmNestedInput
+    template?: FirecrackerTemplateUpdateOneWithoutVmsNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateWithoutWorkspaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    templateId?: NullableStringFieldUpdateOperationsInput | string | null
+    containers?: FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateManyWithoutWorkspaceInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -54538,6 +65470,266 @@ export namespace Prisma {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     size?: BigIntFieldUpdateOperationsInput | bigint | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerContainerCreateManyVmInput = {
+    id?: string
+    name: string
+    image: string
+    status?: $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: string | null
+    workingDir?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+  }
+
+  export type FirecrackerMetricCreateManyVmInput = {
+    id?: string
+    metricType: $Enums.MetricType
+    value: number
+    unit: string
+    timestamp?: Date | string
+  }
+
+  export type FirecrackerSnapshotCreateManyVmInput = {
+    id?: string
+    name: string
+    description?: string | null
+    snapshotPath: string
+    memoryPath?: string | null
+    size: bigint | number
+    createdAt?: Date | string
+  }
+
+  export type FirecrackerContainerUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logs?: FirecrackerContainerLogUpdateManyWithoutContainerNestedInput
+  }
+
+  export type FirecrackerContainerUncheckedUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    logs?: FirecrackerContainerLogUncheckedUpdateManyWithoutContainerNestedInput
+  }
+
+  export type FirecrackerContainerUncheckedUpdateManyWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    image?: StringFieldUpdateOperationsInput | string
+    status?: EnumContainerStatusFieldUpdateOperationsInput | $Enums.ContainerStatus
+    config?: NullableJsonNullValueInput | InputJsonValue
+    ports?: NullableJsonNullValueInput | InputJsonValue
+    volumes?: NullableJsonNullValueInput | InputJsonValue
+    environment?: NullableJsonNullValueInput | InputJsonValue
+    command?: NullableStringFieldUpdateOperationsInput | string | null
+    workingDir?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type FirecrackerMetricUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerMetricUncheckedUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerMetricUncheckedUpdateManyWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    metricType?: EnumMetricTypeFieldUpdateOperationsInput | $Enums.MetricType
+    value?: FloatFieldUpdateOperationsInput | number
+    unit?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotUncheckedUpdateWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerSnapshotUncheckedUpdateManyWithoutVmInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    snapshotPath?: StringFieldUpdateOperationsInput | string
+    memoryPath?: NullableStringFieldUpdateOperationsInput | string | null
+    size?: BigIntFieldUpdateOperationsInput | bigint | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FirecrackerContainerLogCreateManyContainerInput = {
+    id?: string
+    timestamp?: Date | string
+    level?: $Enums.LogLevel
+    message: string
+    source?: string | null
+  }
+
+  export type FirecrackerContainerLogUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerContainerLogUncheckedUpdateWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerContainerLogUncheckedUpdateManyWithoutContainerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    level?: EnumLogLevelFieldUpdateOperationsInput | $Enums.LogLevel
+    message?: StringFieldUpdateOperationsInput | string
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type FirecrackerVMCreateManyTemplateInput = {
+    id?: string
+    name: string
+    workspaceId: string
+    status?: $Enums.FirecrackerStatus
+    vmId: string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: string | null
+    rootfsImage?: string | null
+    socketPath?: string | null
+    logPath?: string | null
+    metricsPath?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    startedAt?: Date | string | null
+    stoppedAt?: Date | string | null
+  }
+
+  export type FirecrackerVMUpdateWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workspace?: WorkspaceUpdateOneRequiredWithoutFirecrackerVMsNestedInput
+    containers?: FirecrackerContainerUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    containers?: FirecrackerContainerUncheckedUpdateManyWithoutVmNestedInput
+    metrics?: FirecrackerMetricUncheckedUpdateManyWithoutVmNestedInput
+    snapshots?: FirecrackerSnapshotUncheckedUpdateManyWithoutVmNestedInput
+  }
+
+  export type FirecrackerVMUncheckedUpdateManyWithoutTemplateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    workspaceId?: StringFieldUpdateOperationsInput | string
+    status?: EnumFirecrackerStatusFieldUpdateOperationsInput | $Enums.FirecrackerStatus
+    vmId?: StringFieldUpdateOperationsInput | string
+    config?: NullableJsonNullValueInput | InputJsonValue
+    resources?: NullableJsonNullValueInput | InputJsonValue
+    networkConfig?: NullableJsonNullValueInput | InputJsonValue
+    kernelImage?: NullableStringFieldUpdateOperationsInput | string | null
+    rootfsImage?: NullableStringFieldUpdateOperationsInput | string | null
+    socketPath?: NullableStringFieldUpdateOperationsInput | string | null
+    logPath?: NullableStringFieldUpdateOperationsInput | string | null
+    metricsPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    startedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stoppedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type StorageObjectCreateManyBucketInput = {

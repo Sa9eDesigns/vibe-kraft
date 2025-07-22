@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus } from "lucide-react";
+import { Plus, Monitor, Server, Container, Bot } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -149,7 +149,57 @@ export function CreateWorkspaceDialog({
                 </FormItem>
               )}
             />
-            
+
+            <FormField
+              control={form.control}
+              name="type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Workspace Type</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value || "WEBVM"}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select workspace type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="WEBVM">
+                        <div className="flex items-center gap-2">
+                          <Monitor className="h-4 w-4" />
+                          <div>
+                            <div className="font-medium">WebVM</div>
+                            <div className="text-xs text-muted-foreground">Browser-based development environment</div>
+                          </div>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="FIRECRACKER">
+                        <div className="flex items-center gap-2">
+                          <Server className="h-4 w-4" />
+                          <div>
+                            <div className="font-medium">Firecracker</div>
+                            <div className="text-xs text-muted-foreground">MicroVM with container orchestration</div>
+                          </div>
+                        </div>
+                      </SelectItem>
+                      <SelectItem value="PYODIDE">
+                        <div className="flex items-center gap-2">
+                          <Bot className="h-4 w-4" />
+                          <div>
+                            <div className="font-medium">Pyodide</div>
+                            <div className="text-xs text-muted-foreground">Python in the browser with WebAssembly</div>
+                          </div>
+                        </div>
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormDescription>
+                    Choose between WebVM (browser-based), Firecracker (microVM), or Pyodide (Python) workspace types
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <FormField
               control={form.control}
               name="status"

@@ -39,7 +39,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextTopLoader 
-          color="hsl(var(--primary))"
+          color="#F89003"
           initialPosition={0.08}
           crawlSpeed={200}
           height={3}
@@ -47,7 +47,7 @@ export default function RootLayout({
           showSpinner={true}
           easing="ease"
           speed={200}
-          shadow="0 0 10px hsl(var(--primary)),0 0 5px hsl(var(--primary))"
+          shadow="0 0 10px rgba(0, 0, 0, 0.1)"
         />
         <ThemeProvider
           attribute="class"

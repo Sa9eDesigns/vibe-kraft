@@ -16,12 +16,18 @@ const envSchema = z.object({
   // Redis
   REDIS_URL: z.string().url(),
   
-  // MinIO Storage
-  MINIO_ENDPOINT: z.string().url(),
-  MINIO_ACCESS_KEY: z.string().min(1),
-  MINIO_SECRET_KEY: z.string().min(1),
-  MINIO_BUCKET_NAME: z.string().min(1),
+  // MinIO Storage (Legacy - keeping for backward compatibility)
+  MINIO_ENDPOINT: z.string().url().optional(),
+  MINIO_ACCESS_KEY: z.string().min(1).optional(),
+  MINIO_SECRET_KEY: z.string().min(1).optional(),
+  MINIO_BUCKET_NAME: z.string().min(1).optional(),
   MINIO_REGION: z.string().default('us-east-1'),
+
+  // Appwrite Storage (New preferred storage backend)
+  APPWRITE_ENDPOINT: z.string().url().optional(),
+  APPWRITE_PROJECT_ID: z.string().min(1).optional(),
+  APPWRITE_API_KEY: z.string().min(1).optional(),
+  APPWRITE_BUCKET_NAME: z.string().min(1).default('workspace-files'),
   
   // API Endpoints
   API_URL: z.string().url(),
@@ -55,16 +61,16 @@ const envSchema = z.object({
   GOOGLE_CLIENT_SECRET: z.string().optional(),
   GITHUB_CLIENT_ID: z.string().optional(),
   GITHUB_CLIENT_SECRET: z.string().optional(),
+
+  // Security
+  INFRASTRUCTURE_JWT_SECRET: z.string().min(32),
+  ADMIN_API_KEY: z.string().min(32),
+  WEBHOOK_SECRET: z.string().min(32),
   
   // AI SDK
   OPENAI_API_KEY: z.string().optional(),
   ANTHROPIC_API_KEY: z.string().optional(),
   GOOGLE_GENERATIVE_AI_API_KEY: z.string().optional(),
-  
-  // Security
-  INFRASTRUCTURE_JWT_SECRET: z.string().min(32),
-  ADMIN_API_KEY: z.string().min(32),
-  WEBHOOK_SECRET: z.string().min(32),
   
   // Logging
   LOG_LEVEL: z.enum(['debug', 'info', 'warn', 'error']).default('info'),
@@ -118,13 +124,21 @@ export const config = {
     url: env.REDIS_URL,
   },
   
-  // MinIO configuration
+  // Storage configuration (MinIO - Legacy)
   storage: {
-    endpoint: env.MINIO_ENDPOINT,
-    accessKey: env.MINIO_ACCESS_KEY,
-    secretKey: env.MINIO_SECRET_KEY,
-    bucketName: env.MINIO_BUCKET_NAME,
+    endpoint: env.MINIO_ENDPOINT || '',
+    accessKey: env.MINIO_ACCESS_KEY || '',
+    secretKey: env.MINIO_SECRET_KEY || '',
+    bucketName: env.MINIO_BUCKET_NAME || '',
     region: env.MINIO_REGION,
+  },
+
+  // Appwrite configuration (New preferred backend)
+  appwrite: {
+    endpoint: env.APPWRITE_ENDPOINT || '',
+    projectId: env.APPWRITE_PROJECT_ID || '',
+    apiKey: env.APPWRITE_API_KEY || '',
+    bucketName: env.APPWRITE_BUCKET_NAME,
   },
   
   // API configuration

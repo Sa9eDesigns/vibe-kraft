@@ -7,6 +7,7 @@ import { useDevSandbox } from '@/components/webvm/hooks/use-dev-sandbox';
 import { LoadingSpinner } from '@/components/webvm/ui/loading-spinner';
 import { ErrorDisplay } from '@/components/webvm/ui/error-display';
 import { useCheerpXStatus } from '@/components/workspace/cheerpx-direct-loader';
+import { WebVMFallback } from '@/components/workspace/webvm-fallback';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,9 +21,9 @@ interface WorkspaceContainerProps {
   workspaceId?: string;
 }
 
-export function WorkspaceContainer({ userId, projectId, workspaceId }: WorkspaceContainerProps) {
+export function WorkspaceContainer({ projectId, workspaceId }: WorkspaceContainerProps) {
   const router = useRouter();
-  const cheerpXReady = useCheerpXStatus();
+  const { isReady: cheerpXReady, error: cheerpXError, isLoading: cheerpXLoading } = useCheerpXStatus();
   const [isInitializing, setIsInitializing] = useState(true);
   const [workspaceConfig, setWorkspaceConfig] = useState<DevSandboxConfig | null>(null);
   const [networkingConfig, setNetworkingConfig] = useState<NetworkingConfig>({
@@ -114,7 +115,7 @@ export function WorkspaceContainer({ userId, projectId, workspaceId }: Workspace
     };
 
     initializeWorkspace();
-  }, [projectId, workspaceId]);
+  }, [projectId, workspaceId, cheerpXReady, workspaceConfig]);
 
   const { sandbox, isLoading, error, initialize } = useDevSandbox(workspaceConfig || getDefaultWorkspaceConfig());
 
@@ -278,7 +279,13 @@ export function WorkspaceContainer({ userId, projectId, workspaceId }: Workspace
 
       {/* Main Workspace */}
       <div className="flex-1 overflow-hidden">
-        {isLoading ? (
+        {cheerpXError ? (
+          <WebVMFallback
+            error={cheerpXError}
+            onRetry={() => window.location.reload()}
+            className="h-full"
+          />
+        ) : isLoading || cheerpXLoading ? (
           <div className="h-full flex items-center justify-center">
             <LoadingSpinner />
           </div>
@@ -288,6 +295,7 @@ export function WorkspaceContainer({ userId, projectId, workspaceId }: Workspace
             className="h-full"
             networkingConfig={networkingConfig}
             onNetworkingChange={handleNetworkingChange}
+            enableAIChat={true}
           />
         ) : (
           <div className="h-full flex items-center justify-center">

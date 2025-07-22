@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable cross-origin isolation for SharedArrayBuffer support (required for WebVM/CheerpX)
+  // Enable cross-origin isolation for WebVM routes only
   async headers() {
     return [
       {
-        // Apply to all routes
-        source: '/(.*)',
+        // Apply cross-origin isolation to WebVM and AI workspace routes
+        source: '/(workspace|ai-workspace)/:path*',
         headers: [
           {
             key: 'Cross-Origin-Embedder-Policy',
@@ -15,6 +15,24 @@ const nextConfig: NextConfig = {
           {
             key: 'Cross-Origin-Opener-Policy',
             value: 'same-origin'
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin'
+          }
+        ]
+      },
+      {
+        // Apply to CheerpX static assets
+        source: '/cheerpx/:path*',
+        headers: [
+          {
+            key: 'Cross-Origin-Embedder-Policy',
+            value: 'require-corp'
+          },
+          {
+            key: 'Cross-Origin-Resource-Policy',
+            value: 'cross-origin'
           }
         ]
       }

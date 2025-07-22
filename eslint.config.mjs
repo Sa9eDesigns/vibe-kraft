@@ -19,6 +19,8 @@ const eslintConfig = [
       // disable no-console rule
       "no-console": "off",
       "@typescript-eslint/no-console": "off",
+      //Enable Use of "any"
+      "@typescript-eslint/no-explicit-any": "off"
     }
   }
 ];

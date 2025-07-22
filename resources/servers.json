@@ -1,0 +1,16 @@
+{
+    "vk-amazon":{
+        "address": "18.182.54.53",
+        "ssh": {
+            "username": "ubuntu",
+            "keyPath": "./keys/id_rsa.pub"
+        }
+    },
+    "vk-mitc": {
+        "address": "100.73.23.37",
+        "ssh": {
+            "username": "sage",
+            "keyPath": "./keys/id_rsa.pub"
+        }
+    }
+}

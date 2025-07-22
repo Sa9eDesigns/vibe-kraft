@@ -187,17 +187,19 @@ model Workspace {
   name        String
   description String?
   projectId   String
+  type        WorkspaceType   @default(WEBVM) // New field to distinguish workspace types
   status      WorkspaceStatus @default(INACTIVE)
   config      Json? // Workspace configuration (IDE settings, environment variables, etc.)
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
 
-  project     Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  instances   WebVMInstance[]
-  persistence WorkspacePersistence?
-  files       WorkspaceFile[]
-  states      WorkspaceState[]
-  syncs       WorkspaceSync[]
+  project        Project               @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  instances      WebVMInstance[]
+  firecrackerVMs FirecrackerVM[] // New relation for Firecracker VMs
+  persistence    WorkspacePersistence?
+  files          WorkspaceFile[]
+  states         WorkspaceState[]
+  syncs          WorkspaceSync[]
 }
 
 // WebVM Instance models for CheerpX containers
@@ -223,6 +225,115 @@ model WebVMInstance {
   templateId String?
 }
 
+// Firecracker VM models for microVM containers
+model FirecrackerVM {
+  id            String            @id @default(cuid())
+  name          String
+  workspaceId   String
+  status        FirecrackerStatus @default(STOPPED)
+  vmId          String            @unique // Firecracker VM ID
+  config        Json? // Firecracker VM configuration
+  resources     Json? // Resource allocation (CPU, memory, disk)
+  networkConfig Json? // Network configuration and interfaces
+  kernelImage   String? // Kernel image path
+  rootfsImage   String? // Root filesystem image path
+  socketPath    String? // Firecracker API socket path
+  logPath       String? // VM log file path
+  metricsPath   String? // Metrics file path
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  startedAt     DateTime?
+  stoppedAt     DateTime?
+
+  workspace  Workspace              @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  containers FirecrackerContainer[]
+  metrics    FirecrackerMetric[]
+  snapshots  FirecrackerSnapshot[]
+  template   FirecrackerTemplate?   @relation(fields: [templateId], references: [id])
+  templateId String?
+}
+
+// Container management within Firecracker VMs
+model FirecrackerContainer {
+  id          String          @id @default(cuid())
+  vmId        String
+  name        String
+  image       String // Docker image
+  status      ContainerStatus @default(CREATING)
+  config      Json? // Container configuration
+  ports       Json? // Port mappings
+  volumes     Json? // Volume mounts
+  environment Json? // Environment variables
+  command     String? // Container command
+  workingDir  String? // Working directory
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  startedAt   DateTime?
+  stoppedAt   DateTime?
+
+  vm   FirecrackerVM             @relation(fields: [vmId], references: [id], onDelete: Cascade)
+  logs FirecrackerContainerLog[]
+}
+
+// Firecracker VM Metrics for monitoring
+model FirecrackerMetric {
+  id         String     @id @default(cuid())
+  vmId       String
+  metricType MetricType
+  value      Float
+  unit       String
+  timestamp  DateTime   @default(now())
+
+  vm FirecrackerVM @relation(fields: [vmId], references: [id], onDelete: Cascade)
+
+  @@index([vmId, timestamp])
+}
+
+// Firecracker VM Snapshots
+model FirecrackerSnapshot {
+  id           String   @id @default(cuid())
+  vmId         String
+  name         String
+  description  String?
+  snapshotPath String // Path to snapshot file
+  memoryPath   String? // Path to memory snapshot
+  size         BigInt // Snapshot size in bytes
+  createdAt    DateTime @default(now())
+
+  vm FirecrackerVM @relation(fields: [vmId], references: [id], onDelete: Cascade)
+}
+
+// Firecracker VM Templates
+model FirecrackerTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String   @default("general")
+  kernelImage String // Kernel image path
+  rootfsImage String // Root filesystem image path
+  config      Json // Default VM configuration
+  resources   Json // Default resource allocation
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  vms FirecrackerVM[]
+}
+
+// Firecracker Container Logs
+model FirecrackerContainerLog {
+  id          String   @id @default(cuid())
+  containerId String
+  timestamp   DateTime @default(now())
+  level       LogLevel @default(INFO)
+  message     String
+  source      String? // stdout, stderr, etc.
+
+  container FirecrackerContainer @relation(fields: [containerId], references: [id], onDelete: Cascade)
+
+  @@index([containerId, timestamp])
+}
+
 // WebVM Metrics for monitoring
 model WebVMMetric {
   id         String     @id @default(cuid())
@@ -238,6 +349,12 @@ model WebVMMetric {
 }
 
 // Additional enums
+enum WorkspaceType {
+  WEBVM // Browser-based WebVM workspaces
+  FIRECRACKER // Firecracker microVM workspaces
+  PYODIDE // Python workspaces powered by Pyodide
+}
+
 enum WorkspaceStatus {
   ACTIVE
   INACTIVE
@@ -252,6 +369,16 @@ enum WebVMStatus {
   STOPPED
   ERROR
   SUSPENDED
+}
+
+enum FirecrackerStatus {
+  STARTING
+  RUNNING
+  STOPPING
+  STOPPED
+  ERROR
+  SUSPENDED
+  PAUSED
 }
 
 enum MetricType {

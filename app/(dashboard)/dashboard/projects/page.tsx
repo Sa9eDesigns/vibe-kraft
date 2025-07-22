@@ -6,6 +6,7 @@ import { DashboardShell } from "@/components/dashboard/dashboard-shell";
 import { ProjectsList } from "@/components/dashboard/projects/projects-list";
 import { CreateProjectDialog } from "@/components/dashboard/projects/create-project-dialog";
 import { getUserOrganizations } from "@/lib/data/organization";
+import { db } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -36,8 +37,27 @@ export default async function ProjectsPage() {
     );
   }
 
-  // Use the first organization for now (in a real app, you'd have organization selection)
-  const currentOrganization = organizations[0];
+  // Prioritize organization with Pyodide projects (for showcasing seeded projects)
+  let currentOrganization = organizations[0]; // Default to first
+
+  // Check if any organization has Pyodide projects and prioritize it
+  for (const org of organizations) {
+    const projects = await db.project.findMany({
+      where: { organizationId: org.id },
+      include: {
+        workspaces: {
+          where: { type: 'PYODIDE' },
+          select: { id: true }
+        }
+      },
+      take: 1 // Just check if any exist
+    });
+
+    if (projects.some(p => p.workspaces.length > 0)) {
+      currentOrganization = org;
+      break; // Use the first org with Pyodide projects
+    }
+  }
 
   return (
     <div className="space-y-6">

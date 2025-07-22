@@ -4,18 +4,19 @@
  */
 
 import { createHash } from 'crypto';
-import { join, dirname, basename, extname } from 'path';
+import { basename, extname } from 'path';
 import { storageService } from '@/lib/infrastructure/services/storage';
 import { WorkspaceFile, FileMetadata, FilePermissions, FileType } from '../types';
 import { db } from '@/lib/db';
+import { config } from '@/lib/config/environment';
 
 export class WorkspaceFileStorage {
   private readonly bucketName: string;
   private readonly workspaceId: string;
 
-  constructor(workspaceId: string, bucketName: string = 'workspace-files') {
+  constructor(workspaceId: string, bucketName?: string) {
     this.workspaceId = workspaceId;
-    this.bucketName = bucketName;
+    this.bucketName = bucketName || config.storage.bucketName || 'workspace-files';
   }
 
   // =============================================================================
@@ -35,7 +36,7 @@ export class WorkspaceFileStorage {
     const fileType = this.detectFileType(path, content);
     const isDirectory = false;
 
-    // Upload to MinIO
+    // Upload to MinIO storage
     const uploadResult = await storageService.uploadObject({
       file: new File([content], basename(path)),
       key: storageKey,
@@ -43,9 +44,9 @@ export class WorkspaceFileStorage {
       metadata: {
         workspaceId: this.workspaceId,
         originalPath: path,
-        fileType,
+        fileType: fileType.toString(),
         hash: fileHash,
-        ...metadata,
+        ...(metadata ? this.serializeMetadata(metadata) : {}),
       },
     });
 
@@ -65,7 +66,7 @@ export class WorkspaceFileStorage {
         encoding: 'utf-8',
         hash: fileHash,
         isDirectory,
-        permissions: this.getDefaultPermissions(),
+        permissions: this.getDefaultPermissions() as any,
         metadata: {
           ...this.analyzeFile(path, content),
           ...metadata,
@@ -147,7 +148,7 @@ export class WorkspaceFileStorage {
         workspaceId: this.workspaceId,
         originalPath: path,
         hash: fileHash,
-        version: existingFile.version + 1,
+        version: (existingFile.version + 1).toString(),
         ...metadata,
       },
     });
@@ -163,10 +164,10 @@ export class WorkspaceFileStorage {
         size: Buffer.isBuffer(content) ? content.length : Buffer.byteLength(content),
         hash: fileHash,
         metadata: {
-          ...existingFile.metadata,
+          ...(typeof existingFile.metadata === 'object' ? existingFile.metadata : {}),
           ...this.analyzeFile(path, content),
-          ...metadata,
-        },
+          ...(metadata || {}),
+        } as any,
         version: existingFile.version + 1,
         updatedAt: new Date(),
         lastAccessedAt: new Date(),
@@ -240,7 +241,7 @@ export class WorkspaceFileStorage {
         encoding: '',
         hash: '',
         isDirectory: true,
-        permissions: this.getDefaultPermissions(),
+        permissions: this.getDefaultPermissions() as any,
         metadata: {},
         version: 1,
         lastAccessedAt: new Date(),
@@ -316,6 +317,29 @@ export class WorkspaceFileStorage {
 
   private getStorageKey(path: string): string {
     return `workspaces/${this.workspaceId}/files${path.startsWith('/') ? '' : '/'}${path}`;
+  }
+
+  /**
+   * Serialize metadata for storage (convert non-string values to strings)
+   */
+  private serializeMetadata(metadata: Partial<FileMetadata>): Record<string, string> {
+    const serialized: Record<string, string> = {};
+
+    for (const [key, value] of Object.entries(metadata)) {
+      if (value !== undefined && value !== null) {
+        if (typeof value === 'string') {
+          serialized[key] = value;
+        } else if (Array.isArray(value)) {
+          serialized[key] = JSON.stringify(value);
+        } else if (typeof value === 'object') {
+          serialized[key] = JSON.stringify(value);
+        } else {
+          serialized[key] = String(value);
+        }
+      }
+    }
+
+    return serialized;
   }
 
   private calculateHash(content: Buffer | string): string {

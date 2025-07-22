@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
 
     const { searchParams } = new URL(request.url);
     const organizationId = searchParams.get("organizationId");
+    const include = searchParams.get("include");
 
     if (!organizationId) {
       return NextResponse.json({ error: "Organization ID is required" }, { status: 400 });
@@ -24,7 +25,8 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Access denied" }, { status: 403 });
     }
 
-    const projects = await getProjectsByOrganization(organizationId);
+    const includeWorkspaces = include === "workspaces";
+    const projects = await getProjectsByOrganization(organizationId, includeWorkspaces);
     return NextResponse.json(projects);
   } catch (error) {
     console.error("Error fetching projects:", error);

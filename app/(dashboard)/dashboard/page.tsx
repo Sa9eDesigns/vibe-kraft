@@ -7,6 +7,7 @@ import { DashboardCards } from "@/components/dashboard/dashboard-cards";
 import { DashboardCharts } from "@/components/dashboard/dashboard-charts";
 import { DashboardTasks } from "@/components/dashboard/dashboard-tasks";
 import { getUserOrganizations } from "@/lib/data/organization";
+import { db } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -21,7 +22,28 @@ export default async function DashboardPage() {
   }
 
   const organizations = await getUserOrganizations(session.user.id);
-  const currentOrganization = organizations[0]; // Use first organization for now
+
+  // Prioritize organization with Pyodide projects (for showcasing seeded projects)
+  let currentOrganization = organizations[0]; // Default to first
+
+  // Check if any organization has Pyodide projects and prioritize it
+  for (const org of organizations) {
+    const projects = await db.project.findMany({
+      where: { organizationId: org.id },
+      include: {
+        workspaces: {
+          where: { type: 'PYODIDE' },
+          select: { id: true }
+        }
+      },
+      take: 1 // Just check if any exist
+    });
+
+    if (projects.some(p => p.workspaces.length > 0)) {
+      currentOrganization = org;
+      break; // Use the first org with Pyodide projects
+    }
+  }
 
   return (
     <div className="grid gap-6">

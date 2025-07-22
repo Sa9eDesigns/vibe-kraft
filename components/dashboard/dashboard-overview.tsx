@@ -40,6 +40,7 @@ import { CreateProjectDialog } from "./projects/create-project-dialog";
 import { CreateWorkspaceDialog } from "./workspaces/create-workspace-dialog";
 import { CreateWebVMDialog } from "./webvm/create-webvm-dialog";
 import { DashboardFilters, FilterState } from "./management/dashboard-filters";
+import { QuickActions } from "./quick-actions";
 
 interface DashboardOverviewProps {
   organizationId: string;
@@ -352,24 +353,91 @@ export function DashboardOverview({ organizationId }: DashboardOverviewProps) {
         </div>
 
         <TabsContent value="overview" className="space-y-4">
+          {/* Featured Projects Section */}
+          <Card className="bg-gradient-to-r from-primary/5 via-primary/3 to-secondary/5 border-primary/20">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Bot className="h-5 w-5 text-primary" />
+                    Featured Python Templates
+                  </CardTitle>
+                  <CardDescription>
+                    Get started quickly with our curated Pyodide project templates
+                  </CardDescription>
+                </div>
+                <Badge className="bg-gradient-to-r from-primary to-primary/80 text-white">
+                  <Zap className="h-3 w-3 mr-1" />
+                  New
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-3 md:grid-cols-3">
+                <div className="p-3 rounded-lg bg-white/50 border border-primary/10 hover:border-primary/30 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2 mb-2">
+                    <BookOpen className="h-4 w-4 text-primary" />
+                    <span className="font-medium text-sm">Hello Python</span>
+                    <Badge variant="outline" className="text-xs">Beginner</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Learn Python basics in the browser</p>
+                </div>
+                <div className="p-3 rounded-lg bg-white/50 border border-primary/10 hover:border-primary/30 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2 mb-2">
+                    <TrendingUp className="h-4 w-4 text-primary" />
+                    <span className="font-medium text-sm">Data Analysis</span>
+                    <Badge variant="outline" className="text-xs">Intermediate</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Pandas, NumPy, and visualization</p>
+                </div>
+                <div className="p-3 rounded-lg bg-white/50 border border-primary/10 hover:border-primary/30 transition-colors cursor-pointer">
+                  <div className="flex items-center gap-2 mb-2">
+                    <Code className="h-4 w-4 text-primary" />
+                    <span className="font-medium text-sm">Web Scraping</span>
+                    <Badge variant="outline" className="text-xs">Intermediate</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">Requests and BeautifulSoup</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="grid gap-4 md:grid-cols-3">
             <Card>
               <CardHeader>
-                <CardTitle className="text-base">Recent Activity</CardTitle>
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Activity className="h-4 w-4" />
+                  Recent Activity
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Project</Badge>
-                    <span className="text-muted-foreground">New project created</span>
+                <div className="space-y-3 text-sm">
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-green-100">
+                      <CheckCircle className="h-3 w-3 text-green-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium">Hello Python project created</div>
+                      <div className="text-xs text-muted-foreground">2 minutes ago</div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Workspace</Badge>
-                    <span className="text-muted-foreground">Workspace activated</span>
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-blue-100">
+                      <Play className="h-3 w-3 text-blue-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium">Pyodide workspace launched</div>
+                      <div className="text-xs text-muted-foreground">5 minutes ago</div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Badge variant="outline">Instance</Badge>
-                    <span className="text-muted-foreground">Instance started</span>
+                  <div className="flex items-center gap-3">
+                    <div className="p-1 rounded-full bg-purple-100">
+                      <FileText className="h-3 w-3 text-purple-600" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="font-medium">Files indexed for search</div>
+                      <div className="text-xs text-muted-foreground">10 minutes ago</div>
+                    </div>
                   </div>
                 </div>
               </CardContent>
@@ -419,6 +487,9 @@ export function DashboardOverview({ organizationId }: DashboardOverviewProps) {
               </CardContent>
             </Card>
           </div>
+
+          {/* Quick Actions Section */}
+          <QuickActions organizationId={organizationId} />
         </TabsContent>
 
         <TabsContent value="projects">

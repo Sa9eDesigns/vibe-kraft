@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Calendar, MoreHorizontal, Monitor, Play, Square, AlertCircle } from "lucide-react";
+import { Calendar, MoreHorizontal, Monitor, Play, Square, AlertCircle, Server } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,6 +29,11 @@ const statusConfig = {
   INACTIVE: { label: "Inactive", variant: "secondary" as const, icon: Square },
   ARCHIVED: { label: "Archived", variant: "outline" as const, icon: Square },
   ERROR: { label: "Error", variant: "destructive" as const, icon: AlertCircle },
+};
+
+const typeConfig = {
+  WEBVM: { label: "WebVM", variant: "default" as const, icon: Monitor, description: "Browser-based" },
+  FIRECRACKER: { label: "Firecracker", variant: "secondary" as const, icon: Server, description: "MicroVM" },
 };
 
 export function WorkspacesList({ organizationId, query }: WorkspacesListProps) {
@@ -111,6 +116,8 @@ export function WorkspacesList({ organizationId, query }: WorkspacesListProps) {
       {workspaces.map((workspace) => {
         const statusInfo = statusConfig[workspace.status as keyof typeof statusConfig];
         const StatusIcon = statusInfo.icon;
+        const typeInfo = typeConfig[workspace.type as keyof typeof typeConfig] || typeConfig.WEBVM;
+        const TypeIcon = typeInfo.icon;
         
         return (
           <Card key={workspace.id} className="hover:shadow-md transition-shadow">
@@ -170,10 +177,16 @@ export function WorkspacesList({ organizationId, query }: WorkspacesListProps) {
             <CardContent>
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <Badge variant={statusInfo.variant} className="text-xs">
-                    <StatusIcon className="h-3 w-3 mr-1" />
-                    {statusInfo.label}
-                  </Badge>
+                  <div className="flex items-center gap-2">
+                    <Badge variant={statusInfo.variant} className="text-xs">
+                      <StatusIcon className="h-3 w-3 mr-1" />
+                      {statusInfo.label}
+                    </Badge>
+                    <Badge variant={typeInfo.variant} className="text-xs">
+                      <TypeIcon className="h-3 w-3 mr-1" />
+                      {typeInfo.label}
+                    </Badge>
+                  </div>
                   <span className="text-xs text-muted-foreground">
                     {workspace._count?.instances || 0} instances
                   </span>

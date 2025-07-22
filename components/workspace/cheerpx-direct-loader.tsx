@@ -1,9 +1,12 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { WebVMFallback } from './webvm-fallback';
 
 export function CheerpXDirectLoader() {
   const [status, setStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
+  const [error, setError] = useState<string>('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const loadCheerpX = async () => {
@@ -22,9 +25,36 @@ export function CheerpXDirectLoader() {
         console.log('- SharedArrayBuffer:', typeof SharedArrayBuffer !== 'undefined');
         console.log('- crossOriginIsolated:', (window as any).crossOriginIsolated);
         console.log('- Location:', window.location.href);
+        console.log('- User Agent:', navigator.userAgent);
 
         if (typeof SharedArrayBuffer === 'undefined') {
-          throw new Error('SharedArrayBuffer not available - cross-origin isolation required');
+          const errorMessage = `
+SharedArrayBuffer not available - cross-origin isolation required.
+
+This is needed for CheerpX WebVM to work properly. To fix this:
+
+1. The page needs to be served with these headers:
+   - Cross-Origin-Embedder-Policy: require-corp
+   - Cross-Origin-Opener-Policy: same-origin
+
+2. Make sure you're accessing the page via HTTPS (or localhost)
+
+3. Try refreshing the page or restarting the development server
+
+Current environment:
+- crossOriginIsolated: ${(window as any).crossOriginIsolated}
+- Location: ${window.location.href}
+- Protocol: ${window.location.protocol}
+
+If you're in development, try accessing via:
+- http://localhost:3000/workspace (if using HTTP)
+- https://localhost:3000/workspace (if using HTTPS)
+          `.trim();
+
+          console.error('❌ SharedArrayBuffer Error:', errorMessage);
+          setError(errorMessage);
+          setIsLoading(false);
+          return;
         }
 
         // Load script directly
@@ -113,11 +143,38 @@ export function CheerpXDirectLoader() {
 // Export a hook to check CheerpX status
 export function useCheerpXStatus() {
   const [isReady, setIsReady] = useState(false);
+  const [error, setError] = useState<string>('');
+  const [hasSharedArrayBuffer, setHasSharedArrayBuffer] = useState(false);
 
   useEffect(() => {
     const checkStatus = () => {
       const ready = !!(window as any).CheerpX && !!(window as any).__CHEERPX_READY__;
+      const sharedArrayBufferAvailable = typeof SharedArrayBuffer !== 'undefined';
+
       setIsReady(ready);
+      setHasSharedArrayBuffer(sharedArrayBufferAvailable);
+
+      // Check for SharedArrayBuffer error
+      if (!sharedArrayBufferAvailable && !error) {
+        const errorMessage = `SharedArrayBuffer not available - cross-origin isolation required.
+
+This is needed for CheerpX WebVM to work properly. To fix this:
+
+1. The page needs to be served with these headers:
+   - Cross-Origin-Embedder-Policy: require-corp
+   - Cross-Origin-Opener-Policy: same-origin
+
+2. Make sure you're accessing the page via HTTPS (or localhost)
+
+3. Try refreshing the page or restarting the development server
+
+Current environment:
+- crossOriginIsolated: ${(window as any).crossOriginIsolated}
+- Location: ${window.location.href}
+- Protocol: ${window.location.protocol}`;
+
+        setError(errorMessage);
+      }
     };
 
     // Check immediately
@@ -127,7 +184,12 @@ export function useCheerpXStatus() {
     const interval = setInterval(checkStatus, 500);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [error]);
 
-  return isReady;
+  return {
+    isReady,
+    error,
+    hasSharedArrayBuffer,
+    isLoading: !isReady && !error
+  };
 }
